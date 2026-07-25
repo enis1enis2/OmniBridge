@@ -15,7 +15,7 @@ managed-plugins:
   viarewind: true
   viarewind-legacysupport: true
   viaprilfools: true
-  viabungee: true
+  viabungee: false
   # GeyserMC family (cross-platform support)
   geyser: true
   floodgate: true

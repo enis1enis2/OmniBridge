@@ -213,11 +213,19 @@ public class PluginManager {
         var managedSection = config.getConfigurationSection("managed-plugins");
         if (managedSection != null) {
             for (String key : managedSection.getKeys(false)) {
-                if (managedSection.getBoolean(key)) {
+                if (managedSection.getBoolean(key) && isPluginCompatibleWithPlatform(key)) {
                     managed.add(key);
                 }
             }
         }
         return managed;
+    }
+
+    private boolean isPluginCompatibleWithPlatform(String pluginName) {
+        return switch (pluginName.toLowerCase()) {
+            case "viabungee" -> platform == PlatformDetector.Platform.VELOCITY;
+            case "protocolib" -> PlatformDetector.isBukkitBased(platform);
+            default -> true;
+        };
     }
 }
