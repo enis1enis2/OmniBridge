@@ -190,7 +190,6 @@ public class PluginManager {
             case "protocolib" -> "ProtocolLib";
             case "authme" -> "AuthMe";
             case "tab" -> "TAB";
-            case "simplescore" -> "SimpleScore";
             default -> pluginName;
         };
     }

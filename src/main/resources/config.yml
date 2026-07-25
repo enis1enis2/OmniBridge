@@ -29,7 +29,6 @@ managed-plugins:
   # Integration plugins (Bedrock/cross-version aware)
   authme: false
   tab: false
-  simplescore: false
   # Community essentials
   protocolib: false
 
