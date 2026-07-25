@@ -1,0 +1,20 @@
+name: OmniBridge
+version: '1.0.0'
+main: io.omnibrige.OmniBridge
+api-version: '1.21'
+description: Universal cross-version and cross-platform connectivity solution for Minecraft servers
+authors: ['OmniBridge']
+website: https://github.com/omnibrige
+commands:
+  omnibrige:
+    description: OmniBridge management command
+    usage: /<command> <subcommand>
+    aliases: [ob, omnib]
+    permission: omnibrige.admin
+permissions:
+  omnibrige.admin:
+    description: Allows use of all OmniBridge commands
+    default: op
+  omnibrige.status:
+    description: Allows viewing OmniBridge status
+    default: op

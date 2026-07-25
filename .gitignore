@@ -1,0 +1,29 @@
+# Build output
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven
+dependency-reduced-pom.xml
+release.properties
+
+# Logs
+*.log
+
+# Test server
+test-server*/
+plugins/
+worlds/
+logs/
