@@ -1,14 +1,15 @@
 # OmniBridge Configuration
 # Auto-manages ViaVersion, ViaBackwards, ViaRewind, Geyser, Floodgate and more
 
-# Should OmniBridge auto-install missing plugins on startup?
-auto-install: false
+# Should OmniBridge auto-install managed plugins on startup?
+auto-install: true
 
 # Should OmniBridge auto-update plugins on startup?
 auto-update: false
 
 # Which plugins to manage (true = manage, false = skip)
 # All plugins are disabled by default. Enable the ones you need, then run /ob reload
+# Dependencies are auto-enabled (e.g. enabling Geyser auto-enables Floodgate)
 managed-plugins:
   # ViaVersion family (cross-version support)
   viaversion: false
@@ -17,7 +18,7 @@ managed-plugins:
   viarewind-legacysupport: false
   viaprilfools: false
   viabungee: false
-  # GeyserMC family (cross-platform support)
+  # GeyserMC family (cross-platform / Bedrock support)
   geyser: false
   floodgate: false
   hurricane: false
@@ -25,6 +26,10 @@ managed-plugins:
   thirdpartycosmetics: false
   thunderbeta: false
   rainbow: false
+  # Integration plugins (Bedrock/cross-version aware)
+  authme: false
+  tab: false
+  simplescore: false
   # Community essentials
   protocolib: false
 

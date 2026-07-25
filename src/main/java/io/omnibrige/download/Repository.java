@@ -1,6 +1,7 @@
 package io.omnibrige.download;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class Repository {
@@ -8,10 +9,12 @@ public final class Repository {
     public enum PluginType {
         VIAMCRAFT,
         GEYSERMC,
+        INTEGRATION,
         COMMUNITY
     }
 
     private static final Map<String, PluginInfo> PLUGINS = new HashMap<>();
+    private static final Map<String, List<String>> DEPENDENCIES = new HashMap<>();
 
     static {
         PLUGINS.put("viaversion", new PluginInfo("ViaVersion", PluginType.VIAMCRAFT,
@@ -28,6 +31,7 @@ public final class Repository {
                 "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaBungee/versions/latest/download?platform=WATERFALL"));
         PLUGINS.put("protocolib", new PluginInfo("ProtocolLib", PluginType.COMMUNITY,
                 "https://hangar.papermc.io/api/v1/plugins/dmulloy2/ProtocolLib/versions/latest/download?platform=PAPER"));
+
         PLUGINS.put("geyser", new PluginInfo("Geyser", PluginType.GEYSERMC,
                 "https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot"));
         PLUGINS.put("floodgate", new PluginInfo("Floodgate", PluginType.GEYSERMC,
@@ -42,6 +46,16 @@ public final class Repository {
                 "https://download.geysermc.org/v2/projects/thunderbeta/versions/latest/builds/latest/downloads/spigot"));
         PLUGINS.put("rainbow", new PluginInfo("Rainbow", PluginType.GEYSERMC,
                 "https://download.geysermc.org/v2/projects/rainbow/versions/latest/builds/latest/downloads/spigot"));
+
+        PLUGINS.put("authme", new PluginInfo("AuthMe", PluginType.INTEGRATION,
+                "https://hangar.papermc.io/api/v1/plugins/AuthMe/AuthMeReloaded/versions/latest/download?platform=PAPER"));
+        PLUGINS.put("tab", new PluginInfo("TAB", PluginType.INTEGRATION,
+                "https://hangar.papermc.io/api/v1/plugins/NEZNAMY/TAB/versions/latest/download?platform=PAPER"));
+        PLUGINS.put("simplescore", new PluginInfo("SimpleScore", PluginType.INTEGRATION,
+                "https://hangar.papermc.io/api/v1/plugins/r4g3baby/SimpleScore/versions/latest/download?platform=PAPER"));
+
+        DEPENDENCIES.put("geyser", List.of("floodgate"));
+        DEPENDENCIES.put("authme", List.of("floodgate"));
     }
 
     private Repository() {}
@@ -67,6 +81,10 @@ public final class Repository {
 
     public static boolean isKnown(String pluginName) {
         return PLUGINS.containsKey(pluginName.toLowerCase());
+    }
+
+    public static List<String> getDependencies(String pluginName) {
+        return DEPENDENCIES.getOrDefault(pluginName.toLowerCase(), List.of());
     }
 
     public record PluginInfo(String displayName, PluginType type, String url) {}

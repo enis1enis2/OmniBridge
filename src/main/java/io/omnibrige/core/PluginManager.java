@@ -188,6 +188,9 @@ public class PluginManager {
             case "thunderbeta" -> "Thunder";
             case "rainbow" -> "Rainbow";
             case "protocolib" -> "ProtocolLib";
+            case "authme" -> "AuthMe";
+            case "tab" -> "TAB";
+            case "simplescore" -> "SimpleScore";
             default -> pluginName;
         };
     }
@@ -218,7 +221,22 @@ public class PluginManager {
                 }
             }
         }
+        resolveDependencies(managed);
         return managed;
+    }
+
+    private void resolveDependencies(Set<String> managed) {
+        Set<String> toAdd = new HashSet<>();
+        for (String plugin : managed) {
+            for (String dep : Repository.getDependencies(plugin)) {
+                if (!managed.contains(dep) && isPluginCompatibleWithPlatform(dep)) {
+                    logger.info("Auto-enabling " + Repository.getDisplayName(dep)
+                            + " (required by " + Repository.getDisplayName(plugin) + ")");
+                    toAdd.add(dep);
+                }
+            }
+        }
+        managed.addAll(toAdd);
     }
 
     private boolean isPluginCompatibleWithPlatform(String pluginName) {
