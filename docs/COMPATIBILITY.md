@@ -41,6 +41,13 @@
 |--------|---------|-----------|
 | ProtocolLib | Protocol-level packet access (required by many anti-cheats and compatibility plugins) | Paper, Spigot |
 
+## Integration Plugins
+
+| Plugin | Purpose | Platforms | Notes |
+|--------|---------|-----------|-------|
+| AuthMe | Login/authentication with native Bedrock support via Floodgate 6.0.0 | Paper, Spigot | Requires Floodgate when Bedrock players connect |
+| TAB | Tab list, sidebar scoreboard, nametag formatting (all-in-one) | Paper, Spigot | Works with ViaVersion/Geyser |
+
 ## Client Version Support
 
 | Client Version | Connection Method | Notes |

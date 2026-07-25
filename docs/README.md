@@ -49,6 +49,12 @@ OmniBridge is a server plugin that automatically downloads, configures, and mana
 | ThunderBeta | Java to Bedrock resource pack converter |
 | Rainbow | Custom item mapping generator |
 
+### Integration Plugins
+| Plugin | Description |
+|--------|-------------|
+| AuthMe | Login/authentication with native Bedrock support via Floodgate |
+| TAB | Tab list, sidebar scoreboard, nametag formatting (all-in-one) |
+
 ## Quick Start
 
 1. Download `OmniBridge-1.0.0.jar`
