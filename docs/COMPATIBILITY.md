@@ -2,26 +2,28 @@
 
 ## ViaVersion Family
 
-| Server Version | ViaVersion | ViaBackwards | ViaRewind | ViaRewindLegacySupport | ViaAprilFools |
-|----------------|:----------:|:------------:|:---------:|:----------------------:|:-------------:|
-| Paper 1.8      | ✅ | ❌ | ✅ | ✅ | ✅ |
-| Paper 1.9      | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.10     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.11     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.12     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.13     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.14     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.15     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.16     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.17     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.18     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.19     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.20     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.21     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 1.22+    | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Paper 26.2     | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Velocity 3.4   | ✅ | ✅ | ✅ | ❌ | ✅ |
-| Velocity 3.5   | ✅ | ✅ | ✅ | ❌ | ✅ |
+| Server Version | ViaVersion | ViaBackwards | ViaRewind | ViaRewindLegacySupport | ViaAprilFools | ViaBungee |
+|----------------|:----------:|:------------:|:---------:|:----------------------:|:-------------:|:---------:|
+| Paper 1.8      | ✅ | ❌ | ✅ | ✅ | ✅ | — |
+| Paper 1.9      | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.10     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.11     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.12     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.13     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.14     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.15     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.16     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.17     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.18     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.19     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.20     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.21     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 1.22+    | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Paper 26.2     | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Velocity 3.4   | ✅ | ✅ | ✅ | ❌ | ✅ | — |
+| Velocity 3.5   | ✅ | ✅ | ✅ | ❌ | ✅ | — |
+| Waterfall       | — | — | — | — | — | ✅ |
+| BungeeCord      | — | — | — | — | — | ✅ |
 
 ## GeyserMC Family
 
@@ -32,6 +34,12 @@
 | Velocity        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Fabric 26.2     | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | NeoForge 26.2   | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+## Community Plugins
+
+| Plugin | Purpose | Platforms |
+|--------|---------|-----------|
+| ProtocolLib | Protocol-level packet access (required by many anti-cheats and compatibility plugins) | Paper, Spigot |
 
 ## Client Version Support
 

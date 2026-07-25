@@ -7,7 +7,8 @@ public final class Repository {
 
     public enum PluginType {
         VIAMCRAFT,
-        GEYSERMC
+        GEYSERMC,
+        COMMUNITY
     }
 
     private static final Map<String, PluginInfo> PLUGINS = new HashMap<>();
@@ -23,6 +24,10 @@ public final class Repository {
                 "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaRewindLegacySupport/versions/latest/download?platform=PAPER"));
         PLUGINS.put("viaprilfools", new PluginInfo("ViaAprilFools", PluginType.VIAMCRAFT,
                 "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaAprilFools/versions/latest/download?platform=PAPER"));
+        PLUGINS.put("viabungee", new PluginInfo("ViaBungee", PluginType.VIAMCRAFT,
+                "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaBungee/versions/latest/download?platform=WATERFALL"));
+        PLUGINS.put("protocolib", new PluginInfo("ProtocolLib", PluginType.COMMUNITY,
+                "https://hangar.papermc.io/api/v1/plugins/dmulloy2/ProtocolLib/versions/latest/download?platform=PAPER"));
         PLUGINS.put("geyser", new PluginInfo("Geyser", PluginType.GEYSERMC,
                 "https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot"));
         PLUGINS.put("floodgate", new PluginInfo("Floodgate", PluginType.GEYSERMC,

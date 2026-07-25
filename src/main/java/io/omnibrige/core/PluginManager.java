@@ -179,6 +179,7 @@ public class PluginManager {
             case "viarewind" -> "ViaRewind";
             case "viarewind-legacysupport" -> "ViaRewindLegacySupport";
             case "viaprilfools" -> "ViaAprilFools";
+            case "viabungee" -> "ViaBungee";
             case "geyser" -> "Geyser-Spigot";
             case "floodgate" -> "floodgate";
             case "hurricane" -> "Hurricane";
@@ -186,6 +187,7 @@ public class PluginManager {
             case "thirdpartycosmetics" -> "ThirdPartyCosmetics";
             case "thunderbeta" -> "Thunder";
             case "rainbow" -> "Rainbow";
+            case "protocolib" -> "ProtocolLib";
             default -> pluginName;
         };
     }
@@ -195,6 +197,7 @@ public class PluginManager {
             case "geyser" -> "Geyser-Spigot.jar";
             case "floodgate" -> "floodgate-spigot.jar";
             case "viarewind-legacysupport" -> "ViaRewind-Legacy-Support.jar";
+            case "viabungee" -> "ViaBungee.jar";
             case "thunderbeta" -> "Thunder.jar";
             default -> Repository.getDisplayName(pluginName) + ".jar";
         };

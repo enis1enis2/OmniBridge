@@ -55,6 +55,8 @@ public class ConfigManager {
             case "geyser" -> "Geyser-Spigot";
             case "floodgate" -> "floodgate";
             case "viarewind-legacysupport" -> "ViaRewindLegacySupport";
+            case "viabungee" -> "plugins/ViaVersion";
+            case "protocolib" -> "ProtocolLib";
             default -> pluginName.substring(0, 1).toUpperCase() + pluginName.substring(1);
         };
         return new File(plugin.getDataFolder().getParentFile(), "plugins/" + dirName);

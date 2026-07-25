@@ -15,6 +15,7 @@ managed-plugins:
   viarewind: true
   viarewind-legacysupport: true
   viaprilfools: true
+  viabungee: true
   # GeyserMC family (cross-platform support)
   geyser: true
   floodgate: true
@@ -23,6 +24,8 @@ managed-plugins:
   thirdpartycosmetics: true
   thunderbeta: true
   rainbow: true
+  # Community essentials
+  protocolib: false
 
 # Geyser Bedrock settings
 bedrock:
