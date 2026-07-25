@@ -2,28 +2,29 @@
 # Auto-manages ViaVersion, ViaBackwards, ViaRewind, Geyser, Floodgate and more
 
 # Should OmniBridge auto-install missing plugins on startup?
-auto-install: true
+auto-install: false
 
 # Should OmniBridge auto-update plugins on startup?
 auto-update: false
 
 # Which plugins to manage (true = manage, false = skip)
+# All plugins are disabled by default. Enable the ones you need, then run /ob reload
 managed-plugins:
   # ViaVersion family (cross-version support)
-  viaversion: true
-  viabackwards: true
-  viarewind: true
-  viarewind-legacysupport: true
-  viaprilfools: true
+  viaversion: false
+  viabackwards: false
+  viarewind: false
+  viarewind-legacysupport: false
+  viaprilfools: false
   viabungee: false
   # GeyserMC family (cross-platform support)
-  geyser: true
-  floodgate: true
-  hurricane: true
-  geyserconnect: true
-  thirdpartycosmetics: true
-  thunderbeta: true
-  rainbow: true
+  geyser: false
+  floodgate: false
+  hurricane: false
+  geyserconnect: false
+  thirdpartycosmetics: false
+  thunderbeta: false
+  rainbow: false
   # Community essentials
   protocolib: false
 
@@ -39,3 +40,8 @@ java:
 
 # Enable debug logging
 debug: false
+
+# Reminder settings (broadcasts to ops when no plugins are configured)
+reminder:
+  # How often to remind (in minutes)
+  interval-minutes: 5

@@ -8,10 +8,14 @@ import io.omnibrige.core.PlatformDetector;
 import io.omnibrige.core.PlatformDetector.Platform;
 import io.omnibrige.core.PluginManager;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
-import java.util.logging.Level;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 public final class OmniBridge extends JavaPlugin {
 
@@ -21,6 +25,7 @@ public final class OmniBridge extends JavaPlugin {
     private ConfigManager configManager;
     private ViaVersionIntegration viaVersionIntegration;
     private GeyserIntegration geyserIntegration;
+    private BukkitTask reminderTask;
 
     @Override
     public void onEnable() {
@@ -38,7 +43,7 @@ public final class OmniBridge extends JavaPlugin {
 
         getCommand("omnibrige").setExecutor(new OmniBridgeCommand(this));
 
-        boolean autoInstall = getConfig().getBoolean("auto-install", true);
+        boolean autoInstall = getConfig().getBoolean("auto-install", false);
         boolean autoUpdate = getConfig().getBoolean("auto-update", false);
 
         if (autoInstall) {
@@ -51,13 +56,64 @@ public final class OmniBridge extends JavaPlugin {
             pluginManager.updateAll();
         }
 
+        startReminderIfNeeded();
+
         getLogger().info("OmniBridge v" + getDescription().getVersion() + " enabled on " + platform.name());
     }
 
     @Override
     public void onDisable() {
+        stopReminder();
         getLogger().info("OmniBridge disabled.");
         instance = null;
+    }
+
+    private void startReminderIfNeeded() {
+        if (isConfigured()) return;
+
+        long intervalMinutes = getConfig().getLong("reminder.interval-minutes", 5);
+        long intervalTicks = intervalMinutes * 20 * 60;
+
+        reminderTask = Bukkit.getScheduler().runTaskTimer(this, () -> {
+            if (isConfigured()) {
+                stopReminder();
+                return;
+            }
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                if (player.isOp()) {
+                    sendReminder(player);
+                }
+            }
+        }, intervalTicks, intervalTicks);
+
+        getLogger().info("Reminder active: will notify ops every " + intervalMinutes + " min until config is changed.");
+    }
+
+    private void stopReminder() {
+        if (reminderTask != null && !reminderTask.isCancelled()) {
+            reminderTask.cancel();
+            reminderTask = null;
+        }
+    }
+
+    private void sendReminder(Player player) {
+        player.sendMessage(Component.empty());
+        player.sendMessage(Component.text("  OmniBridge", NamedTextColor.GOLD, TextDecoration.BOLD)
+                .append(Component.text(" — ", NamedTextColor.DARK_GRAY))
+                .append(Component.text("Setup required", NamedTextColor.YELLOW)));
+        player.sendMessage(Component.text("  All plugins are disabled. Use ", NamedTextColor.GRAY)
+                .append(Component.text("/ob install", NamedTextColor.AQUA))
+                .append(Component.text(" to get started.", NamedTextColor.GRAY)));
+        player.sendMessage(Component.empty());
+    }
+
+    private boolean isConfigured() {
+        var section = getConfig().getConfigurationSection("managed-plugins");
+        if (section == null) return false;
+        for (String key : section.getKeys(false)) {
+            if (section.getBoolean(key)) return true;
+        }
+        return false;
     }
 
     public static OmniBridge getInstance() {
