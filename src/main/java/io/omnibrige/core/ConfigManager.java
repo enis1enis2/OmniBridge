@@ -6,6 +6,7 @@ import io.omnibrige.config.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 public class ConfigManager {
@@ -39,7 +40,7 @@ public class ConfigManager {
 
     public void generateConfig(String pluginName) {
         File pluginsDir = getPluginsDirectory();
-        switch (pluginName.toLowerCase()) {
+        switch (pluginName.toLowerCase(Locale.ROOT)) {
             case "viaversion" -> new ViaVersionConfig().generate(pluginsDir);
             case "viabackwards" -> new ViaBackwardsConfig().generate(pluginsDir);
             case "viarewind" -> new ViaRewindConfig().generate(pluginsDir);

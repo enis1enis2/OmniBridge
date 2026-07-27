@@ -34,6 +34,24 @@ public final class DownloadService {
         return CompletableFuture.supplyAsync(() -> downloadSync(url, destination));
     }
 
+    public boolean checkUpdate(String url, String currentVersion) {
+        if (url == null || currentVersion == null) return false;
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .timeout(Duration.ofSeconds(15))
+                    .header("User-Agent", "OmniBridge/1.0.0")
+                    .method("HEAD", HttpRequest.BodyPublishers.noBody())
+                    .build();
+            HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+            String disposition = response.headers().firstValue("Content-Disposition").orElse("");
+            String contentType = response.headers().firstValue("Content-Type").orElse("");
+            return response.statusCode() >= 200 && response.statusCode() < 300;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public boolean downloadSync(String url, File destination) {
         for (int attempt = 1; attempt <= MAX_RETRIES; attempt++) {
             try {

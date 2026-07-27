@@ -2,6 +2,7 @@ package io.omnibrige.commands;
 
 import io.omnibrige.OmniBridge;
 import io.omnibrige.core.PluginDescriptions;
+import io.omnibrige.core.PluginPresets;
 import io.omnibrige.download.Repository;
 
 import net.kyori.adventure.text.Component;
@@ -30,6 +31,20 @@ public class ChatConfigMenu {
                 .append(Component.text(" — Plugin Setup", NamedTextColor.WHITE)));
         player.sendMessage(Component.text("  Click a plugin to enable/disable it", NamedTextColor.DARK_GRAY));
         player.sendMessage(Component.text("  ══════════════════════════════════════════════", NamedTextColor.DARK_GRAY));
+        player.sendMessage(Component.empty());
+
+        player.sendMessage(Component.text("  Quick Presets", NamedTextColor.GOLD, TextDecoration.BOLD));
+        for (var entry : PluginPresets.getAll().entrySet()) {
+            PluginPresets.Preset preset = entry.getValue();
+            Component line = Component.text("    " + entry.getKey(), NamedTextColor.AQUA, TextDecoration.BOLD)
+                    .append(Component.text(" — " + preset.displayName(), NamedTextColor.WHITE))
+                    .clickEvent(ClickEvent.runCommand("/ob preset " + entry.getKey()))
+                    .hoverEvent(HoverEvent.showText(
+                            Component.text(preset.description(), NamedTextColor.GRAY)
+                                    .append(Component.newline())
+                                    .append(Component.text("Click to apply", NamedTextColor.GREEN))));
+            player.sendMessage(line);
+        }
         player.sendMessage(Component.empty());
 
         renderGroup(player, "ViaVersion Family", List.of(
@@ -110,8 +125,14 @@ public class ChatConfigMenu {
         FileConfiguration config = plugin.getConfig();
         String path = "managed-plugins." + pluginKey;
         boolean current = config.getBoolean(path, false);
+
+        boolean wasEmpty = countEnabled() == 0;
         config.set(path, !current);
         plugin.saveConfig();
+
+        if (wasEmpty && !current) {
+            plugin.stopReminder();
+        }
 
         String action = current ? "disabled" : "enabled";
         player.sendMessage(Component.text("  " + Repository.getDisplayName(pluginKey) + " " + action + ".", NamedTextColor.GREEN));

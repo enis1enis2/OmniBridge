@@ -6,7 +6,6 @@ import io.omnibrige.api.events.PluginRemovedEvent;
 import io.omnibrige.api.events.PluginUpdatedEvent;
 import io.omnibrige.download.DownloadService;
 import io.omnibrige.download.Repository;
-import io.omnibrige.download.Repository.PluginInfo;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -16,9 +15,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
+import java.util.Locale;
 
 public class PluginManager {
 
@@ -66,7 +65,7 @@ public class PluginManager {
             if (!isPluginInstalled(pluginName)) {
                 boolean ok = downloadService.downloadSync(
                         Repository.getUrl(pluginName),
-                        new File(getPluginsDirectory(), getJarName(pluginName)));
+                        new File(getPluginsDirectory(), Repository.getJarName(pluginName)));
                 if (ok) {
                     configManager.generateConfig(pluginName);
                     logger.info("Installed " + Repository.getDisplayName(pluginName));
@@ -78,7 +77,7 @@ public class PluginManager {
                 }
             }
         }
-        logger.info("Installation complete: " + installed + "/" + sorted.size() + " plugins installed.");
+        logger.info("Installation complete: " + installed + " new plugin(s) downloaded.");
     }
 
     public void updateAll() {
@@ -97,8 +96,8 @@ public class PluginManager {
         String oldVersion = getPluginVersion(pluginName);
 
         File pluginsDir = getPluginsDirectory();
-        File destination = new File(pluginsDir, getJarName(pluginName));
-        File backup = new File(pluginsDir, getJarName(pluginName) + ".backup");
+        File destination = new File(pluginsDir, Repository.getJarName(pluginName));
+        File backup = new File(pluginsDir, Repository.getJarName(pluginName) + ".backup");
 
         if (destination.exists()) {
             try {
@@ -112,12 +111,12 @@ public class PluginManager {
         boolean downloaded = downloadService.downloadSync(url, destination);
         if (downloaded) {
             try { Files.deleteIfExists(backup.toPath()); } catch (IOException ignored) {}
-            String newVersion = getPluginVersion(pluginName);
-            logger.info("Updated " + Repository.getDisplayName(pluginName));
+            logger.info("Updated " + Repository.getDisplayName(pluginName)
+                    + " (restart/reload to apply new version)");
             Bukkit.getScheduler().runTask(plugin, () ->
                     Bukkit.getPluginManager().callEvent(new PluginUpdatedEvent(
                             pluginName, Repository.getDisplayName(pluginName),
-                            Repository.getType(pluginName), oldVersion, newVersion)));
+                            Repository.getType(pluginName), oldVersion, "pending")));
             return true;
         } else {
             if (backup.exists()) {
@@ -133,7 +132,7 @@ public class PluginManager {
     }
 
     public boolean removePlugin(String pluginName) {
-        File jar = new File(getPluginsDirectory(), getJarName(pluginName));
+        File jar = new File(getPluginsDirectory(), Repository.getJarName(pluginName));
         if (jar.exists()) {
             jar.delete();
             logger.info("Removed " + Repository.getDisplayName(pluginName));
@@ -158,9 +157,14 @@ public class PluginManager {
         return Map.copyOf(statusCache);
     }
 
+    public String getInstalledVersion(String pluginName) {
+        if (!isPluginInstalled(pluginName)) return null;
+        return getPluginVersion(pluginName);
+    }
+
     public void reloadAll() {
         for (String pluginName : getManagedPlugins()) {
-            Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(getBukkitName(pluginName));
+            Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(Repository.getBukkitName(pluginName));
             if (bukkitPlugin != null && bukkitPlugin.isEnabled()) {
                 Bukkit.getPluginManager().disablePlugin(bukkitPlugin);
                 Bukkit.getPluginManager().enablePlugin(bukkitPlugin);
@@ -170,55 +174,21 @@ public class PluginManager {
     }
 
     private boolean isPluginInstalled(String pluginName) {
-        String bukkitName = getBukkitName(pluginName);
+        String bukkitName = Repository.getBukkitName(pluginName);
         Plugin p = Bukkit.getPluginManager().getPlugin(bukkitName);
         if (p != null) return true;
-        File jar = new File(getPluginsDirectory(), getJarName(pluginName));
+        File jar = new File(getPluginsDirectory(), Repository.getJarName(pluginName));
         return jar.exists();
     }
 
     private boolean isPluginEnabled(String pluginName) {
-        Plugin p = Bukkit.getPluginManager().getPlugin(getBukkitName(pluginName));
+        Plugin p = Bukkit.getPluginManager().getPlugin(Repository.getBukkitName(pluginName));
         return p != null && p.isEnabled();
     }
 
     private String getPluginVersion(String pluginName) {
-        Plugin p = Bukkit.getPluginManager().getPlugin(getBukkitName(pluginName));
+        Plugin p = Bukkit.getPluginManager().getPlugin(Repository.getBukkitName(pluginName));
         return p != null ? p.getDescription().getVersion() : "unknown";
-    }
-
-    private String getBukkitName(String pluginName) {
-        return switch (pluginName.toLowerCase()) {
-            case "viaversion" -> "ViaVersion";
-            case "viabackwards" -> "ViaBackwards";
-            case "viarewind" -> "ViaRewind";
-            case "viarewind-legacysupport" -> "ViaRewindLegacySupport";
-            case "viaprilfools" -> "ViaAprilFools";
-            case "viabungee" -> "ViaBungee";
-            case "geyser" -> "Geyser-Spigot";
-            case "floodgate" -> "floodgate";
-            case "hurricane" -> "Hurricane";
-            case "geyserconnect" -> "GeyserConnect";
-            case "thirdpartycosmetics" -> "ThirdPartyCosmetics";
-            case "thunderbeta" -> "Thunder";
-            case "rainbow" -> "Rainbow";
-            case "protocolib" -> "ProtocolLib";
-            case "authme" -> "AuthMe";
-            case "tab" -> "TAB";
-            case "tuffxplus" -> "TuffXPlus";
-            default -> pluginName;
-        };
-    }
-
-    private String getJarName(String pluginName) {
-        return switch (pluginName.toLowerCase()) {
-            case "geyser" -> "Geyser-Spigot.jar";
-            case "floodgate" -> "floodgate-spigot.jar";
-            case "viarewind-legacysupport" -> "ViaRewind-Legacy-Support.jar";
-            case "viabungee" -> "ViaBungee.jar";
-            case "thunderbeta" -> "Thunder.jar";
-            default -> Repository.getDisplayName(pluginName) + ".jar";
-        };
     }
 
     private File getPluginsDirectory() {
@@ -242,12 +212,19 @@ public class PluginManager {
 
     private void resolveDependencies(Set<String> managed) {
         Set<String> toAdd = new HashSet<>();
-        for (String plugin : Set.copyOf(managed)) {
-            for (String dep : Repository.getDependencies(plugin)) {
-                if (!managed.contains(dep) && !toAdd.contains(dep) && isPluginCompatibleWithPlatform(dep)) {
-                    logger.info("Auto-enabling " + Repository.getDisplayName(dep)
-                            + " (required by " + Repository.getDisplayName(plugin) + ")");
-                    toAdd.add(dep);
+        boolean changed = true;
+        while (changed) {
+            changed = false;
+            Set<String> current = new HashSet<>(managed);
+            current.addAll(toAdd);
+            for (String plugin : current) {
+                for (String dep : Repository.getDependencies(plugin)) {
+                    if (!managed.contains(dep) && !toAdd.contains(dep) && isPluginCompatibleWithPlatform(dep)) {
+                        logger.info("Auto-enabling " + Repository.getDisplayName(dep)
+                                + " (required by " + Repository.getDisplayName(plugin) + ")");
+                        toAdd.add(dep);
+                        changed = true;
+                    }
                 }
             }
         }
@@ -255,7 +232,7 @@ public class PluginManager {
     }
 
     private boolean isPluginCompatibleWithPlatform(String pluginName) {
-        return switch (pluginName.toLowerCase()) {
+        return switch (pluginName.toLowerCase(Locale.ROOT)) {
             case "viabungee" -> platform == PlatformDetector.Platform.VELOCITY;
             case "protocolib" -> PlatformDetector.isBukkitBased(platform);
             case "tuffxplus" -> PlatformDetector.isBukkitBased(platform);

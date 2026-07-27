@@ -95,7 +95,7 @@ public final class OmniBridge extends JavaPlugin {
         getLogger().info("Reminder active: will notify ops every " + intervalMinutes + " min until config is changed.");
     }
 
-    private void stopReminder() {
+    public void stopReminder() {
         if (reminderTask != null && !reminderTask.isCancelled()) {
             reminderTask.cancel();
             reminderTask = null;

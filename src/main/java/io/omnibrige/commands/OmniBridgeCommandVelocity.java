@@ -9,6 +9,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
 import java.util.List;
+import java.util.Locale;
 
 public class OmniBridgeCommandVelocity implements SimpleCommand {
 
@@ -23,12 +24,17 @@ public class OmniBridgeCommandVelocity implements SimpleCommand {
         CommandSource source = invocation.source();
         String[] args = invocation.arguments();
 
+        if (!source.hasPermission("omnibrige.admin")) {
+            source.sendMessage(Component.text("No permission.", NamedTextColor.RED));
+            return;
+        }
+
         if (args.length == 0) {
             sendHelp(source);
             return;
         }
 
-        switch (args[0].toLowerCase()) {
+        switch (args[0].toLowerCase(Locale.ROOT)) {
             case "status" -> handleStatus(source);
             case "help" -> sendHelp(source);
             default -> sendHelp(source);
@@ -40,7 +46,7 @@ public class OmniBridgeCommandVelocity implements SimpleCommand {
         String[] args = invocation.arguments();
         if (args.length == 1) {
             return List.of("status", "help").stream()
-                    .filter(s -> s.startsWith(args[0].toLowerCase()))
+                    .filter(s -> s.startsWith(args[0].toLowerCase(Locale.ROOT)))
                     .toList();
         }
         return List.of();

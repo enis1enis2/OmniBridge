@@ -10,6 +10,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.util.*;
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
@@ -54,10 +55,10 @@ public final class OmniBridgeAPI {
         for (var entry : Repository.getAllPlugins().entrySet()) {
             String key = entry.getKey();
             Repository.PluginInfo info = entry.getValue();
-            Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(getBukkitName(key));
+            Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(Repository.getBukkitName(key));
             File[] files = getPluginsDirectory().listFiles();
             boolean installed = bukkitPlugin != null || (files != null
-                    && Arrays.stream(files).anyMatch(f -> f.getName().equals(getJarName(key))));
+                    && Arrays.stream(files).anyMatch(f -> f.getName().equals(Repository.getJarName(key))));
             boolean enabled = bukkitPlugin != null && bukkitPlugin.isEnabled();
             String version = bukkitPlugin != null ? bukkitPlugin.getDescription().getVersion() : "N/A";
             List<String> deps = Repository.getDependencies(key);
@@ -70,10 +71,10 @@ public final class OmniBridgeAPI {
 
     public ManagedPlugin getPlugin(String name) {
         if (name == null) return null;
-        Repository.PluginInfo info = Repository.getAllPlugins().get(name.toLowerCase());
+        Repository.PluginInfo info = Repository.getAllPlugins().get(name.toLowerCase(Locale.ROOT));
         if (info == null) return null;
-        Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(getBukkitName(name));
-        boolean installed = bukkitPlugin != null || new File(getPluginsDirectory(), getJarName(name)).exists();
+        Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(Repository.getBukkitName(name));
+        boolean installed = bukkitPlugin != null || new File(getPluginsDirectory(), Repository.getJarName(name)).exists();
         boolean enabled = bukkitPlugin != null && bukkitPlugin.isEnabled();
         String version = bukkitPlugin != null ? bukkitPlugin.getDescription().getVersion() : "N/A";
         List<String> deps = Repository.getDependencies(name);
@@ -107,7 +108,7 @@ public final class OmniBridgeAPI {
         return CompletableFuture.supplyAsync(() -> {
             if (!Repository.isKnown(name)) return false;
             String url = Repository.getUrl(name);
-            File dest = new File(getPluginsDirectory(), getJarName(name));
+            File dest = new File(getPluginsDirectory(), Repository.getJarName(name));
             io.omnibrige.download.DownloadService ds = new io.omnibrige.download.DownloadService(logger);
             boolean ok = ds.downloadSync(url, dest);
             if (ok) {
@@ -124,39 +125,6 @@ public final class OmniBridgeAPI {
 
     public void removePlugin(String name) {
         plugin.getPluginManager().removePlugin(name);
-    }
-
-    private String getBukkitName(String name) {
-        return switch (name.toLowerCase()) {
-            case "viaversion" -> "ViaVersion";
-            case "viabackwards" -> "ViaBackwards";
-            case "viarewind" -> "ViaRewind";
-            case "viarewind-legacysupport" -> "ViaRewindLegacySupport";
-            case "viaprilfools" -> "ViaAprilFools";
-            case "viabungee" -> "ViaBungee";
-            case "geyser" -> "Geyser-Spigot";
-            case "floodgate" -> "floodgate";
-            case "hurricane" -> "Hurricane";
-            case "geyserconnect" -> "GeyserConnect";
-            case "thirdpartycosmetics" -> "ThirdPartyCosmetics";
-            case "thunderbeta" -> "Thunder";
-            case "rainbow" -> "Rainbow";
-            case "protocolib" -> "ProtocolLib";
-            case "authme" -> "AuthMe";
-            case "tab" -> "TAB";
-            default -> name;
-        };
-    }
-
-    private String getJarName(String name) {
-        return switch (name.toLowerCase()) {
-            case "geyser" -> "Geyser-Spigot.jar";
-            case "floodgate" -> "floodgate-spigot.jar";
-            case "viarewind-legacysupport" -> "ViaRewind-Legacy-Support.jar";
-            case "viabungee" -> "ViaBungee.jar";
-            case "thunderbeta" -> "Thunder.jar";
-            default -> Repository.getDisplayName(name) + ".jar";
-        };
     }
 
     private File getPluginsDirectory() {
