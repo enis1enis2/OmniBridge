@@ -11,7 +11,7 @@ import org.bukkit.plugin.Plugin;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,54 +36,48 @@ public class PluginManager {
         this.logger = plugin.getLogger();
     }
 
-    public void installAll() {
-        Set<String> managedPlugins = getManagedPlugins();
-        List<CompletableFuture<Boolean>> futures = new ArrayList<>();
-
-        for (String pluginName : managedPlugins) {
-            if (!isPluginInstalled(pluginName)) {
-                futures.add(installPlugin(pluginName));
-            } else {
-                logger.info(Repository.getDisplayName(pluginName) + " is already installed.");
+    public void installAllAsync(Runnable onComplete) {
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            installAll();
+            if (onComplete != null) {
+                Bukkit.getScheduler().runTask(plugin, onComplete);
             }
-        }
-
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
-
-        long successCount = futures.stream().filter(f -> f.join()).count();
-        logger.info("Installation complete: " + successCount + "/" + futures.size() + " plugins installed.");
+        });
     }
 
-    public CompletableFuture<Boolean> installPlugin(String pluginName) {
-        return CompletableFuture.supplyAsync(() -> {
-            String url = Repository.getUrl(pluginName);
-            if (url == null) {
-                logger.warning("Unknown plugin: " + pluginName);
-                return false;
+    public void updateAllAsync(Runnable onComplete) {
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            updateAll();
+            if (onComplete != null) {
+                Bukkit.getScheduler().runTask(plugin, onComplete);
             }
-
-            File pluginsDir = getPluginsDirectory();
-            File destination = new File(pluginsDir, getJarName(pluginName));
-
-            if (destination.exists()) {
-                logger.info(Repository.getDisplayName(pluginName) + " JAR already exists.");
-                return true;
-            }
-
-            boolean downloaded = downloadService.downloadSync(url, destination);
-            if (downloaded) {
-                configManager.generateConfig(pluginName);
-                logger.info("Installed " + Repository.getDisplayName(pluginName));
-            }
-            return downloaded;
         });
+    }
+
+    public void installAll() {
+        Set<String> managedPlugins = getManagedPlugins();
+        List<String> sorted = sortPluginsByDependencies(managedPlugins);
+        int installed = 0;
+
+        for (String pluginName : sorted) {
+            if (!isPluginInstalled(pluginName)) {
+                boolean ok = downloadService.downloadSync(
+                        Repository.getUrl(pluginName),
+                        new File(getPluginsDirectory(), getJarName(pluginName)));
+                if (ok) {
+                    configManager.generateConfig(pluginName);
+                    logger.info("Installed " + Repository.getDisplayName(pluginName));
+                    installed++;
+                }
+            }
+        }
+        logger.info("Installation complete: " + installed + "/" + sorted.size() + " plugins installed.");
     }
 
     public void updateAll() {
         Set<String> managedPlugins = getManagedPlugins();
         for (String pluginName : managedPlugins) {
             if (isPluginInstalled(pluginName)) {
-                logger.info("Checking updates for " + Repository.getDisplayName(pluginName) + "...");
                 updatePlugin(pluginName);
             }
         }
@@ -95,11 +89,11 @@ public class PluginManager {
 
         File pluginsDir = getPluginsDirectory();
         File destination = new File(pluginsDir, getJarName(pluginName));
-
         File backup = new File(pluginsDir, getJarName(pluginName) + ".backup");
+
         if (destination.exists()) {
             try {
-                Files.copy(destination.toPath(), backup.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(destination.toPath(), backup.toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 logger.warning("Failed to backup " + pluginName + ": " + e.getMessage());
                 return false;
@@ -108,21 +102,24 @@ public class PluginManager {
 
         boolean downloaded = downloadService.downloadSync(url, destination);
         if (downloaded) {
-            backup.delete();
+            try { Files.deleteIfExists(backup.toPath()); } catch (IOException ignored) {}
             logger.info("Updated " + Repository.getDisplayName(pluginName));
             return true;
         } else {
             if (backup.exists()) {
-                backup.renameTo(destination);
-                logger.info("Restored " + Repository.getDisplayName(pluginName) + " from backup");
+                try {
+                    Files.move(backup.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    logger.info("Restored " + Repository.getDisplayName(pluginName) + " from backup");
+                } catch (IOException e) {
+                    logger.warning("Failed to restore " + pluginName + " from backup: " + e.getMessage());
+                }
             }
             return false;
         }
     }
 
     public boolean removePlugin(String pluginName) {
-        File pluginsDir = getPluginsDirectory();
-        File jar = new File(pluginsDir, getJarName(pluginName));
+        File jar = new File(getPluginsDirectory(), getJarName(pluginName));
         if (jar.exists()) {
             jar.delete();
             logger.info("Removed " + Repository.getDisplayName(pluginName));
@@ -206,7 +203,7 @@ public class PluginManager {
     }
 
     private File getPluginsDirectory() {
-        return new File(plugin.getDataFolder().getParentFile(), "plugins");
+        return plugin.getDataFolder().getParentFile();
     }
 
     private Set<String> getManagedPlugins() {
@@ -226,9 +223,9 @@ public class PluginManager {
 
     private void resolveDependencies(Set<String> managed) {
         Set<String> toAdd = new HashSet<>();
-        for (String plugin : managed) {
+        for (String plugin : Set.copyOf(managed)) {
             for (String dep : Repository.getDependencies(plugin)) {
-                if (!managed.contains(dep) && isPluginCompatibleWithPlatform(dep)) {
+                if (!managed.contains(dep) && !toAdd.contains(dep) && isPluginCompatibleWithPlatform(dep)) {
                     logger.info("Auto-enabling " + Repository.getDisplayName(dep)
                             + " (required by " + Repository.getDisplayName(plugin) + ")");
                     toAdd.add(dep);
@@ -244,5 +241,26 @@ public class PluginManager {
             case "protocolib" -> PlatformDetector.isBukkitBased(platform);
             default -> true;
         };
+    }
+
+    private List<String> sortPluginsByDependencies(Set<String> plugins) {
+        List<String> sorted = new ArrayList<>();
+        Set<String> added = new HashSet<>();
+
+        for (String plugin : plugins) {
+            addWithDeps(plugin, plugins, sorted, added);
+        }
+        return sorted;
+    }
+
+    private void addWithDeps(String plugin, Set<String> all, List<String> sorted, Set<String> added) {
+        if (added.contains(plugin)) return;
+        for (String dep : Repository.getDependencies(plugin)) {
+            if (all.contains(dep)) {
+                addWithDeps(dep, all, sorted, added);
+            }
+        }
+        sorted.add(plugin);
+        added.add(plugin);
     }
 }

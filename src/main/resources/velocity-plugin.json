@@ -1,0 +1,10 @@
+{
+  "id": "omnibrige",
+  "name": "OmniBridge",
+  "version": "1.0.0",
+  "description": "Universal cross-version and cross-platform connectivity solution",
+  "authors": ["OmniBridge"],
+  "main": "io.omnibrige.OmniBridgeVelocity",
+  "dependencies": [],
+  "autoload": true
+}

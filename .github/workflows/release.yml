@@ -59,8 +59,7 @@ jobs:
             echo "### Requirements"
             echo ""
             echo "- Java 21+"
-            echo "- Minecraft 1.8+ (Paper/Spigot)"
-            echo "- [PacketEvents 2.x](https://github.com/retrooper/packetevents) (included automatically)"
+            echo "- Minecraft 1.8+ (Paper/Spigot) or Velocity 3.4+"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 

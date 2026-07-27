@@ -20,8 +20,12 @@ public class ConfigManager {
         this.logger = plugin.getLogger();
     }
 
+    private File getPluginsDirectory() {
+        return plugin.getDataFolder().getParentFile();
+    }
+
     public void generateAllConfigs() {
-        File pluginsDir = new File(plugin.getDataFolder().getParentFile(), "plugins");
+        File pluginsDir = getPluginsDirectory();
         new ViaVersionConfig().generate(pluginsDir);
         new ViaBackwardsConfig().generate(pluginsDir);
         new ViaRewindConfig().generate(pluginsDir);
@@ -34,7 +38,7 @@ public class ConfigManager {
     }
 
     public void generateConfig(String pluginName) {
-        File pluginsDir = new File(plugin.getDataFolder().getParentFile(), "plugins");
+        File pluginsDir = getPluginsDirectory();
         switch (pluginName.toLowerCase()) {
             case "viaversion" -> new ViaVersionConfig().generate(pluginsDir);
             case "viabackwards" -> new ViaBackwardsConfig().generate(pluginsDir);
@@ -45,21 +49,18 @@ public class ConfigManager {
         }
     }
 
-    public boolean isConfigured(String pluginName) {
-        File configDir = getConfigDirectory(pluginName);
-        return configDir.exists() && configDir.listFiles() != null && configDir.listFiles().length > 0;
-    }
-
     private File getConfigDirectory(String pluginName) {
         String dirName = switch (pluginName.toLowerCase()) {
             case "geyser" -> "Geyser-Spigot";
             case "floodgate" -> "floodgate";
             case "viarewind-legacysupport" -> "ViaRewindLegacySupport";
-            case "viabungee" -> "plugins/ViaVersion";
+            case "viabungee" -> "ViaVersion";
             case "protocolib" -> "ProtocolLib";
+            case "authme" -> "AuthMe";
+            case "tab" -> "TAB";
             default -> pluginName.substring(0, 1).toUpperCase() + pluginName.substring(1);
         };
-        return new File(plugin.getDataFolder().getParentFile(), "plugins/" + dirName);
+        return new File(getPluginsDirectory(), dirName);
     }
 
     public static void writeConfigFile(File file, String content) {

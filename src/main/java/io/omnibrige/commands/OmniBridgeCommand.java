@@ -15,7 +15,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 
 public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
@@ -52,18 +51,16 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
     private void handleInstall(CommandSender sender) {
         sender.sendMessage(Component.text("Installing missing plugins...", NamedTextColor.YELLOW));
-        CompletableFuture.runAsync(() -> {
-            plugin.getPluginManager().installAll();
-            sender.sendMessage(Component.text("Installation complete! Restart server to load new plugins.", NamedTextColor.GREEN));
-        });
+        plugin.getPluginManager().installAllAsync(() ->
+                sender.sendMessage(Component.text("Installation complete! Restart server to load new plugins.", NamedTextColor.GREEN))
+        );
     }
 
     private void handleUpdate(CommandSender sender) {
         sender.sendMessage(Component.text("Checking for updates...", NamedTextColor.YELLOW));
-        CompletableFuture.runAsync(() -> {
-            plugin.getPluginManager().updateAll();
-            sender.sendMessage(Component.text("Update check complete!", NamedTextColor.GREEN));
-        });
+        plugin.getPluginManager().updateAllAsync(() ->
+                sender.sendMessage(Component.text("Update check complete!", NamedTextColor.GREEN))
+        );
     }
 
     private void handleStatus(CommandSender sender) {

@@ -11,7 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 public final class DownloadService {
@@ -31,15 +30,11 @@ public final class DownloadService {
                 .build();
     }
 
-    public CompletableFuture<Boolean> downloadAsync(String url, File destination, Consumer<Integer> progressCallback) {
-        return CompletableFuture.supplyAsync(() -> downloadSync(url, destination, progressCallback));
+    public CompletableFuture<Boolean> downloadAsync(String url, File destination) {
+        return CompletableFuture.supplyAsync(() -> downloadSync(url, destination));
     }
 
     public boolean downloadSync(String url, File destination) {
-        return downloadSync(url, destination, null);
-    }
-
-    public boolean downloadSync(String url, File destination, Consumer<Integer> progressCallback) {
         for (int attempt = 1; attempt <= MAX_RETRIES; attempt++) {
             try {
                 logger.info("Downloading " + destination.getName() + " (attempt " + attempt + "/" + MAX_RETRIES + ")...");
@@ -96,9 +91,5 @@ public final class DownloadService {
         } catch (IOException e) {
             return false;
         }
-    }
-
-    public HttpClient getHttpClient() {
-        return httpClient;
     }
 }

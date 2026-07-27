@@ -8,6 +8,55 @@ import java.util.*;
 
 public class ViaVersionIntegration {
 
+    private static final Map<Integer, String> PROTOCOL_VERSIONS = new HashMap<>();
+
+    static {
+        PROTOCOL_VERSIONS.put(4, "1.7.2");
+        PROTOCOL_VERSIONS.put(5, "1.7.4-1.7.5");
+        PROTOCOL_VERSIONS.put(47, "1.8.x");
+        PROTOCOL_VERSIONS.put(107, "1.9");
+        PROTOCOL_VERSIONS.put(108, "1.9.1");
+        PROTOCOL_VERSIONS.put(109, "1.9.2");
+        PROTOCOL_VERSIONS.put(110, "1.9.4");
+        PROTOCOL_VERSIONS.put(210, "1.10.x");
+        PROTOCOL_VERSIONS.put(315, "1.11");
+        PROTOCOL_VERSIONS.put(316, "1.11.2");
+        PROTOCOL_VERSIONS.put(335, "1.12");
+        PROTOCOL_VERSIONS.put(336, "1.12.1");
+        PROTOCOL_VERSIONS.put(338, "1.12.2");
+        PROTOCOL_VERSIONS.put(340, "1.13");
+        PROTOCOL_VERSIONS.put(341, "1.13.1");
+        PROTOCOL_VERSIONS.put(342, "1.13.2");
+        PROTOCOL_VERSIONS.put(393, "1.14");
+        PROTOCOL_VERSIONS.put(401, "1.14.1");
+        PROTOCOL_VERSIONS.put(404, "1.14.2-1.14.4");
+        PROTOCOL_VERSIONS.put(477, "1.15");
+        PROTOCOL_VERSIONS.put(480, "1.15.1");
+        PROTOCOL_VERSIONS.put(485, "1.15.2");
+        PROTOCOL_VERSIONS.put(554, "1.16");
+        PROTOCOL_VERSIONS.put(560, "1.16.1");
+        PROTOCOL_VERSIONS.put(566, "1.16.2");
+        PROTOCOL_VERSIONS.put(567, "1.16.3");
+        PROTOCOL_VERSIONS.put(573, "1.16.4-1.16.5");
+        PROTOCOL_VERSIONS.put(735, "1.17");
+        PROTOCOL_VERSIONS.put(736, "1.17.1");
+        PROTOCOL_VERSIONS.put(754, "1.18-1.18.1");
+        PROTOCOL_VERSIONS.put(756, "1.18.2");
+        PROTOCOL_VERSIONS.put(757, "1.19");
+        PROTOCOL_VERSIONS.put(758, "1.19.1-1.19.2");
+        PROTOCOL_VERSIONS.put(759, "1.19.3");
+        PROTOCOL_VERSIONS.put(760, "1.19.4");
+        PROTOCOL_VERSIONS.put(761, "1.20");
+        PROTOCOL_VERSIONS.put(762, "1.20.1");
+        PROTOCOL_VERSIONS.put(763, "1.20.2");
+        PROTOCOL_VERSIONS.put(764, "1.20.3-1.20.4");
+        PROTOCOL_VERSIONS.put(765, "1.20.5-1.20.6");
+        PROTOCOL_VERSIONS.put(766, "1.21-1.21.1");
+        PROTOCOL_VERSIONS.put(767, "1.21.2-1.21.3");
+        PROTOCOL_VERSIONS.put(768, "1.21.4");
+        PROTOCOL_VERSIONS.put(769, "1.21.5");
+    }
+
     private final Plugin viaVersionPlugin;
 
     public ViaVersionIntegration(Plugin hostPlugin) {
@@ -39,22 +88,14 @@ public class ViaVersionIntegration {
             Object connection = viaApi.getClass().getMethod("getConnection", UUID.class).invoke(viaApi, uuid);
             if (connection != null) {
                 Object protocolVersion = connection.getClass().getMethod("getProtocolVersion").invoke(connection);
-                return protocolVersion.toString();
+                int protocol = (int) protocolVersion;
+                return PROTOCOL_VERSIONS.getOrDefault(protocol, "Unknown (" + protocol + ")");
             }
         } catch (Exception ignored) {}
         return null;
     }
 
     public List<String> getSupportedVersions() {
-        if (!isAvailable()) return List.of();
-        try {
-            Class<?> viaApiClass = Class.forName("com.viaversion.viaversion.api.Via");
-            Object viaApi = viaApiClass.getMethod("getAPI").invoke(null);
-            Object protocolVersion = Class.forName("com.viaversion.viaversion.api.protocol.version.ProtocolVersion");
-            // Fallback to known versions
-        } catch (Exception ignored) {}
-        return List.of("1.7.x", "1.8.x", "1.9.x", "1.10.x", "1.11.x", "1.12.x",
-                "1.13.x", "1.14.x", "1.15.x", "1.16.x", "1.17.x", "1.18.x",
-                "1.19.x", "1.20.x", "1.21.x", "1.22.x+");
+        return List.copyOf(PROTOCOL_VERSIONS.values());
     }
 }
