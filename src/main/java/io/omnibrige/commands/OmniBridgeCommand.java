@@ -6,6 +6,8 @@ import io.omnibrige.core.PluginManager.PluginStatus;
 import io.omnibrige.download.Repository;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
@@ -13,15 +15,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 
 import java.util.*;
 
 public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
     private final OmniBridge plugin;
+    private final ChatConfigMenu chatMenu;
 
     public OmniBridgeCommand(OmniBridge plugin) {
         this.plugin = plugin;
+        this.chatMenu = new ChatConfigMenu(plugin);
     }
 
     @Override
@@ -43,6 +48,8 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
             case "reload" -> handleReload(sender);
             case "versions" -> handleVersions(sender);
             case "remove" -> handleRemove(sender, args);
+            case "setup" -> handleSetup(sender);
+            case "toggle" -> handleToggle(sender, args);
             case "help" -> sendHelp(sender);
             default -> sendHelp(sender);
         }
@@ -61,6 +68,26 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
         plugin.getPluginManager().updateAllAsync(() ->
                 sender.sendMessage(Component.text("Update check complete!", NamedTextColor.GREEN))
         );
+    }
+
+    private void handleSetup(CommandSender sender) {
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(Component.text("Setup menu is only available in-game.", NamedTextColor.RED));
+            return;
+        }
+        chatMenu.open(player);
+    }
+
+    private void handleToggle(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(Component.text("Toggle is only available in-game.", NamedTextColor.RED));
+            return;
+        }
+        if (args.length < 2) {
+            sender.sendMessage(Component.text("Usage: /ob toggle <plugin>", NamedTextColor.RED));
+            return;
+        }
+        chatMenu.togglePlugin(player, args[1]);
     }
 
     private void handleStatus(CommandSender sender) {
@@ -150,20 +177,25 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(Component.empty());
         sender.sendMessage(Component.text("  OmniBridge Commands", NamedTextColor.GOLD, TextDecoration.BOLD));
         sender.sendMessage(Component.empty());
-        sender.sendMessage(Component.text("  /omnibrige install", NamedTextColor.AQUA)
-                .append(Component.text("  - Install missing plugins", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("  /omnibrige update", NamedTextColor.AQUA)
-                .append(Component.text("   - Update all plugins", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("  /omnibrige status", NamedTextColor.AQUA)
-                .append(Component.text("   - Show plugin status", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("  /omnibrige versions", NamedTextColor.AQUA)
-                .append(Component.text(" - Show player versions", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("  /omnibrige reload", NamedTextColor.AQUA)
-                .append(Component.text("   - Reload all configs", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("  /omnibrige remove", NamedTextColor.AQUA)
-                .append(Component.text("  - Remove a managed plugin", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("  /omnibrige help", NamedTextColor.AQUA)
-                .append(Component.text("    - Show this help", NamedTextColor.GRAY)));
+
+        sender.sendMessage(Component.text("  /ob setup", NamedTextColor.AQUA)
+                .append(Component.text("    - Open interactive plugin setup", NamedTextColor.GRAY))
+                .hoverEvent(HoverEvent.showText(Component.text("Click to open setup menu", NamedTextColor.GREEN)))
+                .clickEvent(ClickEvent.runCommand("/ob setup")));
+        sender.sendMessage(Component.text("  /ob install", NamedTextColor.AQUA)
+                .append(Component.text("   - Download & install enabled plugins", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("  /ob update", NamedTextColor.AQUA)
+                .append(Component.text("    - Check for & apply updates", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("  /ob status", NamedTextColor.AQUA)
+                .append(Component.text("    - Show plugin status", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("  /ob versions", NamedTextColor.AQUA)
+                .append(Component.text("  - Show player versions", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("  /ob reload", NamedTextColor.AQUA)
+                .append(Component.text("    - Reload all configs", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("  /ob remove", NamedTextColor.AQUA)
+                .append(Component.text("   - Remove a managed plugin", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("  /ob help", NamedTextColor.AQUA)
+                .append(Component.text("     - Show this help", NamedTextColor.GRAY)));
         sender.sendMessage(Component.empty());
     }
 
@@ -172,11 +204,11 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
         if (!sender.hasPermission("omnibrige.admin")) return List.of();
 
         if (args.length == 1) {
-            return List.of("install", "update", "status", "reload", "versions", "remove", "help").stream()
+            return List.of("setup", "install", "update", "status", "reload", "versions", "remove", "toggle", "help").stream()
                     .filter(s -> s.startsWith(args[0].toLowerCase()))
                     .toList();
         }
-        if (args.length == 2 && args[0].equalsIgnoreCase("remove")) {
+        if (args.length == 2 && (args[0].equalsIgnoreCase("remove") || args[0].equalsIgnoreCase("toggle"))) {
             return Repository.getAllPlugins().keySet().stream()
                     .filter(s -> s.startsWith(args[1].toLowerCase()))
                     .toList();

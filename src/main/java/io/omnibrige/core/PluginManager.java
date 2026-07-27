@@ -205,6 +205,7 @@ public class PluginManager {
             case "protocolib" -> "ProtocolLib";
             case "authme" -> "AuthMe";
             case "tab" -> "TAB";
+            case "tuffxplus" -> "TuffXPlus";
             default -> pluginName;
         };
     }
@@ -257,6 +258,7 @@ public class PluginManager {
         return switch (pluginName.toLowerCase()) {
             case "viabungee" -> platform == PlatformDetector.Platform.VELOCITY;
             case "protocolib" -> PlatformDetector.isBukkitBased(platform);
+            case "tuffxplus" -> PlatformDetector.isBukkitBased(platform);
             default -> true;
         };
     }

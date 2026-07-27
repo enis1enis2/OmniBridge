@@ -10,6 +10,8 @@ import io.omnibrige.core.PlatformDetector.Platform;
 import io.omnibrige.core.PluginManager;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
@@ -105,9 +107,13 @@ public final class OmniBridge extends JavaPlugin {
         player.sendMessage(Component.text("  OmniBridge", NamedTextColor.GOLD, TextDecoration.BOLD)
                 .append(Component.text(" — ", NamedTextColor.DARK_GRAY))
                 .append(Component.text("Setup required", NamedTextColor.YELLOW)));
-        player.sendMessage(Component.text("  All plugins are disabled. Use ", NamedTextColor.GRAY)
-                .append(Component.text("/ob install", NamedTextColor.AQUA))
-                .append(Component.text(" to get started.", NamedTextColor.GRAY)));
+        player.sendMessage(Component.empty());
+
+        Component setupButton = Component.text("  [ Click to setup plugins ]", NamedTextColor.GREEN, TextDecoration.BOLD)
+                .hoverEvent(HoverEvent.showText(Component.text("Open interactive setup menu", NamedTextColor.GREEN)))
+                .clickEvent(ClickEvent.runCommand("/ob setup"));
+        player.sendMessage(setupButton);
+
         player.sendMessage(Component.empty());
     }
 

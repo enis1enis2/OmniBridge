@@ -31,6 +31,7 @@ managed-plugins:
   tab: false
   # Community essentials
   protocolib: false
+  tuffxplus: false
 
 # Geyser Bedrock settings
 bedrock:

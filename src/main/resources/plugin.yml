@@ -15,6 +15,9 @@ permissions:
   omnibrige.admin:
     description: Allows use of all OmniBridge commands
     default: op
+  omnibrige.setup:
+    description: Allows use of the interactive plugin setup menu
+    default: op
   omnibrige.status:
     description: Allows viewing OmniBridge status
     default: op

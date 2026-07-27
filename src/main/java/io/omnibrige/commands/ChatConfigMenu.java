@@ -1,0 +1,136 @@
+package io.omnibrige.commands;
+
+import io.omnibrige.OmniBridge;
+import io.omnibrige.core.PluginDescriptions;
+import io.omnibrige.download.Repository;
+
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+
+import java.util.*;
+
+public class ChatConfigMenu {
+
+    private final OmniBridge plugin;
+
+    public ChatConfigMenu(OmniBridge plugin) {
+        this.plugin = plugin;
+    }
+
+    public void open(Player player) {
+        player.sendMessage(Component.empty());
+        player.sendMessage(Component.text("  ══════════════════════════════════════════════", NamedTextColor.DARK_GRAY));
+        player.sendMessage(Component.text("  OmniBridge", NamedTextColor.GOLD, TextDecoration.BOLD)
+                .append(Component.text(" — Plugin Setup", NamedTextColor.WHITE)));
+        player.sendMessage(Component.text("  Click a plugin to enable/disable it", NamedTextColor.DARK_GRAY));
+        player.sendMessage(Component.text("  ══════════════════════════════════════════════", NamedTextColor.DARK_GRAY));
+        player.sendMessage(Component.empty());
+
+        renderGroup(player, "ViaVersion Family", List.of(
+                "viaversion", "viabackwards", "viarewind",
+                "viarewind-legacysupport", "viaprilfools", "viabungee"));
+
+        renderGroup(player, "GeyserMC Family", List.of(
+                "geyser", "floodgate", "hurricane", "geyserconnect",
+                "thirdpartycosmetics", "thunderbeta", "rainbow"));
+
+        renderGroup(player, "Integration", List.of("authme", "tab"));
+
+        renderGroup(player, "Community", List.of("protocolib", "tuffxplus"));
+
+        player.sendMessage(Component.empty());
+        player.sendMessage(Component.text("  ─────────────────────────────────────────────", NamedTextColor.DARK_GRAY));
+
+        int enabled = countEnabled();
+        Component summary = Component.text("  " + enabled + " plugin(s) enabled", NamedTextColor.GRAY);
+        if (enabled > 0) {
+            summary = summary.append(Component.text(" — Run ", NamedTextColor.GRAY))
+                    .append(Component.text("/ob install", NamedTextColor.AQUA, TextDecoration.BOLD)
+                            .hoverEvent(HoverEvent.showText(Component.text("Click to install", NamedTextColor.GREEN)))
+                            .clickEvent(ClickEvent.runCommand("/ob install")))
+                    .append(Component.text(" to download", NamedTextColor.GRAY));
+        }
+        player.sendMessage(summary);
+        player.sendMessage(Component.empty());
+    }
+
+    private void renderGroup(Player player, String groupName, List<String> plugins) {
+        player.sendMessage(Component.text("  " + groupName, NamedTextColor.AQUA, TextDecoration.BOLD));
+
+        FileConfiguration config = plugin.getConfig();
+        for (String key : plugins) {
+            if (!Repository.isKnown(key)) continue;
+
+            boolean enabled = config.getBoolean("managed-plugins." + key, false);
+            String desc = PluginDescriptions.get(key);
+            List<String> deps = Repository.getDependencies(key);
+
+            Component checkbox = enabled
+                    ? Component.text("[✓]", NamedTextColor.GREEN, TextDecoration.BOLD)
+                    : Component.text("[ ]", NamedTextColor.DARK_GRAY);
+            Component name = Component.text(" " + padRight(Repository.getDisplayName(key), 20), NamedTextColor.WHITE);
+            Component description = Component.text(desc, NamedTextColor.GRAY);
+
+            Component line = checkbox.append(name).append(description);
+            line = line.clickEvent(ClickEvent.runCommand("/ob toggle " + key));
+            line = line.hoverEvent(HoverEvent.showText(
+                    Component.text(enabled ? "Click to disable" : "Click to enable", NamedTextColor.YELLOW)));
+
+            player.sendMessage(line);
+
+            for (String dep : deps) {
+                boolean depEnabled = config.getBoolean("managed-plugins." + dep, false);
+                Component depLine = Component.text("      └ ", NamedTextColor.DARK_GRAY)
+                        .append(Component.text(Repository.getDisplayName(dep), NamedTextColor.DARK_GRAY))
+                        .append(Component.text(" (", NamedTextColor.DARK_GRAY));
+                if (depEnabled) {
+                    depLine = depLine.append(Component.text("auto", NamedTextColor.DARK_GREEN));
+                } else {
+                    depLine = depLine.append(Component.text("dependency", NamedTextColor.DARK_RED));
+                }
+                depLine = depLine.append(Component.text(")", NamedTextColor.DARK_GRAY));
+                player.sendMessage(depLine);
+            }
+        }
+        player.sendMessage(Component.empty());
+    }
+
+    public void togglePlugin(Player player, String pluginKey) {
+        if (!Repository.isKnown(pluginKey)) {
+            player.sendMessage(Component.text("Unknown plugin: " + pluginKey, NamedTextColor.RED));
+            return;
+        }
+
+        FileConfiguration config = plugin.getConfig();
+        String path = "managed-plugins." + pluginKey;
+        boolean current = config.getBoolean(path, false);
+        config.set(path, !current);
+        plugin.saveConfig();
+
+        String action = current ? "disabled" : "enabled";
+        player.sendMessage(Component.text("  " + Repository.getDisplayName(pluginKey) + " " + action + ".", NamedTextColor.GREEN));
+
+        open(player);
+    }
+
+    private int countEnabled() {
+        var section = plugin.getConfig().getConfigurationSection("managed-plugins");
+        if (section == null) return 0;
+        int count = 0;
+        for (String key : section.getKeys(false)) {
+            if (section.getBoolean(key)) count++;
+        }
+        return count;
+    }
+
+    private String padRight(String s, int n) {
+        if (s.length() >= n) return s;
+        return s + " ".repeat(n - s.length());
+    }
+}

@@ -53,8 +53,12 @@ public final class Repository {
         PLUGINS.put("tab", new PluginInfo("TAB", PluginType.INTEGRATION,
                 "https://hangar.papermc.io/api/v1/plugins/NEZNAMY/TAB/versions/latest/download?platform=PAPER"));
 
+        PLUGINS.put("tuffxplus", new PluginInfo("TuffXPlus", PluginType.COMMUNITY,
+                "https://api.spigotmc.org/legacy/resource.php?id=136847"));
+
         DEPENDENCIES.put("geyser", List.of("floodgate"));
         DEPENDENCIES.put("authme", List.of("floodgate"));
+        DEPENDENCIES.put("tuffxplus", List.of("viaversion", "viabackwards"));
     }
 
     private Repository() {}
