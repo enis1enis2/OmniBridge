@@ -49,20 +49,6 @@ public class ConfigManager {
         }
     }
 
-    private File getConfigDirectory(String pluginName) {
-        String dirName = switch (pluginName.toLowerCase()) {
-            case "geyser" -> "Geyser-Spigot";
-            case "floodgate" -> "floodgate";
-            case "viarewind-legacysupport" -> "ViaRewindLegacySupport";
-            case "viabungee" -> "ViaVersion";
-            case "protocolib" -> "ProtocolLib";
-            case "authme" -> "AuthMe";
-            case "tab" -> "TAB";
-            default -> pluginName.substring(0, 1).toUpperCase() + pluginName.substring(1);
-        };
-        return new File(getPluginsDirectory(), dirName);
-    }
-
     public static void writeConfigFile(File file, String content) {
         if (file.exists()) return;
         file.getParentFile().mkdirs();

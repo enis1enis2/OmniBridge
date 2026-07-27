@@ -1,6 +1,9 @@
 package io.omnibrige.core;
 
 import io.omnibrige.OmniBridge;
+import io.omnibrige.api.events.PluginInstalledEvent;
+import io.omnibrige.api.events.PluginRemovedEvent;
+import io.omnibrige.api.events.PluginUpdatedEvent;
 import io.omnibrige.download.DownloadService;
 import io.omnibrige.download.Repository;
 import io.omnibrige.download.Repository.PluginInfo;
@@ -67,6 +70,10 @@ public class PluginManager {
                 if (ok) {
                     configManager.generateConfig(pluginName);
                     logger.info("Installed " + Repository.getDisplayName(pluginName));
+                    Bukkit.getScheduler().runTask(plugin, () ->
+                            Bukkit.getPluginManager().callEvent(new PluginInstalledEvent(
+                                    pluginName, Repository.getDisplayName(pluginName),
+                                    Repository.getType(pluginName))));
                     installed++;
                 }
             }
@@ -87,6 +94,8 @@ public class PluginManager {
         String url = Repository.getUrl(pluginName);
         if (url == null) return false;
 
+        String oldVersion = getPluginVersion(pluginName);
+
         File pluginsDir = getPluginsDirectory();
         File destination = new File(pluginsDir, getJarName(pluginName));
         File backup = new File(pluginsDir, getJarName(pluginName) + ".backup");
@@ -103,7 +112,12 @@ public class PluginManager {
         boolean downloaded = downloadService.downloadSync(url, destination);
         if (downloaded) {
             try { Files.deleteIfExists(backup.toPath()); } catch (IOException ignored) {}
+            String newVersion = getPluginVersion(pluginName);
             logger.info("Updated " + Repository.getDisplayName(pluginName));
+            Bukkit.getScheduler().runTask(plugin, () ->
+                    Bukkit.getPluginManager().callEvent(new PluginUpdatedEvent(
+                            pluginName, Repository.getDisplayName(pluginName),
+                            Repository.getType(pluginName), oldVersion, newVersion)));
             return true;
         } else {
             if (backup.exists()) {
@@ -123,6 +137,10 @@ public class PluginManager {
         if (jar.exists()) {
             jar.delete();
             logger.info("Removed " + Repository.getDisplayName(pluginName));
+            Bukkit.getScheduler().runTask(plugin, () ->
+                    Bukkit.getPluginManager().callEvent(new PluginRemovedEvent(
+                            pluginName, Repository.getDisplayName(pluginName),
+                            Repository.getType(pluginName))));
             return true;
         }
         return false;

@@ -79,7 +79,7 @@ public final class DownloadService {
         }
         try {
             byte[] header = new byte[4];
-            try (var is = new java.io.FileInputStream(file)) {
+            try (var is = Files.newInputStream(file.toPath())) {
                 is.read(header);
             }
             for (int i = 0; i < ZIP_MAGIC.length; i++) {

@@ -1,6 +1,7 @@
 package io.omnibrige;
 
 import io.omnibrige.api.GeyserIntegration;
+import io.omnibrige.api.OmniBridgeAPI;
 import io.omnibrige.api.ViaVersionIntegration;
 import io.omnibrige.commands.OmniBridgeCommand;
 import io.omnibrige.core.ConfigManager;
@@ -43,17 +44,19 @@ public final class OmniBridge extends JavaPlugin {
 
         getCommand("omnibrige").setExecutor(new OmniBridgeCommand(this));
 
+        OmniBridgeAPI.init(this);
+
         boolean autoInstall = getConfig().getBoolean("auto-install", false);
         boolean autoUpdate = getConfig().getBoolean("auto-update", false);
 
         if (autoInstall) {
             getLogger().info("Auto-installing missing plugins...");
-            pluginManager.installAll();
+            pluginManager.installAllAsync(null);
         }
 
         if (autoUpdate) {
             getLogger().info("Checking for plugin updates...");
-            pluginManager.updateAll();
+            pluginManager.updateAllAsync(null);
         }
 
         startReminderIfNeeded();
@@ -64,6 +67,7 @@ public final class OmniBridge extends JavaPlugin {
     @Override
     public void onDisable() {
         stopReminder();
+        OmniBridgeAPI.shutdown();
         getLogger().info("OmniBridge disabled.");
         instance = null;
     }

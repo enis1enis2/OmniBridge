@@ -1,5 +1,6 @@
 package io.omnibrige.download;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +75,7 @@ public final class Repository {
     }
 
     public static Map<String, PluginInfo> getAllPlugins() {
-        return Map.copyOf(PLUGINS);
+        return Collections.unmodifiableMap(PLUGINS);
     }
 
     public static boolean isKnown(String pluginName) {
