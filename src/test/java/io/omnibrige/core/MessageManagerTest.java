@@ -68,4 +68,26 @@ class MessageManagerTest {
             assertNotNull(result);
         });
     }
+
+    @Test
+    void allLocalesLoadSuccessfully() {
+        String[] locales = {
+            "en_US", "tr_TR", "de_DE", "fr_FR", "es_ES", "pt_BR",
+            "ru_RU", "zh_CN", "ja_JP", "ko_KR", "ar_SA",
+            "hi_IN", "bn_BD", "it_IT", "vi_VN", "pl_PL", "nl_NL",
+            "th_TH", "id_ID", "tl_PH", "cs_CZ", "el_GR", "sv_SE",
+            "hu_HU", "ro_RO", "uk_UA", "he_IL", "ms_MY", "fi_FI",
+            "da_DK", "no_NO"
+        };
+
+        String requiredKey = "no-permission";
+        for (String locale : locales) {
+            MessageManager.getInstance().reload(locale);
+            String result = MessageManager.getInstance().msg(requiredKey);
+            assertNotNull(result, "msg() returned null for locale " + locale);
+            assertNotEquals(requiredKey, result,
+                    "Locale " + locale + " returned key instead of translation for '" + requiredKey + "'");
+        }
+        MessageManager.getInstance().reload("en_US");
+    }
 }
