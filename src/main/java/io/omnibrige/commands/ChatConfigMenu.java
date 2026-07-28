@@ -81,12 +81,13 @@ public class ChatConfigMenu {
                 "geyser", "floodgate", "hurricane", "geyserconnect",
                 "thirdpartycosmetics", "thunderbeta", "rainbow"));
 
-        renderGroup(player, msg().msg("menu.group.integration"), List.of("authme", "tab"));
-
-        renderGroup(player, msg().msg("menu.group.community"), List.of("protocolib", "tuffxplus"));
+        renderGroup(player, msg().msg("menu.group.integration"), List.of("authme", "tab", "discordsrv"));
 
         renderGroup(player, msg().msg("menu.group.essentials"), List.of(
                 "luckperms", "essentialsx", "placeholderapi", "worldguard", "coreprotect"));
+
+        renderGroup(player, msg().msg("menu.group.community"), List.of(
+                "protocolib", "tuffxplus", "spark", "chunky", "bluemap", "griefprevention"));
 
         player.sendMessage(Component.empty());
         player.sendMessage(Component.text("  ─────────────────────────────────────────────", NamedTextColor.DARK_GRAY));
@@ -110,9 +111,16 @@ public class ChatConfigMenu {
     }
 
     private void renderGroup(Player player, String groupName, List<String> plugins) {
-        player.sendMessage(Component.text("  " + groupName, NamedTextColor.AQUA, TextDecoration.BOLD));
-
         FileConfiguration config = plugin.getConfig();
+        int enabledCount = 0;
+        for (String key : plugins) {
+            if (config.getBoolean("managed-plugins." + key, false)) enabledCount++;
+        }
+
+        Component header = Component.text("  " + groupName, NamedTextColor.AQUA, TextDecoration.BOLD)
+                .append(Component.text(" (" + enabledCount + "/" + plugins.size() + " enabled)", NamedTextColor.DARK_GRAY));
+        player.sendMessage(header);
+
         for (String key : plugins) {
             if (!Repository.isKnown(key)) continue;
 

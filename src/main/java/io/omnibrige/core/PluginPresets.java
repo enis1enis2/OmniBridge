@@ -43,10 +43,21 @@ public final class PluginPresets {
 
         PRESETS.put("max-compat", new Preset(
                 "Maximum Compatibility",
-                "All version + Bedrock + essential plugins",
+                "All version + Bedrock + essential + utility plugins",
                 List.of("viaversion", "viabackwards", "viarewind", "geyser", "floodgate",
                         "authme", "tab", "protocolib", "luckperms", "essentialsx",
-                        "placeholderapi", "worldguard", "coreprotect")));
+                        "placeholderapi", "worldguard", "coreprotect",
+                        "spark", "discordsrv", "chunky", "bluemap", "griefprevention")));
+
+        PRESETS.put("performance", new Preset(
+                "Performance & Monitoring",
+                "Profiling, chunk pre-generation, and 3D maps",
+                List.of("spark", "chunky", "bluemap")));
+
+        PRESETS.put("chat", new Preset(
+                "Chat & Discord",
+                "DiscordSRV bridge with PlaceholderAPI dependency",
+                List.of("discordsrv", "placeholderapi")));
     }
 
     private PluginPresets() {}

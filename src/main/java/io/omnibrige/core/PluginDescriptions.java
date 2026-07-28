@@ -67,6 +67,17 @@ public final class PluginDescriptions {
 
         DESCRIPTIONS.put("tuffxplus",
                 "Modern blocks & entities for TuffClient (Eaglercraft 1.12)");
+
+        DESCRIPTIONS.put("spark",
+                "CPU/memory profiling and server health reporting tool");
+        DESCRIPTIONS.put("discordsrv",
+                "Bridge Minecraft chat with Discord servers and sync");
+        DESCRIPTIONS.put("chunky",
+                "Pre-generate chunks quickly and efficiently");
+        DESCRIPTIONS.put("bluemap",
+                "3D web map renderer for Minecraft worlds");
+        DESCRIPTIONS.put("griefprevention",
+                "Land claims and anti-grief protection system");
     }
 
     private PluginDescriptions() {}

@@ -59,7 +59,7 @@ command.help.versions: "Show player versions"
 command.help.reload: "Reload all configs"
 command.help.remove: "Remove a managed plugin"
 command.help.help: "Show this help"
-command.help.preset-hint: "bedrock, full-version, essentials, max-compat, server-essentials"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat, server-essentials, performance, chat"
 
 # Info
 command.info.usage: "Usage: /ob info <plugin>"

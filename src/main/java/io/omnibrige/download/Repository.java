@@ -114,9 +114,26 @@ public final class Repository {
                 "https://api.spigotmc.org/legacy/resource.php?id=136847",
                 "TuffXPlus", "TuffXPlus.jar"));
 
+        PLUGINS.put("spark", new PluginInfo("spark", PluginType.COMMUNITY,
+                "https://spark.lucko.me/download/bukkit",
+                "spark", "spark.jar"));
+        PLUGINS.put("discordsrv", new PluginInfo("DiscordSRV", PluginType.INTEGRATION,
+                "https://api.spigotmc.org/legacy/resource.php?id=18494",
+                "DiscordSRV", "DiscordSRV.jar"));
+        PLUGINS.put("chunky", new PluginInfo("Chunky", PluginType.COMMUNITY,
+                "https://hangar.papermc.io/api/v1/plugins/pop4959/Chunky/versions/latest/download?platform=PAPER",
+                "Chunky", "Chunky.jar"));
+        PLUGINS.put("bluemap", new PluginInfo("BlueMap", PluginType.COMMUNITY,
+                "https://hangar.papermc.io/api/v1/plugins/Blue/BlueMap/versions/latest/download?platform=PAPER",
+                "BlueMap", "BlueMap.jar"));
+        PLUGINS.put("griefprevention", new PluginInfo("GriefPrevention", PluginType.COMMUNITY,
+                "https://hangar.papermc.io/api/v1/plugins/GriefPrevention/GriefPrevention/versions/latest/download?platform=PAPER",
+                "GriefPrevention", "GriefPrevention.jar"));
+
         DEPENDENCIES.put("geyser", List.of("floodgate"));
         DEPENDENCIES.put("authme", List.of("floodgate"));
         DEPENDENCIES.put("tuffxplus", List.of("viaversion", "viabackwards"));
+        DEPENDENCIES.put("discordsrv", List.of("placeholderapi"));
     }
 
     private Repository() {}

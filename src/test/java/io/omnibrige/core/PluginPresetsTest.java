@@ -27,6 +27,8 @@ class PluginPresetsTest {
         assertTrue(PluginPresets.isKnown("essentials"));
         assertTrue(PluginPresets.isKnown("max-compat"));
         assertTrue(PluginPresets.isKnown("server-essentials"));
+        assertTrue(PluginPresets.isKnown("performance"));
+        assertTrue(PluginPresets.isKnown("chat"));
         assertTrue(PluginPresets.isKnown("Bedrock")); // case insensitive
     }
 
@@ -64,10 +66,15 @@ class PluginPresetsTest {
     @Test
     void maxCompatContainsAllMajorPlugins() {
         List<String> plugins = PluginPresets.getPluginKeys("max-compat");
-        assertTrue(plugins.size() >= 8, "max-compat should have at least 8 plugins");
+        assertTrue(plugins.size() >= 18, "max-compat should have at least 18 plugins");
         assertTrue(plugins.contains("viaversion"));
         assertTrue(plugins.contains("geyser"));
         assertTrue(plugins.contains("authme"));
+        assertTrue(plugins.contains("spark"));
+        assertTrue(plugins.contains("discordsrv"));
+        assertTrue(plugins.contains("chunky"));
+        assertTrue(plugins.contains("bluemap"));
+        assertTrue(plugins.contains("griefprevention"));
     }
 
     @Test

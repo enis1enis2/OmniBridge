@@ -36,6 +36,11 @@ class RepositoryTest {
         assertTrue(Repository.isKnown("placeholderapi"));
         assertTrue(Repository.isKnown("worldguard"));
         assertTrue(Repository.isKnown("coreprotect"));
+        assertTrue(Repository.isKnown("spark"));
+        assertTrue(Repository.isKnown("discordsrv"));
+        assertTrue(Repository.isKnown("chunky"));
+        assertTrue(Repository.isKnown("bluemap"));
+        assertTrue(Repository.isKnown("griefprevention"));
         assertTrue(Repository.isKnown("VIaversion")); // case insensitive
     }
 
@@ -65,6 +70,7 @@ class RepositoryTest {
         assertEquals(List.of("floodgate"), Repository.getDependencies("geyser"));
         assertEquals(List.of("floodgate"), Repository.getDependencies("authme"));
         assertEquals(List.of("viaversion", "viabackwards"), Repository.getDependencies("tuffxplus"));
+        assertEquals(List.of("placeholderapi"), Repository.getDependencies("discordsrv"));
         assertTrue(Repository.getDependencies("viaversion").isEmpty());
         assertTrue(Repository.getDependencies("nonexistent").isEmpty());
     }
@@ -115,5 +121,10 @@ class RepositoryTest {
         assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("coreprotect"));
         assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("protocolib"));
         assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("tuffxplus"));
+        assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("spark"));
+        assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("chunky"));
+        assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("bluemap"));
+        assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("griefprevention"));
+        assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("discordsrv"));
     }
 }

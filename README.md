@@ -10,10 +10,10 @@
 
 ## Features
 
-- Automatic downloading, configuration, and management of 19+ cross-version and cross-platform plugins
+- Automatic downloading, configuration, and management of 29+ cross-version and cross-platform plugins
 - Interactive chat-based configuration menu for guided setup
 - Plugin presets for quick deployment (bedrock, full-version, essentials, max-compat)
-- Full internationalization with 68 supported languages
+- Full internationalization with 71 supported languages
 - Automatic dependency resolution across managed plugins
 - External API for integration with third-party plugins
 - Real-time player version tracking with Bedrock player identification
@@ -108,6 +108,7 @@ Use `/ob setup` to configure these options interactively, or edit the configurat
 |---|---|
 | AuthMe | Registration, login, and authentication management |
 | TAB | Player list formatting, prefixes, suffixes, and header/footer customization |
+| DiscordSRV | Bridge Minecraft chat with Discord servers and sync |
 
 ### Community
 
@@ -115,6 +116,10 @@ Use `/ob setup` to configure these options interactively, or edit the configurat
 |---|---|
 | ProtocolLib | Packet-level API used by many plugins for protocol manipulation |
 | TuffXPlus | Extended utilities and compatibility fixes for various plugins |
+| spark | CPU/memory profiling and server health reporting tool |
+| Chunky | Pre-generate chunks quickly and efficiently |
+| BlueMap | 3D web map renderer for Minecraft worlds |
+| GriefPrevention | Land claims and anti-grief protection system |
 
 ---
 
@@ -134,7 +139,7 @@ Include OmniBridge as a dependency and reference the API documentation in the pr
 
 ## Supported Languages
 
-OmniBridge supports **68 languages** through a comprehensive locale file system. Contributions for additional translations are welcome via pull request.
+OmniBridge supports **71 languages** through a comprehensive locale file system. Contributions for additional translations are welcome via pull request.
 
 ---
 
