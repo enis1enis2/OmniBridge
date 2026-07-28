@@ -4,7 +4,8 @@ main: io.omnibrige.OmniBridge
 api-version: '1.21'
 description: Universal cross-version and cross-platform connectivity solution for Minecraft servers
 authors: ['OmniBridge']
-website: https://github.com/omnibrige
+website: https://github.com/enis1enis2/OmniBridge
+license: GPL-3.0
 commands:
   omnibrige:
     description: OmniBridge management command

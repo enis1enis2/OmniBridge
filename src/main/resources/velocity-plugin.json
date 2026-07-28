@@ -6,5 +6,6 @@
   "authors": ["OmniBridge"],
   "main": "io.omnibrige.OmniBridgeVelocity",
   "dependencies": [],
-  "autoload": true
+  "autoload": true,
+  "license": "GPL-3.0"
 }
