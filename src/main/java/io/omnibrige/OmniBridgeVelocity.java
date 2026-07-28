@@ -27,12 +27,22 @@ import java.util.logging.Logger;
         description = "Universal cross-version and cross-platform connectivity solution",
         authors = {"OmniBridge"}
 )
+/**
+ * Main plugin entry point for Velocity proxy servers.
+ * Registers the command and initializes the message manager on proxy initialization.
+ */
 public class OmniBridgeVelocity {
 
     private final ProxyServer proxyServer;
     private final Logger logger;
     private final Path dataDirectory;
 
+    /**
+     * Constructs the Velocity plugin entry point.
+     *
+     * @param proxyServer the Velocity proxy server instance
+     * @param logger the plugin logger
+     */
     public OmniBridgeVelocity(ProxyServer proxyServer, Logger logger) {
         this.proxyServer = proxyServer;
         this.logger = logger;

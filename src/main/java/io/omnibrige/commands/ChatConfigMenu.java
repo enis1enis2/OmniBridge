@@ -24,10 +24,19 @@ import org.bukkit.entity.Player;
 
 import java.util.*;
 
+/**
+ * Interactive in-game chat menu for toggling managed plugins on and off.
+ * Displays clickable component-based UI with checkboxes and preset selections.
+ */
 public class ChatConfigMenu {
 
     private final OmniBridge plugin;
 
+    /**
+     * Constructs the chat configuration menu.
+     *
+     * @param plugin the OmniBridge plugin instance
+     */
     public ChatConfigMenu(OmniBridge plugin) {
         this.plugin = plugin;
     }
@@ -36,6 +45,11 @@ public class ChatConfigMenu {
         return MessageManager.getInstance();
     }
 
+    /**
+     * Opens the full interactive configuration menu for a player.
+     *
+     * @param player the player to display the menu to
+     */
     public void open(Player player) {
         player.sendMessage(Component.empty());
         player.sendMessage(Component.text("  ══════════════════════════════════════════════", NamedTextColor.DARK_GRAY));
@@ -71,6 +85,9 @@ public class ChatConfigMenu {
 
         renderGroup(player, msg().msg("menu.group.community"), List.of("protocolib", "tuffxplus"));
 
+        renderGroup(player, msg().msg("menu.group.essentials"), List.of(
+                "luckperms", "essentialsx", "placeholderapi", "worldguard", "coreprotect"));
+
         player.sendMessage(Component.empty());
         player.sendMessage(Component.text("  ─────────────────────────────────────────────", NamedTextColor.DARK_GRAY));
 
@@ -82,6 +99,11 @@ public class ChatConfigMenu {
                             .hoverEvent(HoverEvent.showText(Component.text(msg().msg("menu.click-to-install"), NamedTextColor.GREEN)))
                             .clickEvent(ClickEvent.runCommand("/ob install")))
                     .append(Component.text(msg().msg("menu.to-download"), NamedTextColor.GRAY));
+        } else {
+            summary = summary.append(Component.newline())
+                    .append(Component.text("  " + msg().msg("menu.enable-all-hint"), NamedTextColor.DARK_GRAY)
+                            .clickEvent(ClickEvent.runCommand("/ob enable-all"))
+                            .hoverEvent(HoverEvent.showText(Component.text(msg().msg("menu.click-enable-all"), NamedTextColor.GREEN))));
         }
         player.sendMessage(summary);
         player.sendMessage(Component.empty());
@@ -128,6 +150,12 @@ public class ChatConfigMenu {
         player.sendMessage(Component.empty());
     }
 
+    /**
+     * Toggles a managed plugin on or off for the player and refreshes the menu.
+     *
+     * @param player the player performing the toggle
+     * @param pluginKey the internal plugin key to toggle
+     */
     public void togglePlugin(Player player, String pluginKey) {
         if (!Repository.isKnown(pluginKey)) {
             player.sendMessage(Component.text(msg().msg("menu.unknown-plugin", pluginKey), NamedTextColor.RED));

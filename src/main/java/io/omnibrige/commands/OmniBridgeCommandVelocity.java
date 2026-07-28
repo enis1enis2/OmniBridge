@@ -20,10 +20,19 @@ import net.kyori.adventure.text.format.TextDecoration;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Handles the /omnibrige command on Velocity proxy servers.
+ * Provides a limited set of subcommands compared to the Paper/Spigot version.
+ */
 public class OmniBridgeCommandVelocity implements SimpleCommand {
 
     private final ProxyServer proxyServer;
 
+    /**
+     * Constructs the Velocity command handler.
+     *
+     * @param proxyServer the Velocity proxy server instance
+     */
     public OmniBridgeCommandVelocity(ProxyServer proxyServer) {
         this.proxyServer = proxyServer;
     }
@@ -32,6 +41,11 @@ public class OmniBridgeCommandVelocity implements SimpleCommand {
         return MessageManager.getInstance();
     }
 
+    /**
+     * Executes the /omnibrige command on Velocity.
+     *
+     * @param invocation the command invocation containing source and arguments
+     */
     @Override
     public void execute(Invocation invocation) {
         CommandSource source = invocation.source();
@@ -54,6 +68,12 @@ public class OmniBridgeCommandVelocity implements SimpleCommand {
         }
     }
 
+    /**
+     * Provides tab completion for the /omnibrige command on Velocity.
+     *
+     * @param invocation the command invocation containing partial arguments
+     * @return a list of matching subcommand names
+     */
     @Override
     public List<String> suggest(Invocation invocation) {
         String[] args = invocation.arguments();

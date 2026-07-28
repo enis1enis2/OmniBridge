@@ -20,6 +20,10 @@ import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
+/**
+ * Handles downloading plugin JARs from remote repositories with retry logic and validation.
+ * Provides both synchronous and asynchronous download methods.
+ */
 public final class DownloadService {
 
     private static final int MAX_RETRIES = 3;
@@ -29,6 +33,11 @@ public final class DownloadService {
     private final HttpClient httpClient;
     private final Logger logger;
 
+    /**
+     * Constructs the download service.
+     *
+     * @param logger the plugin logger for status messages
+     */
     public DownloadService(Logger logger) {
         this.logger = logger;
         this.httpClient = HttpClient.newBuilder()
@@ -37,10 +46,24 @@ public final class DownloadService {
                 .build();
     }
 
+    /**
+     * Asynchronously downloads a file from the given URL.
+     *
+     * @param url the download URL
+     * @param destination the target file to write
+     * @return a future that completes with true if the download succeeded
+     */
     public CompletableFuture<Boolean> downloadAsync(String url, File destination) {
         return CompletableFuture.supplyAsync(() -> downloadSync(url, destination));
     }
 
+    /**
+     * Checks whether an update is available by performing a HEAD request.
+     *
+     * @param url the download URL
+     * @param currentVersion the currently installed version string
+     * @return true if the server returned a successful response
+     */
     public boolean checkUpdate(String url, String currentVersion) {
         if (url == null || currentVersion == null) return false;
         try {
@@ -59,6 +82,13 @@ public final class DownloadService {
         }
     }
 
+    /**
+     * Synchronously downloads a file with automatic retries.
+     *
+     * @param url the download URL
+     * @param destination the target file to write
+     * @return true if the download and validation succeeded
+     */
     public boolean downloadSync(String url, File destination) {
         for (int attempt = 1; attempt <= MAX_RETRIES; attempt++) {
             try {
@@ -98,6 +128,12 @@ public final class DownloadService {
         return false;
     }
 
+    /**
+     * Validates that a file is a valid JAR by checking for the ZIP magic bytes.
+     *
+     * @param file the file to validate
+     * @return true if the file exists and has a valid ZIP/JAR header
+     */
     public boolean validateJar(File file) {
         if (!file.exists() || file.length() < 4) {
             return false;

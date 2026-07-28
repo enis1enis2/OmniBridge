@@ -31,6 +31,11 @@ class RepositoryTest {
         assertTrue(Repository.isKnown("floodgate"));
         assertTrue(Repository.isKnown("authme"));
         assertTrue(Repository.isKnown("tuffxplus"));
+        assertTrue(Repository.isKnown("luckperms"));
+        assertTrue(Repository.isKnown("essentialsx"));
+        assertTrue(Repository.isKnown("placeholderapi"));
+        assertTrue(Repository.isKnown("worldguard"));
+        assertTrue(Repository.isKnown("coreprotect"));
         assertTrue(Repository.isKnown("VIaversion")); // case insensitive
     }
 
@@ -103,6 +108,11 @@ class RepositoryTest {
         assertEquals(Repository.PluginType.GEYSERMC, Repository.getType("floodgate"));
         assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("authme"));
         assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("tab"));
+        assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("luckperms"));
+        assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("essentialsx"));
+        assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("placeholderapi"));
+        assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("worldguard"));
+        assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("coreprotect"));
         assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("protocolib"));
         assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("tuffxplus"));
     }

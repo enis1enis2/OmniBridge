@@ -11,8 +11,17 @@ import io.omnibrige.core.ConfigManager;
 
 import java.io.File;
 
+/**
+ * Generates the ViaVersion config.yml with recommended cross-version settings.
+ */
 public class ViaVersionConfig {
 
+    /**
+     * Generates the ViaVersion config.yml file if it does not already exist.
+     *
+     * @param pluginsDir the root plugins directory
+     * @return the generated config file
+     */
     public File generate(File pluginsDir) {
         File configDir = new File(pluginsDir, "ViaVersion");
         File configFile = new File(configDir, "config.yml");

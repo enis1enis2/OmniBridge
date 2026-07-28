@@ -26,6 +26,7 @@ class PluginPresetsTest {
         assertTrue(PluginPresets.isKnown("full-version"));
         assertTrue(PluginPresets.isKnown("essentials"));
         assertTrue(PluginPresets.isKnown("max-compat"));
+        assertTrue(PluginPresets.isKnown("server-essentials"));
         assertTrue(PluginPresets.isKnown("Bedrock")); // case insensitive
     }
 

@@ -10,6 +10,9 @@ package io.omnibrige.core;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Static registry of human-readable descriptions for all known managed plugins.
+ */
 public final class PluginDescriptions {
 
     private static final Map<String, String> DESCRIPTIONS = new LinkedHashMap<>();
@@ -48,6 +51,17 @@ public final class PluginDescriptions {
         DESCRIPTIONS.put("tab",
                 "Tab list, sidebar scoreboard, and nametag formatting");
 
+        DESCRIPTIONS.put("luckperms",
+                "Permissions management — groups, ranks, and inheritance");
+        DESCRIPTIONS.put("essentialsx",
+                "Core commands: homes, warps, kits, teleportation, economy");
+        DESCRIPTIONS.put("placeholderapi",
+                "Placeholder expansion system used by hundreds of plugins");
+        DESCRIPTIONS.put("worldguard",
+                "Region protection, flags, and spawn-area defense");
+        DESCRIPTIONS.put("coreprotect",
+                "Block/entity logging and rollback for anti-grief");
+
         DESCRIPTIONS.put("protocolib",
                 "Packet-level API required by many anti-cheat plugins");
 
@@ -57,10 +71,21 @@ public final class PluginDescriptions {
 
     private PluginDescriptions() {}
 
+    /**
+     * Returns the description for a given plugin key.
+     *
+     * @param pluginKey the internal plugin key
+     * @return the description string, or a default message if not found
+     */
     public static String get(String pluginKey) {
         return DESCRIPTIONS.getOrDefault(pluginKey, "No description available.");
     }
 
+    /**
+     * Returns all plugin descriptions.
+     *
+     * @return an immutable map of plugin keys to description strings
+     */
     public static Map<String, String> getAll() {
         return Map.copyOf(DESCRIPTIONS);
     }

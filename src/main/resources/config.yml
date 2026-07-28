@@ -32,6 +32,12 @@ managed-plugins:
   # Community essentials
   protocolib: false
   tuffxplus: false
+  # Server essentials (cross-platform aware)
+  luckperms: false
+  essentialsx: false
+  placeholderapi: false
+  worldguard: false
+  coreprotect: false
 
 # Geyser Bedrock settings
 bedrock:
@@ -43,9 +49,7 @@ java:
   address: 127.0.0.1
   port: 25565
 
-# Locale for messages (en_US, tr_TR, de_DE, fr_FR, es_ES, pt_BR, ru_RU, zh_CN, ja_JP, ko_KR, ar_SA,
-# hi_IN, bn_BD, it_IT, vi_VN, pl_PL, nl_NL, th_TH, id_ID, tl_PH, cs_CZ, el_GR, sv_SE, hu_HU,
-# ro_RO, uk_UA, he_IL, ms_MY, fi_FI, da_DK, no_NO)
+# Locale for messages (68 locales available, e.g. en_US, tr_TR, de_DE, zh_TW)
 locale: en_US
 
 # Enable debug logging

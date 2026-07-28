@@ -1,0 +1,110 @@
+# OmniBridge - 繁體中文 (台灣) 語言包
+no-permission: "沒有權限。"
+
+# 安裝
+command.install.start: "正在安裝缺少的外掛插件..."
+command.install.complete: "安裝完成！請重啟伺服器以載入新外掛。"
+
+# 更新
+command.update.start: "正在檢查更新..."
+command.update.complete: "更新檢查完成！"
+
+# 檢查
+command.check.title: "正在檢查更新..."
+command.check.available: "有可用更新"
+command.check.uptodate: "已是最新版本"
+
+# 設定
+command.setup.only-ingame: "設定選單僅能在遊戲中使用。"
+command.toggle.only-ingame: "切換功能僅能在遊戲中使用。"
+command.toggle.usage: "用法: /ob toggle <plugin>"
+
+# 狀態
+command.status.title: "OmniBridge 狀態"
+command.status.platform: "平台: %s"
+command.status.header: "  外掛名稱                    版本            狀態"
+command.status.enabled: "已啟用"
+command.status.installed: "已安裝"
+command.status.missing: "未安裝"
+
+# 重新載入
+command.reload.done: "所有配置已重新載入！"
+
+# 版本
+command.versions.title: "已連線玩家版本"
+command.versions.bedrock-tag: " [基岩版]"
+
+# 移除
+command.remove.usage: "用法: /ob remove <plugin>"
+command.remove.unknown: "未知外掛: %s"
+command.remove.done: "已移除 %s"
+command.remove.not-found: "外掛未找到或已被移除。"
+
+# 預設配置
+command.preset.title: "可用預設配置"
+command.preset.unknown: "未知預設配置: %s"
+command.preset.activated: "已啟用預設配置: %s"
+command.preset.enabled-count: "已啟用 %d 個外掛"
+command.preset.hint: "執行 /ob install 來下載它們"
+
+# 幫助
+command.help.title: "OmniBridge 指令"
+command.help.setup: "開啟互動式外掛設定"
+command.help.preset: "套用外掛預設配置群組"
+command.help.install: "下載並安裝已啟用的外掛"
+command.help.update: "檢查並套用更新"
+command.help.check: "顯示哪些外掛需要更新"
+command.help.status: "顯示外掛狀態"
+command.help.versions: "顯示玩家版本"
+command.help.reload: "重新載入所有配置"
+command.help.remove: "移除受管理的外掛"
+command.help.help: "顯示此幫助"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat, server-essentials"
+
+# 聊天選單
+menu.title: "外掛設定"
+menu.click-hint: "點擊外掛名稱以啟用/停用"
+menu.presets-title: "快速預設"
+menu.click-to-apply: "點擊以套用"
+menu.group.viaversion: "ViaVersion 系列"
+menu.group.geysermc: "GeyserMC 系列"
+menu.group.integration: "整合外掛"
+menu.group.community: "社群外掛"
+menu.group.essentials: "伺服器必備"
+menu.enabled-count: "已啟用 %d 個外掛"
+menu.click-to-install: "點擊以安裝"
+menu.to-download: " 以下載"
+menu.click-to-enable: "點擊以啟用"
+menu.click-to-disable: "點擊以停用"
+menu.dep-auto: "自動"
+menu.dep-required: "依賴項"
+menu.unknown-plugin: "未知外掛: %s"
+menu.plugin-enabled: "%s 已啟用。"
+menu.plugin-disabled: "%s 已停用。"
+menu.enable-all-hint: "[ 點擊以啟用所有外掛 ]"
+menu.click-enable-all: "啟用所有受管理外掛"
+
+# 資訊
+command.info.usage: "用法: /ob info <plugin>"
+command.info.type: "類型"
+command.info.description: "描述"
+command.info.jar: "JAR 檔案"
+command.info.dependencies: "依賴項"
+
+# 全部啟用/停用
+command.enable-all.done: "已啟用 %d 個外掛"
+command.disable-all.done: "已停用 %d 個外掛"
+
+# 提醒
+reminder.title: "需要設定"
+reminder.button: "[ 點擊以設定外掛 ]"
+reminder.button-hover: "開啟互動式設定選單"
+
+# Velocity
+command.velocity.status-title: "OmniBridge 狀態 (Velocity 代理)"
+command.velocity.platform: "平台: VELOCITY"
+command.velocity.online-players: "線上玩家: %d"
+command.velocity.servers: "已註冊伺服器: %d"
+command.velocity.help-title: "OmniBridge 指令 (Velocity)"
+command.velocity.help-status: "顯示代理狀態"
+command.velocity.help-help: "顯示此幫助"

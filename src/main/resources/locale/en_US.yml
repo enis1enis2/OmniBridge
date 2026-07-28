@@ -59,7 +59,28 @@ command.help.versions: "Show player versions"
 command.help.reload: "Reload all configs"
 command.help.remove: "Remove a managed plugin"
 command.help.help: "Show this help"
-command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat, server-essentials"
+
+# Info
+command.info.usage: "Usage: /ob info <plugin>"
+command.info.type: "Type"
+command.info.description: "Description"
+command.info.jar: "JAR file"
+command.info.dependencies: "Dependencies"
+
+# Enable/Disable All
+command.enable-all.done: "Enabled %d plugin(s)"
+command.disable-all.done: "Disabled %d plugin(s)"
+
+# Help additions
+command.help.info: "Show detailed plugin info"
+command.help.enable-all: "Enable all managed plugins"
+command.help.disable-all: "Disable all managed plugins"
+
+# Menu additions
+menu.group.essentials: "Server Essentials"
+menu.enable-all-hint: "[ Click to enable all plugins ]"
+menu.click-enable-all: "Enable all managed plugins"
 
 # Chat Menu
 menu.title: "Plugin Setup"

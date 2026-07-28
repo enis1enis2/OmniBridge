@@ -26,8 +26,20 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 import java.util.Locale;
 
+/**
+ * Manages the installation, update, removal, and status of all managed plugins.
+ * Handles dependency resolution and platform compatibility checks.
+ */
 public class PluginManager {
 
+    /**
+     * Represents the runtime status of a single managed plugin.
+     *
+     * @param name the display name of the plugin
+     * @param installed whether the plugin JAR is present on the server
+     * @param version the installed version string
+     * @param enabled whether the plugin is currently loaded and enabled
+     */
     public record PluginStatus(String name, boolean installed, String version, boolean enabled) {}
 
     private final OmniBridge plugin;
@@ -37,6 +49,13 @@ public class PluginManager {
     private final Logger logger;
     private final Map<String, PluginStatus> statusCache = new ConcurrentHashMap<>();
 
+    /**
+     * Constructs the plugin manager.
+     *
+     * @param plugin the OmniBridge plugin instance
+     * @param platform the detected server platform
+     * @param configManager the configuration manager for generating plugin configs
+     */
     public PluginManager(OmniBridge plugin, PlatformDetector.Platform platform, ConfigManager configManager) {
         this.plugin = plugin;
         this.platform = platform;
@@ -45,6 +64,11 @@ public class PluginManager {
         this.logger = plugin.getLogger();
     }
 
+    /**
+     * Asynchronously installs all enabled managed plugins.
+     *
+     * @param onComplete optional callback invoked on the main thread after installation
+     */
     public void installAllAsync(Runnable onComplete) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             installAll();
@@ -54,6 +78,11 @@ public class PluginManager {
         });
     }
 
+    /**
+     * Asynchronously updates all installed managed plugins to their latest versions.
+     *
+     * @param onComplete optional callback invoked on the main thread after updates
+     */
     public void updateAllAsync(Runnable onComplete) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             updateAll();
@@ -63,6 +92,7 @@ public class PluginManager {
         });
     }
 
+    /** Installs all enabled managed plugins synchronously. */
     public void installAll() {
         Set<String> managedPlugins = getManagedPlugins();
         List<String> sorted = sortPluginsByDependencies(managedPlugins);
@@ -87,6 +117,7 @@ public class PluginManager {
         logger.info("Installation complete: " + installed + " new plugin(s) downloaded.");
     }
 
+    /** Updates all installed managed plugins synchronously. */
     public void updateAll() {
         Set<String> managedPlugins = getManagedPlugins();
         for (String pluginName : managedPlugins) {
@@ -96,6 +127,12 @@ public class PluginManager {
         }
     }
 
+    /**
+     * Updates a single plugin to its latest version, creating a backup before download.
+     *
+     * @param pluginName the internal plugin key
+     * @return true if the update was successful, false otherwise
+     */
     public boolean updatePlugin(String pluginName) {
         String url = Repository.getUrl(pluginName);
         if (url == null) return false;
@@ -138,6 +175,12 @@ public class PluginManager {
         }
     }
 
+    /**
+     * Removes a managed plugin by deleting its JAR file from the plugins directory.
+     *
+     * @param pluginName the internal plugin key
+     * @return true if the JAR was found and deleted
+     */
     public boolean removePlugin(String pluginName) {
         File jar = new File(getPluginsDirectory(), Repository.getJarName(pluginName));
         if (jar.exists()) {
@@ -152,6 +195,11 @@ public class PluginManager {
         return false;
     }
 
+    /**
+     * Returns the status of all known managed plugins.
+     *
+     * @return an immutable map of plugin keys to their status
+     */
     public Map<String, PluginStatus> getStatus() {
         statusCache.clear();
         for (String pluginName : Repository.getAllPlugins().keySet()) {
@@ -164,11 +212,18 @@ public class PluginManager {
         return Map.copyOf(statusCache);
     }
 
+    /**
+     * Returns the installed version of a specific plugin.
+     *
+     * @param pluginName the internal plugin key
+     * @return the version string, or null if not installed
+     */
     public String getInstalledVersion(String pluginName) {
         if (!isPluginInstalled(pluginName)) return null;
         return getPluginVersion(pluginName);
     }
 
+    /** Reloads all enabled managed plugins by disabling and re-enabling them. */
     public void reloadAll() {
         for (String pluginName : getManagedPlugins()) {
             Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(Repository.getBukkitName(pluginName));

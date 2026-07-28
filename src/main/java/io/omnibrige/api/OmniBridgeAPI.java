@@ -21,6 +21,10 @@ import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
+/**
+ * Public API for interacting with OmniBridge from external plugins.
+ * Provides plugin management, player platform info, and installation operations.
+ */
 public final class OmniBridgeAPI {
 
     private static OmniBridgeAPI instance;
@@ -37,26 +41,52 @@ public final class OmniBridgeAPI {
         this.logger = plugin.getLogger();
     }
 
+    /**
+     * Initializes the API singleton. Called internally during plugin startup.
+     *
+     * @param plugin the OmniBridge plugin instance
+     */
     public static void init(OmniBridge plugin) {
         instance = new OmniBridgeAPI(plugin);
     }
 
+    /** Shuts down the API singleton. Called internally during plugin disable. */
     public static void shutdown() {
         instance = null;
     }
 
+    /**
+     * Returns the singleton API instance.
+     *
+     * @return the OmniBridgeAPI instance, or null if not initialized
+     */
     public static OmniBridgeAPI getInstance() {
         return instance;
     }
 
+    /**
+     * Checks whether the API is available for use.
+     *
+     * @return true if the API singleton has been initialized
+     */
     public static boolean isAvailable() {
         return instance != null;
     }
 
+    /**
+     * Returns the detected server platform type.
+     *
+     * @return the current platform enum value
+     */
     public PlatformDetector.Platform getPlatform() {
         return plugin.getPlatform();
     }
 
+    /**
+     * Returns all known managed plugins with their current status.
+     *
+     * @return an unmodifiable map of plugin keys to their status information
+     */
     public Map<String, ManagedPlugin> getManagedPlugins() {
         Map<String, ManagedPlugin> result = new LinkedHashMap<>();
         for (var entry : Repository.getAllPlugins().entrySet()) {
@@ -76,6 +106,12 @@ public final class OmniBridgeAPI {
         return Collections.unmodifiableMap(result);
     }
 
+    /**
+     * Returns the status of a specific managed plugin.
+     *
+     * @param name the plugin key (case-insensitive)
+     * @return the plugin's status, or null if not found
+     */
     public ManagedPlugin getPlugin(String name) {
         if (name == null) return null;
         Repository.PluginInfo info = Repository.getAllPlugins().get(name.toLowerCase(Locale.ROOT));
@@ -89,12 +125,23 @@ public final class OmniBridgeAPI {
                 installed, enabled, version, List.copyOf(deps));
     }
 
+    /**
+     * Returns platform information for a specific player.
+     *
+     * @param uuid the player's UUID
+     * @return the player's platform info, or null if offline
+     */
     public PlayerPlatformInfo getPlayerInfo(UUID uuid) {
         Player player = Bukkit.getPlayer(uuid);
         if (player == null) return null;
         return buildPlayerInfo(player);
     }
 
+    /**
+     * Returns platform information for all online players.
+     *
+     * @return an unmodifiable collection of player platform info
+     */
     public Collection<PlayerPlatformInfo> getOnlinePlayerInfo() {
         List<PlayerPlatformInfo> result = new ArrayList<>();
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -111,6 +158,12 @@ public final class OmniBridgeAPI {
         return new PlayerPlatformInfo(uuid, player.getName(), protocolVersion, bedrock, bedrockPlatform);
     }
 
+    /**
+     * Asynchronously installs a plugin by name.
+     *
+     * @param name the plugin key (case-insensitive)
+     * @return a future that completes with true if installation succeeded
+     */
     public CompletableFuture<Boolean> installPlugin(String name) {
         return CompletableFuture.supplyAsync(() -> {
             if (!Repository.isKnown(name)) return false;
@@ -126,10 +179,21 @@ public final class OmniBridgeAPI {
         });
     }
 
+    /**
+     * Asynchronously updates a plugin by name.
+     *
+     * @param name the plugin key (case-insensitive)
+     * @return a future that completes with true if the update succeeded
+     */
     public CompletableFuture<Boolean> updatePlugin(String name) {
         return CompletableFuture.supplyAsync(() -> plugin.getPluginManager().updatePlugin(name));
     }
 
+    /**
+     * Removes a managed plugin by deleting its JAR file.
+     *
+     * @param name the plugin key (case-insensitive)
+     */
     public void removePlugin(String name) {
         plugin.getPluginManager().removePlugin(name);
     }

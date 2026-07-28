@@ -84,7 +84,7 @@ class MessageManagerTest {
             "az_AZ", "eu_ES", "ca_ES", "gl_ES", "af_ZA", "et_EE",
             "lv_LV", "lt_LT", "sk_SK", "bg_BG", "hr_HR", "sr_RS",
             "sq_AL", "mk_MK", "fo_FO", "is_IS", "mt_MT", "cy_GB",
-            "ga_IE"
+            "ga_IE", "zh_TW"
         };
 
         String requiredKey = "no-permission";

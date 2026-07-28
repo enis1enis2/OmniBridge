@@ -28,6 +28,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+/**
+ * Main plugin entry point for Paper/Spigot servers.
+ * Handles initialization, lifecycle management, and the ops reminder system.
+ */
 public final class OmniBridge extends JavaPlugin {
 
     private static OmniBridge instance;
@@ -38,6 +42,9 @@ public final class OmniBridge extends JavaPlugin {
     private GeyserIntegration geyserIntegration;
     private BukkitTask reminderTask;
 
+    /**
+     * Called when the plugin is enabled. Initializes all managers, integrations, and scheduled tasks.
+     */
     @Override
     public void onEnable() {
         instance = this;
@@ -77,6 +84,9 @@ public final class OmniBridge extends JavaPlugin {
         getLogger().info("OmniBridge v" + getDescription().getVersion() + " enabled on " + platform.name());
     }
 
+    /**
+     * Called when the plugin is disabled. Stops reminders and shuts down the API.
+     */
     @Override
     public void onDisable() {
         stopReminder();
@@ -106,6 +116,7 @@ public final class OmniBridge extends JavaPlugin {
         getLogger().info("Reminder active: will notify ops every " + intervalMinutes + " min until config is changed.");
     }
 
+    /** Cancels the ops reminder task if it is running. */
     public void stopReminder() {
         if (reminderTask != null && !reminderTask.isCancelled()) {
             reminderTask.cancel();
@@ -138,26 +149,56 @@ public final class OmniBridge extends JavaPlugin {
         return false;
     }
 
+    /**
+     * Returns the singleton plugin instance.
+     *
+     * @return the OmniBridge plugin instance, or null if disabled
+     */
     public static OmniBridge getInstance() {
         return instance;
     }
 
+    /**
+     * Returns the detected server platform.
+     *
+     * @return the platform enum value
+     */
     public Platform getPlatform() {
         return platform;
     }
 
+    /**
+     * Returns the plugin manager instance.
+     *
+     * @return the PluginManager
+     */
     public PluginManager getPluginManager() {
         return pluginManager;
     }
 
+    /**
+     * Returns the configuration manager instance.
+     *
+     * @return the ConfigManager
+     */
     public ConfigManager getConfigManager() {
         return configManager;
     }
 
+    /**
+     * Returns the ViaVersion integration instance.
+     *
+     * @return the ViaVersionIntegration
+     */
     public ViaVersionIntegration getViaVersionIntegration() {
         return viaVersionIntegration;
     }
 
+    /**
+     * Returns the Geyser integration instance.
+     *
+     * @return the GeyserIntegration
+     */
     public GeyserIntegration getGeyserIntegration() {
         return geyserIntegration;
     }

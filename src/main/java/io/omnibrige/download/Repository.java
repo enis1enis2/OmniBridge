@@ -13,8 +13,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Central registry of all managed plugins, their download URLs, and dependency mappings.
+ * Provides lookup methods for plugin metadata by key.
+ */
 public final class Repository {
 
+    /** Categorizes managed plugins by their project family. */
     public enum PluginType {
         VIAMCRAFT,
         GEYSERMC,
@@ -22,6 +27,15 @@ public final class Repository {
         COMMUNITY
     }
 
+    /**
+     * Describes a single plugin entry in the repository.
+     *
+     * @param displayName the human-readable plugin name
+     * @param type the plugin category
+     * @param url the download URL for the latest version
+     * @param bukkitName the internal Bukkit plugin name
+     * @param jarName the expected JAR filename
+     */
     public record PluginInfo(String displayName, PluginType type, String url,
                               String bukkitName, String jarName) {}
 
@@ -80,6 +94,22 @@ public final class Repository {
                 "https://hangar.papermc.io/api/v1/plugins/NEZNAMY/TAB/versions/latest/download?platform=PAPER",
                 "TAB", "TAB.jar"));
 
+        PLUGINS.put("luckperms", new PluginInfo("LuckPerms", PluginType.INTEGRATION,
+                "https://download.luckperms.net/latest/bukkit/loader/LuckPerms-Bukkit.jar",
+                "LuckPerms", "LuckPerms.jar"));
+        PLUGINS.put("essentialsx", new PluginInfo("EssentialsX", PluginType.INTEGRATION,
+                "https://hangar.papermc.io/api/v1/plugins/Essentials/EssentialsX/versions/latest/download?platform=PAPER",
+                "EssentialsX", "EssentialsX.jar"));
+        PLUGINS.put("placeholderapi", new PluginInfo("PlaceholderAPI", PluginType.INTEGRATION,
+                "https://api.spigotmc.org/legacy/resource.php?id=6245",
+                "PlaceholderAPI", "PlaceholderAPI.jar"));
+        PLUGINS.put("worldguard", new PluginInfo("WorldGuard", PluginType.INTEGRATION,
+                "https://hangar.papermc.io/api/v1/plugins/sk89q/WorldGuard/versions/latest/download?platform=PAPER",
+                "WorldGuard", "WorldGuard.jar"));
+        PLUGINS.put("coreprotect", new PluginInfo("CoreProtect", PluginType.INTEGRATION,
+                "https://hangar.papermc.io/api/v1/plugins/CORE/CoreProtect/versions/latest/download?platform=PAPER",
+                "CoreProtect", "CoreProtect.jar"));
+
         PLUGINS.put("tuffxplus", new PluginInfo("TuffXPlus", PluginType.COMMUNITY,
                 "https://api.spigotmc.org/legacy/resource.php?id=136847",
                 "TuffXPlus", "TuffXPlus.jar"));
@@ -91,38 +121,85 @@ public final class Repository {
 
     private Repository() {}
 
+    /**
+     * Returns the download URL for the given plugin.
+     *
+     * @param pluginName the internal plugin key (case-insensitive)
+     * @return the URL string, or null if not found
+     */
     public static String getUrl(String pluginName) {
         PluginInfo info = PLUGINS.get(pluginName.toLowerCase(Locale.ROOT));
         return info != null ? info.url : null;
     }
 
+    /**
+     * Returns the human-readable display name for the given plugin.
+     *
+     * @param pluginName the internal plugin key (case-insensitive)
+     * @return the display name, or the input key if not found
+     */
     public static String getDisplayName(String pluginName) {
         PluginInfo info = PLUGINS.get(pluginName.toLowerCase(Locale.ROOT));
         return info != null ? info.displayName : pluginName;
     }
 
+    /**
+     * Returns the plugin type for the given plugin.
+     *
+     * @param pluginName the internal plugin key (case-insensitive)
+     * @return the PluginType enum value, or null if not found
+     */
     public static PluginType getType(String pluginName) {
         PluginInfo info = PLUGINS.get(pluginName.toLowerCase(Locale.ROOT));
         return info != null ? info.type : null;
     }
 
+    /**
+     * Returns all registered plugin entries.
+     *
+     * @return an unmodifiable map of plugin keys to their PluginInfo
+     */
     public static Map<String, PluginInfo> getAllPlugins() {
         return Collections.unmodifiableMap(PLUGINS);
     }
 
+    /**
+     * Checks whether a plugin key is registered in the repository.
+     *
+     * @param pluginName the internal plugin key (case-insensitive)
+     * @return true if the plugin is known
+     */
     public static boolean isKnown(String pluginName) {
         return PLUGINS.containsKey(pluginName.toLowerCase(Locale.ROOT));
     }
 
+    /**
+     * Returns the dependency list for the given plugin.
+     *
+     * @param pluginName the internal plugin key (case-insensitive)
+     * @return an immutable list of dependency plugin keys
+     */
     public static List<String> getDependencies(String pluginName) {
         return DEPENDENCIES.getOrDefault(pluginName.toLowerCase(Locale.ROOT), List.of());
     }
 
+    /**
+     * Returns the Bukkit/plugin manager name for the given plugin.
+     *
+     * @param pluginName the internal plugin key (case-insensitive)
+     * @return the Bukkit name, or the input key if not found
+     */
     public static String getBukkitName(String pluginName) {
         PluginInfo info = PLUGINS.get(pluginName.toLowerCase(Locale.ROOT));
         return info != null ? info.bukkitName : pluginName;
     }
 
+    /**
+     * Returns the expected JAR filename for the given plugin.
+     *
+     * @param pluginName the internal plugin key (case-insensitive)
+     * @return the JAR filename, or a default based on the input key if not found
+     */
     public static String getJarName(String pluginName) {
         PluginInfo info = PLUGINS.get(pluginName.toLowerCase(Locale.ROOT));
         return info != null ? info.jarName : pluginName + ".jar";

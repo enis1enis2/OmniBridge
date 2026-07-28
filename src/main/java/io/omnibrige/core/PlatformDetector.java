@@ -7,8 +7,13 @@
 
 package io.omnibrige.core;
 
+/**
+ * Detects the server platform (Paper, Spigot, Velocity, Fabric) at runtime
+ * using class presence checks.
+ */
 public final class PlatformDetector {
 
+    /** Represents the detected server platform types. */
     public enum Platform {
         PAPER,
         SPIGOT,
@@ -19,6 +24,11 @@ public final class PlatformDetector {
 
     private PlatformDetector() {}
 
+    /**
+     * Detects the current server platform by probing for platform-specific classes.
+     *
+     * @return the detected Platform, or UNKNOWN if unrecognized
+     */
     public static Platform detect() {
         try {
             Class.forName("com.velocitypowered.api.proxy.ProxyServer");
@@ -48,10 +58,22 @@ public final class PlatformDetector {
         return Platform.UNKNOWN;
     }
 
+    /**
+     * Checks whether the given platform is Bukkit-based (Paper or Spigot).
+     *
+     * @param platform the platform to check
+     * @return true if the platform is Paper or Spigot
+     */
     public static boolean isBukkitBased(Platform platform) {
         return platform == Platform.PAPER || platform == Platform.SPIGOT;
     }
 
+    /**
+     * Checks whether the given platform is Velocity.
+     *
+     * @param platform the platform to check
+     * @return true if the platform is Velocity
+     */
     public static boolean isVelocity(Platform platform) {
         return platform == Platform.VELOCITY;
     }

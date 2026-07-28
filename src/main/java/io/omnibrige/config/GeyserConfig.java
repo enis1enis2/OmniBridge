@@ -12,14 +12,28 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
 
+/**
+ * Generates the Geyser config.yml with address and port settings inherited from OmniBridge config.
+ */
 public class GeyserConfig {
 
     private final FileConfiguration omnibrigeConfig;
 
+    /**
+     * Constructs the Geyser config generator.
+     *
+     * @param omnibrigeConfig the OmniBridge configuration to read address/port values from
+     */
     public GeyserConfig(FileConfiguration omnibrigeConfig) {
         this.omnibrigeConfig = omnibrigeConfig;
     }
 
+    /**
+     * Generates the Geyser config.yml file if it does not already exist.
+     *
+     * @param pluginsDir the root plugins directory
+     * @return the generated config file
+     */
     public File generate(File pluginsDir) {
         File configDir = new File(pluginsDir, "Geyser-Spigot");
         File configFile = new File(configDir, "config.yml");

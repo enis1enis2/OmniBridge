@@ -13,6 +13,10 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.*;
 
+/**
+ * Integration layer for detecting client protocol versions via ViaVersion.
+ * Uses reflection to interact with the ViaVersion API without a compile-time dependency.
+ */
 public class ViaVersionIntegration {
 
     private static final Map<Integer, String> PROTOCOL_VERSIONS = new HashMap<>();
@@ -66,14 +70,29 @@ public class ViaVersionIntegration {
 
     private final Plugin viaVersionPlugin;
 
+    /**
+     * Constructs a ViaVersionIntegration instance.
+     *
+     * @param hostPlugin the host plugin providing the Bukkit runtime context
+     */
     public ViaVersionIntegration(Plugin hostPlugin) {
         this.viaVersionPlugin = Bukkit.getPluginManager().getPlugin("ViaVersion");
     }
 
+    /**
+     * Checks if the ViaVersion plugin is present and enabled.
+     *
+     * @return true if ViaVersion is available for use
+     */
     public boolean isAvailable() {
         return viaVersionPlugin != null && viaVersionPlugin.isEnabled();
     }
 
+    /**
+     * Returns the protocol version strings for all connected players.
+     *
+     * @return a map of player UUIDs to their Minecraft version strings
+     */
     public Map<UUID, String> getConnectedVersions() {
         Map<UUID, String> versions = new HashMap<>();
         if (!isAvailable()) return versions;
@@ -87,6 +106,12 @@ public class ViaVersionIntegration {
         return versions;
     }
 
+    /**
+     * Returns the Minecraft version string for a specific player.
+     *
+     * @param uuid the player's UUID
+     * @return the version string (e.g. "1.21.4"), or null if ViaVersion unavailable
+     */
     public String getPlayerVersion(UUID uuid) {
         if (!isAvailable()) return null;
         try {
@@ -102,6 +127,11 @@ public class ViaVersionIntegration {
         return null;
     }
 
+    /**
+     * Returns all Minecraft version strings supported by the ViaVersion protocol map.
+     *
+     * @return an immutable list of version strings
+     */
     public List<String> getSupportedVersions() {
         return List.copyOf(PROTOCOL_VERSIONS.values());
     }

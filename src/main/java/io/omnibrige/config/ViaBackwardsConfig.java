@@ -11,8 +11,17 @@ import io.omnibrige.core.ConfigManager;
 
 import java.io.File;
 
+/**
+ * Generates the ViaBackwards config.yml with default backward-compatibility settings.
+ */
 public class ViaBackwardsConfig {
 
+    /**
+     * Generates the ViaBackwards config.yml file if it does not already exist.
+     *
+     * @param pluginsDir the root plugins directory
+     * @return the generated config file
+     */
     public File generate(File pluginsDir) {
         File configDir = new File(pluginsDir, "ViaBackwards");
         File configFile = new File(configDir, "config.yml");

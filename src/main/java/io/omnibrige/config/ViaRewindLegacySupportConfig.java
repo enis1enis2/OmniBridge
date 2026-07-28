@@ -11,8 +11,17 @@ import io.omnibrige.core.ConfigManager;
 
 import java.io.File;
 
+/**
+ * Generates the ViaRewindLegacySupport config.yml with block/entity fix toggles.
+ */
 public class ViaRewindLegacySupportConfig {
 
+    /**
+     * Generates the ViaRewindLegacySupport config.yml file if it does not already exist.
+     *
+     * @param pluginsDir the root plugins directory
+     * @return the generated config file
+     */
     public File generate(File pluginsDir) {
         File configDir = new File(pluginsDir, "ViaRewindLegacySupport");
         File configFile = new File(configDir, "config.yml");
