@@ -8,14 +8,15 @@
 
 ## Quick Install (Paper/Spigot)
 
-1. Download `OmniBridge-1.0.0.jar` from the releases page
+1. Download `OmniBridge-1.0.0.jar` from the [Releases](https://github.com/enis1enis2/OmniBridge/releases) page
 2. Stop your server if it's running
 3. Place `OmniBridge-1.0.0.jar` in your server's `plugins/` folder
 4. Start your server
 5. OmniBridge will detect your platform and auto-install all missing plugins
 6. Check console for installation progress
 7. Stop and restart the server to load all new plugins
-8. Done! All version support is now active
+8. Run `/ob setup` to configure which plugins to enable
+9. Done! All version support is now active
 
 ## Velocity Proxy Install
 
@@ -80,5 +81,18 @@ After first run, edit `plugins/OmniBridge/config.yml`:
 - Choose one location (backend recommended for best compatibility)
 
 ### Slow startup
-- First run downloads ~12 plugin JARs, this is normal
+- First run downloads plugin JARs, this is normal
 - Subsequent startups are fast (plugins already cached)
+
+### Commands Reference
+
+Run `/ob help` in-game to see all available commands. Key commands:
+
+| Command | Description |
+|---------|-------------|
+| `/ob setup` | Open interactive configuration menu |
+| `/ob toggle <plugin>` | Enable/disable a plugin |
+| `/ob preset <name>` | Apply a preset (bedrock, essentials, max-compat, etc.) |
+| `/ob install` | Download enabled plugins |
+| `/ob status` | Check plugin status |
+| `/ob info <plugin>` | Show plugin details |

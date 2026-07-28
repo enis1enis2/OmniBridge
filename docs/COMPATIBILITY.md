@@ -40,6 +40,11 @@
 | Plugin | Purpose | Platforms |
 |--------|---------|-----------|
 | ProtocolLib | Protocol-level packet access (required by many anti-cheats and compatibility plugins) | Paper, Spigot |
+| TuffXPlus | Modern blocks & entities for TuffClient (Eaglercraft 1.12) | Paper, Spigot |
+| spark | CPU/memory profiling and server health reporting | Paper, Spigot, Velocity |
+| Chunky | Pre-generate chunks quickly and efficiently | Paper, Spigot, Fabric, Forge |
+| BlueMap | 3D web map renderer for Minecraft worlds | Paper, Spigot, Fabric, Forge |
+| GriefPrevention | Land claims and anti-grief protection system | Paper, Spigot, Purpur |
 
 ## Integration Plugins
 
@@ -47,6 +52,7 @@
 |--------|---------|-----------|-------|
 | AuthMe | Login/authentication with native Bedrock support via Floodgate 6.0.0 | Paper, Spigot | Requires Floodgate when Bedrock players connect |
 | TAB | Tab list, sidebar scoreboard, nametag formatting (all-in-one) | Paper, Spigot | Works with ViaVersion/Geyser |
+| DiscordSRV | Bridge Minecraft chat with Discord servers | Paper, Spigot, Purpur | Optional PlaceholderAPI dependency |
 
 ## Client Version Support
 
@@ -84,6 +90,20 @@ OmniBridge auto-detects your server platform:
 | `net.fabricmc.loader` exists | Fabric |
 | `org.bukkit.craftbukkit` exists | Spigot |
 | Fallback | SPIGOT |
+
+## Presets
+
+OmniBridge includes several plugin presets for quick setup:
+
+| Preset | Description | Included Plugins |
+|--------|-------------|------------------|
+| `bedrock` | Bedrock support | Geyser, Floodgate, Hurricane |
+| `full-version` | Java version support | ViaVersion, ViaBackwards, ViaRewind, ViaRewindLegacySupport |
+| `essentials` | Server essentials | AuthMe, TAB, ProtocolLib |
+| `server-essentials` | Advanced server tools | LuckPerms, EssentialsX, PlaceholderAPI, WorldGuard, CoreProtect |
+| `max-compat` | Maximum compatibility | All plugins above + spark, DiscordSRV, Chunky, BlueMap, GriefPrevention |
+| `performance` | Performance tools | spark, Chunky, BlueMap |
+| `chat` | Chat & Discord | DiscordSRV, PlaceholderAPI |
 
 ## Known Conflicts
 

@@ -10,9 +10,11 @@ OmniBridge is a server plugin that automatically downloads, configures, and mana
 - **Cross-Version Support**: Java 1.7.x to 26.2+ via ViaVersion, ViaBackwards, ViaRewind, ViaAprilFools
 - **Bedrock Support**: Bedrock Edition via Geyser + Floodgate
 - **Auto-Configuration**: Generates optimized configs for all managed plugins
+- **Interactive Menu**: Chat-based plugin setup with group management and presets
 - **Live Status**: View all plugin statuses with a single command
 - **Update Management**: Check and apply updates for all managed plugins
 - **Multi-Platform**: Works on Paper, Spigot, Velocity, and Fabric
+- **29+ Managed Plugins**: ViaVersion family, GeyserMC family, integrations, and community utilities
 
 ## Supported Client Versions
 
@@ -54,6 +56,17 @@ OmniBridge is a server plugin that automatically downloads, configures, and mana
 |--------|-------------|
 | AuthMe | Login/authentication with native Bedrock support via Floodgate |
 | TAB | Tab list, sidebar scoreboard, nametag formatting (all-in-one) |
+| DiscordSRV | Bridge Minecraft chat with Discord servers and sync |
+
+### Community Plugins
+| Plugin | Description |
+|--------|-------------|
+| ProtocolLib | Packet-level API for protocol manipulation |
+| TuffXPlus | Modern blocks & entities for TuffClient |
+| spark | CPU/memory profiling and server health reporting |
+| Chunky | Pre-generate chunks quickly and efficiently |
+| BlueMap | 3D web map renderer for Minecraft worlds |
+| GriefPrevention | Land claims and anti-grief protection system |
 
 ## Quick Start
 
@@ -68,12 +81,19 @@ OmniBridge is a server plugin that automatically downloads, configures, and mana
 
 | Command | Description |
 |---------|-------------|
+| `/omnibrige setup` | Open interactive chat-based configuration menu |
+| `/omnibrige toggle <plugin>` | Enable or disable a specific managed plugin |
+| `/omnibrige preset [name]` | Apply a configuration preset group |
 | `/omnibrige install` | Download & install all missing plugins |
 | `/omnibrige update` | Check for & apply updates |
+| `/omnibrige check` | Show which plugins need updates |
 | `/omnibrige status` | Show all plugin statuses |
 | `/omnibrige versions` | Show connected player versions |
 | `/omnibrige reload` | Reload all plugin configs |
 | `/omnibrige remove <plugin>` | Remove a managed plugin |
+| `/omnibrige info <plugin>` | Show detailed plugin information |
+| `/omnibrige enable-all` | Enable all managed plugins |
+| `/omnibrige disable-all` | Disable all managed plugins |
 | `/omnibrige help` | Show help |
 
 **Aliases:** `/ob`, `/omnib`
@@ -87,18 +107,24 @@ auto-install: true    # Auto-install missing plugins on startup
 auto-update: false    # Auto-update plugins on startup
 
 managed-plugins:
-  viaversion: true
-  viabackwards: true
-  viarewind: true
-  viarewind-legacysupport: true
-  viaprilfools: true
-  geyser: true
-  floodgate: true
-  hurricane: true
-  geyserconnect: true
-  thirdpartycosmetics: true
-  thunderbeta: true
-  rainbow: true
+  viaversion: false
+  viabackwards: false
+  viarewind: false
+  geyser: false
+  floodgate: false
+  authme: false
+  tab: false
+  protocolib: false
+  luckperms: false
+  essentialsx: false
+  placeholderapi: false
+  worldguard: false
+  coreprotect: false
+  spark: false
+  discordsrv: false
+  chunky: false
+  bluemap: false
+  griefprevention: false
 
 bedrock:
   address: 0.0.0.0
@@ -115,6 +141,8 @@ java:
 |----------|--------|
 | Paper | Full support |
 | Spigot | Full support |
+| Purpur | Full support |
+| Folia | Full support |
 | Velocity | Proxy-level support |
 | Fabric | Via Geyser-Fabric / Floodgate-Fabric |
 
