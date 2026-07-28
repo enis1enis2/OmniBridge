@@ -1,6 +1,7 @@
 package io.omnibrige.commands;
 
 import io.omnibrige.OmniBridge;
+import io.omnibrige.core.MessageManager;
 import io.omnibrige.core.PluginManager;
 import io.omnibrige.core.PluginManager.PluginStatus;
 import io.omnibrige.core.PluginPresets;
@@ -32,10 +33,14 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
         this.chatMenu = new ChatConfigMenu(plugin);
     }
 
+    private MessageManager msg() {
+        return MessageManager.getInstance();
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission("omnibrige.admin")) {
-            sender.sendMessage(Component.text("No permission.", NamedTextColor.RED));
+            sender.sendMessage(Component.text(msg().msg("no-permission"), NamedTextColor.RED));
             return true;
         }
 
@@ -62,22 +67,22 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
     }
 
     private void handleInstall(CommandSender sender) {
-        sender.sendMessage(Component.text("Installing missing plugins...", NamedTextColor.YELLOW));
+        sender.sendMessage(Component.text(msg().msg("command.install.start"), NamedTextColor.YELLOW));
         plugin.getPluginManager().installAllAsync(() ->
-                sender.sendMessage(Component.text("Installation complete! Restart server to load new plugins.", NamedTextColor.GREEN))
+                sender.sendMessage(Component.text(msg().msg("command.install.complete"), NamedTextColor.GREEN))
         );
     }
 
     private void handleUpdate(CommandSender sender) {
-        sender.sendMessage(Component.text("Checking for updates...", NamedTextColor.YELLOW));
+        sender.sendMessage(Component.text(msg().msg("command.update.start"), NamedTextColor.YELLOW));
         plugin.getPluginManager().updateAllAsync(() ->
-                sender.sendMessage(Component.text("Update check complete!", NamedTextColor.GREEN))
+                sender.sendMessage(Component.text(msg().msg("command.update.complete"), NamedTextColor.GREEN))
         );
     }
 
     private void handleCheck(CommandSender sender) {
         sender.sendMessage(Component.empty());
-        sender.sendMessage(Component.text("  Checking for updates...", NamedTextColor.YELLOW));
+        sender.sendMessage(Component.text("  " + msg().msg("command.check.title"), NamedTextColor.YELLOW));
         sender.sendMessage(Component.empty());
 
         DownloadService ds = new DownloadService(plugin.getLogger());
@@ -93,10 +98,10 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
             if (updateAvailable) {
                 sender.sendMessage(name.append(version)
-                        .append(Component.text("UPDATE AVAILABLE", NamedTextColor.YELLOW)));
+                        .append(Component.text(msg().msg("command.check.available"), NamedTextColor.YELLOW)));
             } else {
                 sender.sendMessage(name.append(version)
-                        .append(Component.text("up to date", NamedTextColor.DARK_GREEN)));
+                        .append(Component.text(msg().msg("command.check.uptodate"), NamedTextColor.DARK_GREEN)));
             }
         }
         sender.sendMessage(Component.empty());
@@ -104,7 +109,7 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
     private void handleSetup(CommandSender sender) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(Component.text("Setup menu is only available in-game.", NamedTextColor.RED));
+            sender.sendMessage(Component.text(msg().msg("command.setup.only-ingame"), NamedTextColor.RED));
             return;
         }
         chatMenu.open(player);
@@ -112,11 +117,11 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
     private void handleToggle(CommandSender sender, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(Component.text("Toggle is only available in-game.", NamedTextColor.RED));
+            sender.sendMessage(Component.text(msg().msg("command.toggle.only-ingame"), NamedTextColor.RED));
             return;
         }
         if (args.length < 2) {
-            sender.sendMessage(Component.text("Usage: /ob toggle <plugin>", NamedTextColor.RED));
+            sender.sendMessage(Component.text(msg().msg("command.toggle.usage"), NamedTextColor.RED));
             return;
         }
         chatMenu.togglePlugin(player, args[1]);
@@ -124,13 +129,13 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
     private void handleStatus(CommandSender sender) {
         sender.sendMessage(Component.empty());
-        sender.sendMessage(Component.text("  OmniBridge Status", NamedTextColor.GOLD, TextDecoration.BOLD));
-        sender.sendMessage(Component.text("  Platform: " + plugin.getPlatform().name(), NamedTextColor.GRAY));
+        sender.sendMessage(Component.text("  " + msg().msg("command.status.title"), NamedTextColor.GOLD, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("  " + msg().msg("command.status.platform", plugin.getPlatform().name()), NamedTextColor.GRAY));
         sender.sendMessage(Component.empty());
 
         Map<String, PluginStatus> status = plugin.getPluginManager().getStatus();
 
-        sender.sendMessage(Component.text("  Plugin                      Version          Status", NamedTextColor.AQUA));
+        sender.sendMessage(Component.text(msg().msg("command.status.header"), NamedTextColor.AQUA));
         sender.sendMessage(Component.text("  " + "─".repeat(55), NamedTextColor.DARK_GRAY));
 
         for (var entry : status.entrySet()) {
@@ -139,11 +144,11 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
             Component version = Component.text(String.format("%-17s", s.version()), NamedTextColor.GRAY);
             Component statusComp;
             if (s.installed() && s.enabled()) {
-                statusComp = Component.text("ENABLED", NamedTextColor.GREEN);
+                statusComp = Component.text(msg().msg("command.status.enabled"), NamedTextColor.GREEN);
             } else if (s.installed()) {
-                statusComp = Component.text("INSTALLED", NamedTextColor.YELLOW);
+                statusComp = Component.text(msg().msg("command.status.installed"), NamedTextColor.YELLOW);
             } else {
-                statusComp = Component.text("MISSING", NamedTextColor.RED);
+                statusComp = Component.text(msg().msg("command.status.missing"), NamedTextColor.RED);
             }
             sender.sendMessage(name.append(version).append(statusComp));
         }
@@ -153,12 +158,14 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
     private void handleReload(CommandSender sender) {
         plugin.getPluginManager().reloadAll();
         plugin.reloadConfig();
-        sender.sendMessage(Component.text("All configs reloaded!", NamedTextColor.GREEN));
+        String locale = plugin.getConfig().getString("locale", "en_US");
+        MessageManager.getInstance().reload(locale);
+        sender.sendMessage(Component.text(msg().msg("command.reload.done"), NamedTextColor.GREEN));
     }
 
     private void handleVersions(CommandSender sender) {
         sender.sendMessage(Component.empty());
-        sender.sendMessage(Component.text("  Connected Player Versions", NamedTextColor.GOLD, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("  " + msg().msg("command.versions.title"), NamedTextColor.GOLD, TextDecoration.BOLD));
         sender.sendMessage(Component.empty());
 
         var viaVersion = plugin.getViaVersionIntegration();
@@ -171,7 +178,7 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
                 Component line = Component.text("  " + (name != null ? name : entry.getKey().toString()), NamedTextColor.WHITE)
                         .append(Component.text(" - " + entry.getValue(), NamedTextColor.GRAY));
                 if (geyser.isBedrockPlayer(entry.getKey())) {
-                    line = line.append(Component.text(" [Bedrock]", NamedTextColor.AQUA));
+                    line = line.append(Component.text(msg().msg("command.versions.bedrock-tag"), NamedTextColor.AQUA));
                 }
                 sender.sendMessage(line);
             }
@@ -179,7 +186,7 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
             for (var player : org.bukkit.Bukkit.getOnlinePlayers()) {
                 Component line = Component.text("  " + player.getName(), NamedTextColor.WHITE);
                 if (geyser.isBedrockPlayer(player.getUniqueId())) {
-                    line = line.append(Component.text(" [Bedrock]", NamedTextColor.AQUA));
+                    line = line.append(Component.text(msg().msg("command.versions.bedrock-tag"), NamedTextColor.AQUA));
                 }
                 sender.sendMessage(line);
             }
@@ -189,26 +196,26 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
     private void handleRemove(CommandSender sender, String[] args) {
         if (args.length < 2) {
-            sender.sendMessage(Component.text("Usage: /omnibrige remove <plugin>", NamedTextColor.RED));
+            sender.sendMessage(Component.text(msg().msg("command.remove.usage"), NamedTextColor.RED));
             return;
         }
         String pluginName = args[1];
         if (!Repository.isKnown(pluginName)) {
-            sender.sendMessage(Component.text("Unknown plugin: " + pluginName, NamedTextColor.RED));
+            sender.sendMessage(Component.text(msg().msg("command.remove.unknown", pluginName), NamedTextColor.RED));
             return;
         }
         boolean removed = plugin.getPluginManager().removePlugin(pluginName);
         if (removed) {
-            sender.sendMessage(Component.text("Removed " + Repository.getDisplayName(pluginName), NamedTextColor.GREEN));
+            sender.sendMessage(Component.text(msg().msg("command.remove.done", Repository.getDisplayName(pluginName)), NamedTextColor.GREEN));
         } else {
-            sender.sendMessage(Component.text("Plugin not found or already removed.", NamedTextColor.YELLOW));
+            sender.sendMessage(Component.text(msg().msg("command.remove.not-found"), NamedTextColor.YELLOW));
         }
     }
 
     private void handlePreset(CommandSender sender, String[] args) {
         if (args.length < 2) {
             sender.sendMessage(Component.empty());
-            sender.sendMessage(Component.text("  Available Presets", NamedTextColor.GOLD, TextDecoration.BOLD));
+            sender.sendMessage(Component.text("  " + msg().msg("command.preset.title"), NamedTextColor.GOLD, TextDecoration.BOLD));
             sender.sendMessage(Component.empty());
             for (var entry : PluginPresets.getAll().entrySet()) {
                 PluginPresets.Preset p = entry.getValue();
@@ -223,7 +230,7 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
         String presetKey = args[1];
         if (!PluginPresets.isKnown(presetKey)) {
-            sender.sendMessage(Component.text("Unknown preset: " + presetKey, NamedTextColor.RED));
+            sender.sendMessage(Component.text(msg().msg("command.preset.unknown", presetKey), NamedTextColor.RED));
             return;
         }
 
@@ -239,43 +246,41 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
         }
         plugin.saveConfig();
 
-        sender.sendMessage(Component.text("  Activated preset: ", NamedTextColor.GREEN)
-                .append(Component.text(preset.displayName(), NamedTextColor.WHITE, TextDecoration.BOLD)));
-        sender.sendMessage(Component.text("  Enabled " + enabled + " plugin(s)", NamedTextColor.GREEN));
-        sender.sendMessage(Component.text("  Run ", NamedTextColor.GRAY)
-                .append(Component.text("/ob install", NamedTextColor.AQUA))
-                .append(Component.text(" to download them", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("  " + msg().msg("command.preset.activated", preset.displayName()), NamedTextColor.GREEN)
+                .append(Component.text("", NamedTextColor.WHITE)));
+        sender.sendMessage(Component.text("  " + msg().msg("command.preset.enabled-count", enabled), NamedTextColor.GREEN));
+        sender.sendMessage(Component.text("  " + msg().msg("command.preset.hint"), NamedTextColor.GRAY));
     }
 
     private void sendHelp(CommandSender sender) {
         sender.sendMessage(Component.empty());
-        sender.sendMessage(Component.text("  OmniBridge Commands", NamedTextColor.GOLD, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("  " + msg().msg("command.help.title"), NamedTextColor.GOLD, TextDecoration.BOLD));
         sender.sendMessage(Component.empty());
 
         sender.sendMessage(Component.text("  /ob setup", NamedTextColor.AQUA)
-                .append(Component.text("    - Open interactive plugin setup", NamedTextColor.GRAY))
-                .hoverEvent(HoverEvent.showText(Component.text("Click to open setup menu", NamedTextColor.GREEN)))
+                .append(Component.text("    - " + msg().msg("command.help.setup"), NamedTextColor.GRAY))
+                .hoverEvent(HoverEvent.showText(Component.text(msg().msg("command.help.setup"), NamedTextColor.GREEN)))
                 .clickEvent(ClickEvent.runCommand("/ob setup")));
         sender.sendMessage(Component.text("  /ob preset", NamedTextColor.AQUA)
-                .append(Component.text("   - Apply a plugin preset group", NamedTextColor.GRAY))
-                .hoverEvent(HoverEvent.showText(Component.text("bedrock, full-version, essentials, max-compat", NamedTextColor.YELLOW)))
+                .append(Component.text("   - " + msg().msg("command.help.preset"), NamedTextColor.GRAY))
+                .hoverEvent(HoverEvent.showText(Component.text(msg().msg("command.help.preset-hint"), NamedTextColor.YELLOW)))
                 .clickEvent(ClickEvent.runCommand("/ob preset")));
         sender.sendMessage(Component.text("  /ob install", NamedTextColor.AQUA)
-                .append(Component.text("   - Download & install enabled plugins", NamedTextColor.GRAY)));
+                .append(Component.text("   - " + msg().msg("command.help.install"), NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("  /ob update", NamedTextColor.AQUA)
-                .append(Component.text("    - Check for & apply updates", NamedTextColor.GRAY)));
+                .append(Component.text("    - " + msg().msg("command.help.update"), NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("  /ob check", NamedTextColor.AQUA)
-                .append(Component.text("     - Show which plugins need updates", NamedTextColor.GRAY)));
+                .append(Component.text("     - " + msg().msg("command.help.check"), NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("  /ob status", NamedTextColor.AQUA)
-                .append(Component.text("    - Show plugin status", NamedTextColor.GRAY)));
+                .append(Component.text("    - " + msg().msg("command.help.status"), NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("  /ob versions", NamedTextColor.AQUA)
-                .append(Component.text("  - Show player versions", NamedTextColor.GRAY)));
+                .append(Component.text("  - " + msg().msg("command.help.versions"), NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("  /ob reload", NamedTextColor.AQUA)
-                .append(Component.text("    - Reload all configs", NamedTextColor.GRAY)));
+                .append(Component.text("    - " + msg().msg("command.help.reload"), NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("  /ob remove", NamedTextColor.AQUA)
-                .append(Component.text("   - Remove a managed plugin", NamedTextColor.GRAY)));
+                .append(Component.text("   - " + msg().msg("command.help.remove"), NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("  /ob help", NamedTextColor.AQUA)
-                .append(Component.text("     - Show this help", NamedTextColor.GRAY)));
+                .append(Component.text("     - " + msg().msg("command.help.help"), NamedTextColor.GRAY)));
         sender.sendMessage(Component.empty());
     }
 

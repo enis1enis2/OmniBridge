@@ -1,6 +1,7 @@
 package io.omnibrige.commands;
 
 import io.omnibrige.OmniBridge;
+import io.omnibrige.core.MessageManager;
 import io.omnibrige.core.PluginDescriptions;
 import io.omnibrige.core.PluginPresets;
 import io.omnibrige.download.Repository;
@@ -24,16 +25,20 @@ public class ChatConfigMenu {
         this.plugin = plugin;
     }
 
+    private MessageManager msg() {
+        return MessageManager.getInstance();
+    }
+
     public void open(Player player) {
         player.sendMessage(Component.empty());
         player.sendMessage(Component.text("  ══════════════════════════════════════════════", NamedTextColor.DARK_GRAY));
         player.sendMessage(Component.text("  OmniBridge", NamedTextColor.GOLD, TextDecoration.BOLD)
-                .append(Component.text(" — Plugin Setup", NamedTextColor.WHITE)));
-        player.sendMessage(Component.text("  Click a plugin to enable/disable it", NamedTextColor.DARK_GRAY));
+                .append(Component.text(" — " + msg().msg("menu.title"), NamedTextColor.WHITE)));
+        player.sendMessage(Component.text("  " + msg().msg("menu.click-hint"), NamedTextColor.DARK_GRAY));
         player.sendMessage(Component.text("  ══════════════════════════════════════════════", NamedTextColor.DARK_GRAY));
         player.sendMessage(Component.empty());
 
-        player.sendMessage(Component.text("  Quick Presets", NamedTextColor.GOLD, TextDecoration.BOLD));
+        player.sendMessage(Component.text("  " + msg().msg("menu.presets-title"), NamedTextColor.GOLD, TextDecoration.BOLD));
         for (var entry : PluginPresets.getAll().entrySet()) {
             PluginPresets.Preset preset = entry.getValue();
             Component line = Component.text("    " + entry.getKey(), NamedTextColor.AQUA, TextDecoration.BOLD)
@@ -42,34 +47,34 @@ public class ChatConfigMenu {
                     .hoverEvent(HoverEvent.showText(
                             Component.text(preset.description(), NamedTextColor.GRAY)
                                     .append(Component.newline())
-                                    .append(Component.text("Click to apply", NamedTextColor.GREEN))));
+                                    .append(Component.text(msg().msg("menu.click-to-apply"), NamedTextColor.GREEN))));
             player.sendMessage(line);
         }
         player.sendMessage(Component.empty());
 
-        renderGroup(player, "ViaVersion Family", List.of(
+        renderGroup(player, msg().msg("menu.group.viaversion"), List.of(
                 "viaversion", "viabackwards", "viarewind",
                 "viarewind-legacysupport", "viaprilfools", "viabungee"));
 
-        renderGroup(player, "GeyserMC Family", List.of(
+        renderGroup(player, msg().msg("menu.group.geysermc"), List.of(
                 "geyser", "floodgate", "hurricane", "geyserconnect",
                 "thirdpartycosmetics", "thunderbeta", "rainbow"));
 
-        renderGroup(player, "Integration", List.of("authme", "tab"));
+        renderGroup(player, msg().msg("menu.group.integration"), List.of("authme", "tab"));
 
-        renderGroup(player, "Community", List.of("protocolib", "tuffxplus"));
+        renderGroup(player, msg().msg("menu.group.community"), List.of("protocolib", "tuffxplus"));
 
         player.sendMessage(Component.empty());
         player.sendMessage(Component.text("  ─────────────────────────────────────────────", NamedTextColor.DARK_GRAY));
 
         int enabled = countEnabled();
-        Component summary = Component.text("  " + enabled + " plugin(s) enabled", NamedTextColor.GRAY);
+        Component summary = Component.text("  " + msg().msg("menu.enabled-count", enabled), NamedTextColor.GRAY);
         if (enabled > 0) {
-            summary = summary.append(Component.text(" — Run ", NamedTextColor.GRAY))
+            summary = summary.append(Component.text(" — ", NamedTextColor.GRAY))
                     .append(Component.text("/ob install", NamedTextColor.AQUA, TextDecoration.BOLD)
-                            .hoverEvent(HoverEvent.showText(Component.text("Click to install", NamedTextColor.GREEN)))
+                            .hoverEvent(HoverEvent.showText(Component.text(msg().msg("menu.click-to-install"), NamedTextColor.GREEN)))
                             .clickEvent(ClickEvent.runCommand("/ob install")))
-                    .append(Component.text(" to download", NamedTextColor.GRAY));
+                    .append(Component.text(msg().msg("menu.to-download"), NamedTextColor.GRAY));
         }
         player.sendMessage(summary);
         player.sendMessage(Component.empty());
@@ -95,7 +100,7 @@ public class ChatConfigMenu {
             Component line = checkbox.append(name).append(description);
             line = line.clickEvent(ClickEvent.runCommand("/ob toggle " + key));
             line = line.hoverEvent(HoverEvent.showText(
-                    Component.text(enabled ? "Click to disable" : "Click to enable", NamedTextColor.YELLOW)));
+                    Component.text(enabled ? msg().msg("menu.click-to-disable") : msg().msg("menu.click-to-enable"), NamedTextColor.YELLOW)));
 
             player.sendMessage(line);
 
@@ -105,9 +110,9 @@ public class ChatConfigMenu {
                         .append(Component.text(Repository.getDisplayName(dep), NamedTextColor.DARK_GRAY))
                         .append(Component.text(" (", NamedTextColor.DARK_GRAY));
                 if (depEnabled) {
-                    depLine = depLine.append(Component.text("auto", NamedTextColor.DARK_GREEN));
+                    depLine = depLine.append(Component.text(msg().msg("menu.dep-auto"), NamedTextColor.DARK_GREEN));
                 } else {
-                    depLine = depLine.append(Component.text("dependency", NamedTextColor.DARK_RED));
+                    depLine = depLine.append(Component.text(msg().msg("menu.dep-required"), NamedTextColor.DARK_RED));
                 }
                 depLine = depLine.append(Component.text(")", NamedTextColor.DARK_GRAY));
                 player.sendMessage(depLine);
@@ -118,7 +123,7 @@ public class ChatConfigMenu {
 
     public void togglePlugin(Player player, String pluginKey) {
         if (!Repository.isKnown(pluginKey)) {
-            player.sendMessage(Component.text("Unknown plugin: " + pluginKey, NamedTextColor.RED));
+            player.sendMessage(Component.text(msg().msg("menu.unknown-plugin", pluginKey), NamedTextColor.RED));
             return;
         }
 
@@ -134,8 +139,8 @@ public class ChatConfigMenu {
             plugin.stopReminder();
         }
 
-        String action = current ? "disabled" : "enabled";
-        player.sendMessage(Component.text("  " + Repository.getDisplayName(pluginKey) + " " + action + ".", NamedTextColor.GREEN));
+        String msgKey = current ? "menu.plugin-disabled" : "menu.plugin-enabled";
+        player.sendMessage(Component.text("  " + msg().msg(msgKey, Repository.getDisplayName(pluginKey)), NamedTextColor.GREEN));
 
         open(player);
     }

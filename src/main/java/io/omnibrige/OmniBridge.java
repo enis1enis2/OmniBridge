@@ -5,6 +5,7 @@ import io.omnibrige.api.OmniBridgeAPI;
 import io.omnibrige.api.ViaVersionIntegration;
 import io.omnibrige.commands.OmniBridgeCommand;
 import io.omnibrige.core.ConfigManager;
+import io.omnibrige.core.MessageManager;
 import io.omnibrige.core.PlatformDetector;
 import io.omnibrige.core.PlatformDetector.Platform;
 import io.omnibrige.core.PluginManager;
@@ -34,6 +35,9 @@ public final class OmniBridge extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+
+        String locale = getConfig().getString("locale", "en_US");
+        MessageManager.init(getLogger(), locale);
 
         platform = PlatformDetector.detect();
         getLogger().info("Detected platform: " + platform.name());
@@ -103,14 +107,15 @@ public final class OmniBridge extends JavaPlugin {
     }
 
     private void sendReminder(Player player) {
+        MessageManager msg = MessageManager.getInstance();
         player.sendMessage(Component.empty());
         player.sendMessage(Component.text("  OmniBridge", NamedTextColor.GOLD, TextDecoration.BOLD)
                 .append(Component.text(" — ", NamedTextColor.DARK_GRAY))
-                .append(Component.text("Setup required", NamedTextColor.YELLOW)));
+                .append(Component.text(msg.msg("reminder.title"), NamedTextColor.YELLOW)));
         player.sendMessage(Component.empty());
 
-        Component setupButton = Component.text("  [ Click to setup plugins ]", NamedTextColor.GREEN, TextDecoration.BOLD)
-                .hoverEvent(HoverEvent.showText(Component.text("Open interactive setup menu", NamedTextColor.GREEN)))
+        Component setupButton = Component.text("  " + msg.msg("reminder.button"), NamedTextColor.GREEN, TextDecoration.BOLD)
+                .hoverEvent(HoverEvent.showText(Component.text(msg.msg("reminder.button-hover"), NamedTextColor.GREEN)))
                 .clickEvent(ClickEvent.runCommand("/ob setup"));
         player.sendMessage(setupButton);
 

@@ -1,0 +1,96 @@
+# OmniBridge - Turkish (TR) Locale
+no-permission: "Yetkiniz yok."
+
+# Install
+command.install.start: "Eksik eklentiler kuruluyor..."
+command.install.complete: "Kurulum tamamlandi! Yeni eklentileri yuklemek icin sunucuyu yeniden baslatin."
+
+# Update
+command.update.start: "Guncellemeler kontrol ediliyor..."
+command.update.complete: "Guncelleme kontrolu tamamlandi!"
+
+# Check
+command.check.title: "Guncellemeler kontrol ediliyor..."
+command.check.available: "GUNCELLEME MEVCUT"
+command.check.uptodate: "guncel"
+
+# Setup
+command.setup.only-ingame: "Kurulum menuyu yalnizca oyun icinde acabilirsiniz."
+command.toggle.only-ingame: "Degisiklikleri yalnizca oyun icinde yapabilirsiniz."
+command.toggle.usage: "Kullanim: /ob toggle <eklenti>"
+
+# Status
+command.status.title: "OmniBridge Durumu"
+command.status.platform: "Platform: %s"
+command.status.header: "  Eklenti                    Surum            Durum"
+command.status.enabled: "AKTIF"
+command.status.installed: "KURULU"
+command.status.missing: "EKSIK"
+
+# Reload
+command.reload.done: "Tum ayarlar yeniden yuklendi!"
+
+# Versions
+command.versions.title: "Baglanti Surumleri"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Kullanim: /ob remove <eklenti>"
+command.remove.unknown: "Bilinmeyen eklenti: %s"
+command.remove.done: "Kaldirildi: %s"
+command.remove.not-found: "Eklenti bulunamadi veya zaten kaldirilmis."
+
+# Preset
+command.preset.title: "Mevcut Sablonlar"
+command.preset.unknown: "Bilinmeyen sablon: %s"
+command.preset.activated: "Sablon etkinlestirildi: %s"
+command.preset.enabled-count: "%d eklenti etkinlestirildi"
+command.preset.hint: "Indirmek icin /ob install komutunu calistirin"
+
+# Help
+command.help.title: "OmniBridge Komutlari"
+command.help.setup: "Interaktif eklenti kurulumunu ac"
+command.help.preset: "Eklenti sablonu uygula"
+command.help.install: "Etkin eklentileri indir ve kur"
+command.help.update: "Guncellemeleri kontrol et ve uygula"
+command.help.check: "Hangi eklentilerin guncellemesi goster"
+command.help.status: "Eklenti durumunu goster"
+command.help.versions: "Oyuncu surumlerini goster"
+command.help.reload: "Tum ayarlari yeniden yukle"
+command.help.remove: "Yonetilen eklentiyi kaldir"
+command.help.help: "Bu yardimi goster"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Eklenti Kurulumu"
+menu.click-hint: "Eklentiyi etkinlestirmek/devre disi birakmak icin tiklayin"
+menu.presets-title: "Hizli Sablonlar"
+menu.click-to-apply: "Uygulamak icin tiklayin"
+menu.group.viaversion: "ViaVersion Ailesi"
+menu.group.geysermc: "GeyserMC Ailesi"
+menu.group.integration: "Entegrasyon"
+menu.group.community: "Topluluk"
+menu.enabled-count: "%d eklenti etkin"
+menu.click-to-install: "Kurmak icin tiklayin"
+menu.to-download: " indirmek icin"
+menu.click-to-enable: "Etkinlestirmek icin tiklayin"
+menu.click-to-disable: "Devre disi birakmak icin tiklayin"
+menu.dep-auto: "otomatik"
+menu.dep-required: "bagimlilik"
+menu.unknown-plugin: "Bilinmeyen eklenti: %s"
+menu.plugin-enabled: "%s etkinlestirildi."
+menu.plugin-disabled: "%s devre disi birakildi."
+
+# Reminder
+reminder.title: "Kurulum gerekli"
+reminder.button: "[ Eklentileri kurmak icin tiklayin ]"
+reminder.button-hover: "Interaktif kurulum menuyunu ac"
+
+# Velocity
+command.velocity.status-title: "OmniBridge Durumu (Velocity Proxy)"
+command.velocity.platform: "Platform: VELOCITY"
+command.velocity.online-players: "Cevrimici Oyuncular: %d"
+command.velocity.servers: "Kayitli Sunucular: %d"
+command.velocity.help-title: "OmniBridge Komutlari (Velocity)"
+command.velocity.help-status: "Proxy durumunu goster"
+command.velocity.help-help: "Bu yardimi goster"

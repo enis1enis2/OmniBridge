@@ -5,6 +5,7 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import io.omnibrige.commands.OmniBridgeCommandVelocity;
+import io.omnibrige.core.MessageManager;
 import io.omnibrige.core.PlatformDetector;
 import io.omnibrige.core.ConfigManager;
 import io.omnibrige.core.PluginManager;
@@ -34,6 +35,8 @@ public class OmniBridgeVelocity {
     @Subscribe
     public void onProxyInit(ProxyInitializeEvent event) {
         logger.info("OmniBridge v1.0.0 initializing on Velocity...");
+
+        MessageManager.init(logger, "en_US");
 
         proxyServer.getCommandManager().register(
                 proxyServer.getCommandManager().metaBuilder("omnibrige").build(),

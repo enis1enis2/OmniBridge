@@ -1,0 +1,96 @@
+# OmniBridge - English (US) Locale
+no-permission: "No permission."
+
+# Install
+command.install.start: "Installing missing plugins..."
+command.install.complete: "Installation complete! Restart server to load new plugins."
+
+# Update
+command.update.start: "Checking for updates..."
+command.update.complete: "Update check complete!"
+
+# Check
+command.check.title: "Checking for updates..."
+command.check.available: "UPDATE AVAILABLE"
+command.check.uptodate: "up to date"
+
+# Setup
+command.setup.only-ingame: "Setup menu is only available in-game."
+command.toggle.only-ingame: "Toggle is only available in-game."
+command.toggle.usage: "Usage: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge Status"
+command.status.platform: "Platform: %s"
+command.status.header: "  Plugin                      Version          Status"
+command.status.enabled: "ENABLED"
+command.status.installed: "INSTALLED"
+command.status.missing: "MISSING"
+
+# Reload
+command.reload.done: "All configs reloaded!"
+
+# Versions
+command.versions.title: "Connected Player Versions"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Usage: /ob remove <plugin>"
+command.remove.unknown: "Unknown plugin: %s"
+command.remove.done: "Removed %s"
+command.remove.not-found: "Plugin not found or already removed."
+
+# Preset
+command.preset.title: "Available Presets"
+command.preset.unknown: "Unknown preset: %s"
+command.preset.activated: "Activated preset: %s"
+command.preset.enabled-count: "Enabled %d plugin(s)"
+command.preset.hint: "Run /ob install to download them"
+
+# Help
+command.help.title: "OmniBridge Commands"
+command.help.setup: "Open interactive plugin setup"
+command.help.preset: "Apply a plugin preset group"
+command.help.install: "Download & install enabled plugins"
+command.help.update: "Check for & apply updates"
+command.help.check: "Show which plugins need updates"
+command.help.status: "Show plugin status"
+command.help.versions: "Show player versions"
+command.help.reload: "Reload all configs"
+command.help.remove: "Remove a managed plugin"
+command.help.help: "Show this help"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Plugin Setup"
+menu.click-hint: "Click a plugin to enable/disable it"
+menu.presets-title: "Quick Presets"
+menu.click-to-apply: "Click to apply"
+menu.group.viaversion: "ViaVersion Family"
+menu.group.geysermc: "GeyserMC Family"
+menu.group.integration: "Integration"
+menu.group.community: "Community"
+menu.enabled-count: "%d plugin(s) enabled"
+menu.click-to-install: "Click to install"
+menu.to-download: " to download"
+menu.click-to-enable: "Click to enable"
+menu.click-to-disable: "Click to disable"
+menu.dep-auto: "auto"
+menu.dep-required: "dependency"
+menu.unknown-plugin: "Unknown plugin: %s"
+menu.plugin-enabled: "%s enabled."
+menu.plugin-disabled: "%s disabled."
+
+# Reminder
+reminder.title: "Setup required"
+reminder.button: "[ Click to setup plugins ]"
+reminder.button-hover: "Open interactive setup menu"
+
+# Velocity
+command.velocity.status-title: "OmniBridge Status (Velocity Proxy)"
+command.velocity.platform: "Platform: VELOCITY"
+command.velocity.online-players: "Online Players: %d"
+command.velocity.servers: "Registered Servers: %d"
+command.velocity.help-title: "OmniBridge Commands (Velocity)"
+command.velocity.help-status: "Show proxy status"
+command.velocity.help-help: "Show this help"
