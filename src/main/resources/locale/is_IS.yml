@@ -1,0 +1,96 @@
+# OmniBridge - Íslenska (Ísland) Locale
+no-permission: "Enginn aðgangsheimild."
+
+# Uppsetning
+command.install.start: "Set upp ófullkomlega viðbætur..."
+command.install.complete: "Uppsetning lokið! Endurstuðuðu þjóninn til að hlaða nýjum viðbætum."
+
+# Uppfærslur
+command.update.start: "Athuga með uppfærslum..."
+command.update.complete: "Athugun uppfærslna lokið!"
+
+# Yfirferð
+command.check.title: "Athuga með uppfærslum..."
+command.check.available: "UPPFÆRSLA TIL"
+command.check.uptodate: "nýjast"
+
+# Uppsetningarvalmynd
+command.setup.only-ingame: "Uppsetningarvalmyndin er aðeins tiltæk í leik."
+command.toggle.only-ingame: "Skipting er aðeins tiltæk í leik."
+command.toggle.usage: "Notkun: /ob toggle <viðbót>"
+
+# Staða
+command.status.title: "OmniBridge Staða"
+command.status.platform: "Vettvangur: %s"
+command.status.header: "  Viðbót                    Útgáfa            Staða"
+command.status.enabled: "VIRKT"
+command.status.installed: "UPPSETT"
+command.status.missing: "VANTAR"
+
+# Endurhleðslur
+command.reload.done: "Allar stillingar hafa verið endurhlaðnar!"
+
+# Útgáfur
+command.versions.title: "Tengdar leikmannaútgáfur"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Fjarlægja
+command.remove.usage: "Notkun: /ob remove <viðbót>"
+command.remove.unknown: "Óþekkt viðbót: %s"
+command.remove.done: "Fjarlægt %s"
+command.remove.not-found: "Viðbót ekki fundin eða þegar fjarlægð."
+
+# Forrit
+command.preset.title: "Tiltækar forrit"
+command.preset.unknown: "Óþekkt forrit: %s"
+command.preset.activated: "Virkt forrit: %s"
+command.preset.enabled-count: "Virkt %d viðbót(ir)"
+command.preset.hint: "Keyrðu /ob install til að hlaða þeim niður"
+
+# Hjálp
+command.help.title: "OmniBridge Skipanir"
+command.help.setup: "Opna gagnvirka viðbótasetningu"
+command.help.preset: "Beita viðbótahópaforskrift"
+command.help.install: "Hlaða niður og setja upp virkar viðbætur"
+command.help.update: "Athuga og beita uppfærslum"
+command.help.check: "Sýna hvaða viðbætur þurfa uppfærslur"
+command.help.status: "Sýna viðbótastöðu"
+command.help.versions: "Sýna leikmannaútgáfur"
+command.help.reload: "Endurhlaða allar stillingar"
+command.help.remove: "Fjarlægja stýrða viðbót"
+command.help.help: "Sýna þessa hjálp"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Spjallvalmynd
+menu.title: "Viðbótasetning"
+menu.click-hint: "Smelltu á viðbót til að virkja/ósýkja hana"
+menu.presets-title: "Hratt forrit"
+menu.click-to-apply: "Smelltu til að beita"
+menu.group.viaversion: "ViaVersion ættin"
+menu.group.geysermc: "GeyserMC ættin"
+menu.group.integration: "Samþætting"
+menu.group.community: "Samfélag"
+menu.enabled-count: "%d viðbót(ir) virkar"
+menu.click-to-install: "Smelltu til að setja upp"
+menu.to-download: " til að hlaða niður"
+menu.click-to-enable: "Smelltu til að virkja"
+menu.click-to-disable: "Smelltu til að óvirkja"
+menu.dep-auto: "sjálfvirk"
+menu.dep-required: "óhjákvæmileg"
+menu.unknown-plugin: "Óþekkt viðbót: %s"
+menu.plugin-enabled: "%s virkt."
+menu.plugin-disabled: "%s óvirkt."
+
+# Áminning
+reminder.title: "Uppsetning nauðsynleg"
+reminder.button: "[ Smelltu til að stilla viðbætur ]"
+reminder.button-hover: "Opna gagnvirka uppsætningarvalmyndina"
+
+# Velocity
+command.velocity.status-title: "OmniBridge Staða (Velocity Proxy)"
+command.velocity.platform: "Vettvangur: VELOCITY"
+command.velocity.online-players: "Tengdir leikmenn: %d"
+command.velocity.servers: "Skráðir þjónar: %d"
+command.velocity.help-title: "OmniBridge Skipanir (Velocity)"
+command.velocity.help-status: "Sýna staðu netþjónsins"
+command.velocity.help-help: "Sýna þessa hjálp"

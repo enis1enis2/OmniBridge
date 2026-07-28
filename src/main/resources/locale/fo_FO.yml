@@ -1,0 +1,96 @@
+# OmniBridge - Føroyskt (Føroyar) Locale
+no-permission: "Eingin loyvi."
+
+# Uppsetan
+command.install.start: "Uppsetur manglandi tilfar..."
+command.install.complete: "Uppsetan liðugt! Endurstovna tænarin fyri at leggja nýtt tilfar afturat."
+
+# Uppdatering
+command.update.start: "Kannar eftir uppdateringum..."
+command.update.complete: "Kanning av uppdateringum liðugt!"
+
+# Kanning
+command.check.title: "Kannar eftir uppdateringum..."
+command.check.available: "UPPDATERING TØK"
+command.check.uptodate: "uppdaterað"
+
+# Uppseta
+command.setup.only-ingame: "Uppsetan er bara tøk í spælinum."
+command.toggle.only-ingame: "Vðskiftið er bara tøkt í spælinum."
+command.toggle.usage: "Nýtsla: /ob toggle <tilfar>"
+
+# Staða
+command.status.title: "OmniBridge Staða"
+command.status.platform: "Vanga: %s"
+command.status.header: "  Tilfar                     Útgáva            Staða"
+command.status.enabled: "VIRKJAÐ"
+command.status.installed: "UPPSETT"
+command.status.missing: "SAKNAR"
+
+# Endurinnles
+command.reload.done: "Allar stillingar endurlesnar!"
+
+# Útgávur
+command.versions.title: "Tøknar útgávur av spælarum"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Turtroynd
+command.remove.usage: "Nýtsla: /ob remove <tilfar>"
+command.remove.unknown: "Ókent tilfar: %s"
+command.remove.done: "Turtroynd %s"
+command.remove.not-found: "Tilfarið ikki funnið ella longu turtroynt."
+
+# Forbrigdi
+command.preset.title: "Tøkar forbrigdi"
+command.preset.unknown: "Ókent forbrigdi: %s"
+command.preset.activated: "Virkjað forbrigdi: %s"
+command.preset.enabled-count: "Virkjað %d tilfar"
+command.preset.hint: "Rokka /ob install fyri at heinta tey"
+
+# Hjálp
+command.help.title: "OmniBridge Skipanir"
+command.help.setup: "Opna virkisliga tilfarsuppseting"
+command.help.preset: "Nýta eina tilfarforbondsgruppu"
+command.help.install: "Heinta og uppseta virkjað tilfar"
+command.help.update: "Kanna og nýta uppdateringar"
+command.help.check: "Vís hvørji tilfar hava uppdateringar tøkar"
+command.help.status: "Vís tilfarsstøðu"
+command.help.versions: "Vís spælarútgávur"
+command.help.reload: "Endurles allar stillingar"
+command.help.remove: "Turtroyna eitt skipað tilfar"
+command.help.help: "Vís hesa hjálp"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Spjallmeny
+menu.title: "Tilfarsuppseta"
+menu.click-hint: "Trýst á eitt tilfar fyri at virkja/óvirkja tað"
+menu.presets-title: "Skjótt forbrigdi"
+menu.click-to-apply: "Trýst fyri at nýta"
+menu.group.viaversion: "ViaVersion Familja"
+menu.group.geysermc: "GeyserMC Familja"
+menu.group.integration: "Samantvinning"
+menu.group.community: "Felagsskapur"
+menu.enabled-count: "%d tilfar virkjað"
+menu.click-to-install: "Trýst fyri at uppseta"
+menu.to-download: " fyri at heinta"
+menu.click-to-enable: "Trýst fyri at virkja"
+menu.click-to-disable: "Trýst fyri at óvirkja"
+menu.dep-auto: "sjálvvirkandi"
+menu.dep-required: "framyvirskyld"
+menu.unknown-plugin: "Ókent tilfar: %s"
+menu.plugin-enabled: "%s virkað."
+menu.plugin-disabled: "%s óvirkjað."
+
+# Minning
+reminder.title: "Uppseta átrongd"
+reminder.button: "[ Trýst fyri at seta tilfar upp ]"
+reminder.button-hover: "Opna virkisliga uppsætsumingarmenyn"
+
+# Velocity
+command.velocity.status-title: "OmniBridge Staða (Velocity Proxy)"
+command.velocity.platform: "Vanga: VELOCITY"
+command.velocity.online-players: "Spælarar á netinum: %d"
+command.velocity.servers: "Stovnaðir tænarar: %d"
+command.velocity.help-title: "OmniBridge Skipanir (Velocity)"
+command.velocity.help-status: "Vís proxy-støðu"
+command.velocity.help-help: "Vís hesa hjálp"

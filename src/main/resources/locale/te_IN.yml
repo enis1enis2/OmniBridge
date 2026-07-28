@@ -1,0 +1,96 @@
+# OmniBridge - తెలుగు (భారతదేశం) భాష
+no-permission: "అనుమతి లేదు."
+
+# Install
+command.install.start: "తప్పిపోయిన ప్లగిన్‌లను ఇన్‌స్టాల్ చేస్తోంది..."
+command.install.complete: "ఇన్‌స్టాలేషన్ పూర్తయింది! కొత్త ప్లగిన్‌లను లోడ్ చేయడానికి సర్వర్‌ను రీస్టార్ట్ చేయండి."
+
+# Update
+command.update.start: "అప్‌డేట్‌లను తనిఖీ చేస్తోంది..."
+command.update.complete: "అప్‌డేట్ తనిఖీ పూర్తయింది!"
+
+# Check
+command.check.title: "అప్‌డేట్‌లను తనిఖీ చేస్తోంది..."
+command.check.available: "అప్‌డేట్ అందుబాటులో ఉంది"
+command.check.uptodate: "తాజాగా ఉంది"
+
+# Setup
+command.setup.only-ingame: "సెటప్ మెనూ గేమ్‌లో మాత్రమే అందుబాటులో ఉంటుంది."
+command.toggle.only-ingame: "టాగిల్ గేమ్‌లో మాత్రమే అందుబాటులో ఉంటుంది."
+command.toggle.usage: "ఉపయోగం: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge స్థితి"
+command.status.platform: "ప్లాట్‌ఫారమ్: %s"
+command.status.header: "  ప్లగిన్                         వెర్షన్          స్థితి"
+command.status.enabled: "సక్రియం చేయబడింది"
+command.status.installed: "ఇన్‌స్టాల్ చేయబడింది"
+command.status.missing: "తప్పిపోయింది"
+
+# Reload
+command.reload.done: "అన్ని కాన్ఫిగరేషన్‌లు మళ్ళీ లోడ్ చేయబడ్డాయి!"
+
+# Versions
+command.versions.title: "కనెక్ట్ చేసిన ప్లేయర్ వెర్షన్‌లు"
+command.versions.bedrock-tag: " [బెడ్రాక్]"
+
+# Remove
+command.remove.usage: "ఉపయోగం: /ob remove <plugin>"
+command.remove.unknown: "తెలియని ప్లగిన్: %s"
+command.remove.done: "తొలగించబడింది %s"
+command.remove.not-found: "ప్లగిన్ కనుగొనబడలేదు లేదా ఇప్పటికే తొలగించబడింది."
+
+# Preset
+command.preset.title: "అందుబాటులో ఉన్న ప్రీసెట్‌లు"
+command.preset.unknown: "తెలియని ప్రీసెట్: %s"
+command.preset.activated: "ప్రీసెట్ సక్రియం చేయబడింది: %s"
+command.preset.enabled-count: "%d ప్లగిన్(లు) సక్రియం చేయబడ్డాయి"
+command.preset.hint: "వాటిని డౌన్‌లోడ్ చేయడానికి /ob install నడుపు"
+
+# Help
+command.help.title: "OmniBridge ఆదేశాలు"
+command.help.setup: "ఇంటరాక్టివ్ ప్లగిన్ సెటప్ తెరవండి"
+command.help.preset: "ప్లగిన్ ప్రీసెట్ సమూహాన్ని వర్తింపజేయండి"
+command.help.install: "సక్రియం చేసిన ప్లగిన్‌లను డౌన్‌లోడ్ & ఇన్‌స్టాల్ చేయండి"
+command.help.update: "అప్‌డేట్‌లను తనిఖీ & వర్తింపజేయండి"
+command.help.check: "ఏ ప్లగిన్‌లకు అప్‌డేట్‌లు అవసరమో చూపించు"
+command.help.status: "ప్లగిన్ స్థితిని చూపించు"
+command.help.versions: "ప్లేయర్ వెర్షన్‌లను చూపించు"
+command.help.reload: "అన్ని కాన్ఫిగరేషన్‌లను మళ్ళీ లోడ్ చేయండి"
+command.help.remove: "నిర్వహించబడే ప్లగిన్‌ను తొలగించండి"
+command.help.help: "ఈ సహాయాన్ని చూపించు"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "ప్లగిన్ సెటప్"
+menu.click-hint: "సక్రియం/నిష్క్రియం చేయడానికి ప్లగిన్‌పై క్లిక్ చేయండి"
+menu.presets-title: "త్వరిత ప్రీసెట్‌లు"
+menu.click-to-apply: "వర్తింపజేయడానికి క్లిక్ చేయండి"
+menu.group.viaversion: "ViaVersion కుటుంబం"
+menu.group.geysermc: "GeyserMC కుటుంబం"
+menu.group.integration: "ఇంటిగ్రేషన్"
+menu.group.community: "కమ్యూనిటీ"
+menu.enabled-count: "%d ప్లగిన్(లు) సక్రియం చేయబడ్డాయి"
+menu.click-to-install: "ఇన్‌స్టాల్ చేయడానికి క్లిక్ చేయండి"
+menu.to-download: " డౌన్‌లోడ్ చేయడానికి"
+menu.click-to-enable: "సక్రియం చేయడానికి క్లిక్ చేయండి"
+menu.click-to-disable: "నిష్క్రియం చేయడానికి క్లిక్ చేయండి"
+menu.dep-auto: "స్వయంచాలకం"
+menu.dep-required: "ఆధారం"
+menu.unknown-plugin: "తెలియని ప్లగిన్: %s"
+menu.plugin-enabled: "%s సక్రియం చేయబడింది."
+menu.plugin-disabled: "%s నిష్క్రియం చేయబడింది."
+
+# Reminder
+reminder.title: "సెటప్ అవసరం"
+reminder.button: "[ ప్లగిన్‌లను సెటప్ చేయడానికి క్లిక్ చేయండి ]"
+reminder.button-hover: "ఇంటరాక్టివ్ సెటప్ మెనూను తెరవండి"
+
+# Velocity
+command.velocity.status-title: "OmniBridge స్థితి (Velocity ప్రాక్సీ)"
+command.velocity.platform: "ప్లాట్‌ఫారమ్: VELOCITY"
+command.velocity.online-players: "ఆన్‌లైన్ ప్లేయర్లు: %d"
+command.velocity.servers: "నమోదైన సర్వర్లు: %d"
+command.velocity.help-title: "OmniBridge ఆదేశాలు (Velocity)"
+command.velocity.help-status: "ప్రాక్సీ స్థితిని చూపించు"
+command.velocity.help-help: "ఈ సహాయాన్ని చూపించు"

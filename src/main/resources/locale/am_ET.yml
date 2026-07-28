@@ -1,0 +1,96 @@
+# OmniBridge - አማርኛ (ኢትዮጵያ) ቋንቋ
+no-permission: "ፈቃድ የለም።"
+
+# Install
+command.install.start: "የጎዱ ፕላгинዎችን በማስቀጠል ላይ..."
+command.install.complete: "መቀጠል ተጠናቅቋል! አዳዲስ ፕላгинዎችን ለመጫን ሰርቨርን እንደገና ያስቀምጡ።"
+
+# Update
+command.update.start: "ማዘመኛዎችን በማጣቀስ ላይ..."
+command.update.complete: "ማዘመኛ ማጣቀሻ ተጠናቅቋል!"
+
+# Check
+command.check.title: "ማዘመኛዎችን በማጣቀስ ላይ..."
+command.check.available: "ማዘመኛ ይገኛል"
+command.check.uptodate: "ያዘመናል"
+
+# Setup
+command.setup.only-ingame: "ማስቀመጫ ሜኑ በክፌ ልውውጥ ብቻ ይገኛል።"
+command.toggle.only-ingame: "መቀየር በክፌ ልውውጥ ብቻ ይገኛል።"
+command.toggle.usage: "አጠቃቀም: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge ሁኔታ"
+command.status.platform: "መድረክ: %s"
+command.status.header: "  ፕላгин                       ቅርጽ          ሁኔታ"
+command.status.enabled: "ተግቧል"
+command.status.installed: "ተቀጥቷል"
+command.status.missing: "የጎዷል"
+
+# Reload
+command.reload.done: "ሁሉም ማዋቀሪያዎች እንደገና ተጭነዋል!"
+
+# Versions
+command.versions.title: "የተገናኙ ተጫዋቾች ቅርጾች"
+command.versions.bedrock-tag: " [በድሮክ]"
+
+# Remove
+command.remove.usage: "አጠቃቀም: /ob remove <plugin>"
+command.remove.unknown: "አልታወቀ ፕላгин: %s"
+command.remove.done: "ተሰጥቷል %s"
+command.remove.not-found: "ፕላгин አልተገኘም ወይም ቀደም ተሰጥቷል።"
+
+# Preset
+command.preset.title: "የሚገኙ ቅድመ ማቀናበሪያዎች"
+command.preset.unknown: "አልታወቀ ቅድመ ማቀናበሪያ: %s"
+command.preset.activated: "ቅድመ ማቀናበሪያ ተግቧል: %s"
+command.preset.enabled-count: "ፕላግinoች %d ተግተዋል"
+command.preset.hint: "እነዚህን ለማውረድ /ob install ያስኬዱ"
+
+# Help
+command.help.title: "OmniBridge ትዕዛዞች"
+command.help.setup: "ተግታዊ ፕላгин ማስቀመጫ ይክፈቱ"
+command.help.preset: "ፕላгин ቅድመ ማቀናበሪያ ቡድን ይተግብሩ"
+command.help.install: "የተግተዋል ፕላгинዎችን ያውርዱ & ይቀጥሉ"
+command.help.update: "ማዘመኛዎችን ይጣቀሱ & ይተግብሩ"
+command.help.check: "የትኛው ፕላгин ማዘመኛ እንደሚፈልግ ያሳዩ"
+command.help.status: "ፕላгин ሁኔታ ያሳዩ"
+command.help.versions: "ተጫዋቾች ቅርጾች ያሳዩ"
+command.help.reload: "ሁሉም ማዋቀሪያዎች እንደገና ይጫኑ"
+command.help.remove: "የተቆጣጠረ ፕላгин ያስወግዱ"
+command.help.help: "ይህን እርዳታ ያሳዩ"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "ፕላгин ማስቀመጫ"
+menu.click-hint: "ፕላгинን ለማስቻል /ለመዝጋት ይጫኑ"
+menu.presets-title: "ፈጣን ቅድመ ማቀናበሪያዎች"
+menu.click-to-apply: "ለመተግበር ይምቱ"
+menu.group.viaversion: "ViaVersion ዝርር"
+menu.group.geysermc: "GeyserMC ዝርር"
+menu.group.integration: "ማጣቀሻ"
+menu.group.community: "ማህበረሰብ"
+menu.enabled-count: "ፕላгинዎች %d ተግተዋል"
+menu.click-to-install: "ለማስቀጠል ይምቱ"
+menu.to-download: " ለማውረድ"
+menu.click-to-enable: "ለማስቻል ይጫኑ"
+menu.click-to-disable: "ለመዝጋት ይጫኑ"
+menu.dep-auto: "ራስ-ሰር"
+menu.dep-required: "ምክንያት"
+menu.unknown-plugin: "አልታወቀ ፕላгин: %s"
+menu.plugin-enabled: "%s ተግቧል።"
+menu.plugin-disabled: "%s ለቅቧል።"
+
+# Reminder
+reminder.title: "ማስቀመጫ ያስፈልጋል"
+reminder.button: "[ ፕላгинዎችን ለማስቀመጥ ይምቱ ]"
+reminder.button-hover: "ተግታዊ ማስቀመጫ ሜኑ ይክፈቱ"
+
+# Velocity
+command.velocity.status-title: "OmniBridge ሁኔታ (Velocity ፕሮክሲ)"
+command.velocity.platform: "መድረክ: VELOCITY"
+command.velocity.online-players: "መስመር ላይ ያሉ ተጫዋቾች: %d"
+command.velocity.servers: "የተመዘገቡ ሰርቨሮች: %d"
+command.velocity.help-title: "OmniBridge ትዕዛዞች (Velocity)"
+command.velocity.help-status: "ፕሮክሲ ሁኔታ ያሳዩ"
+command.velocity.help-help: "ይህን እርዳታ ያሳዩ"

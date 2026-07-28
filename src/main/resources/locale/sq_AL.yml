@@ -1,0 +1,96 @@
+# OmniBridge - Shqip (Shqipëri) Locale
+no-permission: "Nuk ka leje."
+
+# Instalimi
+command.install.start: "Duke instaluar shtojcat që mungojnë..."
+command.install.complete: "Instalimi përfundoi! Rinisni serverin për të ngarkuar shtojcat e reja."
+
+# Përditësimi
+command.update.start: "Duke kontrolluar për përditësime..."
+command.update.complete: "Kontrollimi i përditësimeve përfundoi!"
+
+# Kontrolli
+command.status.title: "Statusi i OmniBridge"
+command.check.title: "Duke kontrolluar për përditësime..."
+command.check.available: "PËRDITËSIM I DISPONUESHËM"
+command.check.uptodate: "aktual"
+
+# Konfigurimi
+command.setup.only-ingame: "Menyja e konfigurimit është e disponueshme vetëm në lojë."
+command.toggle.only-ingame: "Ndërrimi është i disponueshëm vetëm në lojë."
+command.toggle.usage: "Përdorimi: /ob toggle <shtojcë>"
+
+# Statusi
+command.status.platform: "Platforma: %s"
+command.status.header: "  Shtojca                     Versioni          Statusi"
+command.status.enabled: "AKTIVIZUAR"
+command.status.installed: "INSTALUAR"
+command.status.missing: "MUNGON"
+
+# Ricarikimi
+command.reload.done: "Të gjitha konfigurimet u ricarikuan!"
+
+# Versionet
+command.versions.title: "Versionet e Lojtarëve të Lidhur"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Heqja
+command.remove.usage: "Përdorimi: /ob remove <shtojcë>"
+command.remove.unknown: "Shtojcë e panjohur: %s"
+command.remove.done: "U hoq %s"
+command.remove.not-found: "Shtojcë e pandodhur ose tashmë e hequr."
+
+# Paracaktimet
+command.preset.title: "Paracaktime të Disponueshme"
+command.preset.unknown: "Paraktim i panjohur: %s"
+command.preset.activated: "Paraktimi u aktivizua: %s"
+command.preset.enabled-count: "U aktivizuan %d shtojca(e)"
+command.preset.hint: "Për të shkarkuar ekzekuto /ob install"
+
+# Ndihma
+command.help.title: "Komandat e OmniBridge"
+command.help.setup: "Hap konfigurimin interaktiv të shtojcave"
+command.help.preset: "Apliko një grup paracaktesish shtojcash"
+command.help.install: "Shkarko & instalo shtojcat e aktivizuara"
+command.help.update: "Kontrollo & apliko përditësimet"
+command.help.check: "Shfaq cilat shtojca kanë nevojë për përditësime"
+command.help.status: "Shfaq statusin e shtojcave"
+command.help.versions: "Shfaq versionet e lojtarëve"
+command.help.reload: "Ricarko të gjitha konfigurimet"
+command.help.remove: "Hiq një shtojcë të menaxhuar"
+command.help.help: "Shfaq këtë ndihmë"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Menyja e Bisedës
+menu.title: "Konfigurimi i Shtojcave"
+menu.click-hint: "Kliko një shtojcë për ta aktivizuar/caktuar"
+menu.presets-title: "Paracetime të Shpejta"
+menu.click-to-apply: "Kliko për të aplikuar"
+menu.group.viaversion: "Familja ViaVersion"
+menu.group.geysermc: "Familja GeyserMC"
+menu.group.integration: "Integrimit"
+menu.group.community: "Komuniteti"
+menu.enabled-count: "%d shtojca(e) të aktivizuara"
+menu.click-to-install: "Kliko për të instaluar"
+menu.to-download: " për të shkarkuar"
+menu.click-to-enable: "Kliko për të aktivizuar"
+menu.click-to-disable: "Kliko për të çaktivizuar"
+menu.dep-auto: "auto"
+menu.dep-required: "varësi"
+menu.unknown-plugin: "Shtojcë e panjohur: %s"
+menu.plugin-enabled: "%s u aktivizua."
+menu.plugin-disabled: "%s u çaktivizua."
+
+# Kujtuesi
+reminder.title: "Konfigurimi kërkohet"
+reminder.button: "[ Kliko për të konfiguruar shtojcat ]"
+reminder.button-hover: "Hap menyjen e konfigurimit interaktiv"
+
+# Velocity
+command.velocity.status-title: "Statusi i OmniBridge (Proxy Velocity)"
+command.velocity.platform: "Platforma: VELOCITY"
+command.velocity.online-players: "Lojtarë Online: %d"
+command.velocity.servers: "Servera të Regjistruar: %d"
+command.velocity.help-title: "Komandat e OmniBridge (Velocity)"
+command.velocity.help-status: "Shfaq statusin e proxy-t"
+command.velocity.help-help: "Shfaq këtë ndihmë"

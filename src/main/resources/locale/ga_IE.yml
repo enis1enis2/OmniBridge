@@ -1,0 +1,96 @@
+# OmniBridge - Gaeilge (Éire) Locale
+no-permission: "Níl cead ann."
+
+# Suiteáil
+command.install.start: "Ag suiteáil breiseáin atá in easnamh..."
+command.install.complete: "Tá an suiteáil críochnaithe! Atosaigh an freastalaí chun na breiseáin nua a lódáil."
+
+# Nuashonrú
+command.update.start: "Ag seiceáil le haghaidh nuashonruithe..."
+command.update.complete: "Tá an seiceáil nuashonrú críochnaithe!"
+
+# Seiceáil
+command.check.title: "Ag seiceáil le haghaidh nuashonruithe..."
+command.check.available: "NUASHONRÚ AR FÁIL"
+command.check.uptodate: "go dtí an dáta"
+
+# Socrú
+command.setup.only-ingame: "Níl an roghchlár socraithe ar fáil ach sa chluiche."
+command.toggle.only-ingame: "Níl an t-asbhaint ar fáil ach sa chluiche."
+command.toggle.usage: "Úsáid: /ob toggle <breiseán>"
+
+# Stádas
+command.status.title: "Stádas OmniBridge"
+command.status.platform: "Ardán: %s"
+command.status.header: "  Breiseán                    Leagan            Stádas"
+command.status.enabled: "CUMASAITHE"
+command.status.installed: "SUITEÁILTE"
+command.status.missing: "AR IARRAIS"
+
+# Athlódáil
+command.reload.done: "Athraíodh gach cumraíocht!"
+
+# Leagain
+command.versions.title: "Leagain Imreoirí Ceangailte"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Bain
+command.remove.usage: "Úsáid: /ob remove <breiseán>"
+command.remove.unknown: "Breiseán anaithnid: %s"
+command.remove.done: "Baineadh %s"
+command.remove.not-found: "Níl an breiseán ann nó baineadh cheana féin."
+
+# Réamhshocrú
+command.preset.title: "Réamhshocruithe ar Fáil"
+command.preset.unknown: "Réamhshocrú anaithnid: %s"
+command.preset.activated: "Gníomhachtaíodh réamhshocrú: %s"
+command.preset.enabled-count: "Cumasaithe %d breiseán(a)"
+command.preset.hint: "Rith /ob install chun iad a íoslódáil"
+
+# Cabhair
+command.help.title: "Orduithe OmniBridge"
+command.help.setup: "Oscail suiteáil idirghníomhach breiseán"
+command.help.preset: "Cuir grúpa réamhshocrú breiseán i bhfeidhm"
+command.help.install: "Íoslódáil & suiteáil breiseáin chumasaithe"
+command.help.update: "Seiceáil & cuir nuashonruithe i bhfeidhm"
+command.help.check: "Taispeáin cén breiseáin atá ag teastáil nuashonrú"
+command.help.status: "Taispeáin stádas na mbreiseán"
+command.help.versions: "Taispeáin leagain na n-imreoirí"
+command.help.reload: "Athlódáil gach cumraíocht"
+command.help.remove: "Bain breiseán atá á bhainistiú"
+command.help.help: "Taispeáin an chabhair seo"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Comhrá
+menu.title: "Suiteáil Breiseán"
+menu.click-hint: "Cliceáil breiseán chun é a chumasú/díchumasú"
+menu.presets-title: "Réamhshocruithe Tapa"
+menu.click-to-apply: "Cliceáil chun cur i bhfeidhm"
+menu.group.viaversion: "Teaghlach ViaVersion"
+menu.group.geysermc: "Teaghlach GeyserMC"
+menu.group.integration: "Comhtháthú"
+menu.group.community: "Pobal"
+menu.enabled-count: "%d breiseán(a) cumasaithe"
+menu.click-to-install: "Cliceáil chun suiteáil"
+menu.to-download: " chun íoslódáil"
+menu.click-to-enable: "Cliceáil chun cumasú"
+menu.click-to-disable: "Cliceáil chun díchumasú"
+menu.dep-auto: "uathoibríoch"
+menu.dep-required: "spleáchas"
+menu.unknown-plugin: "Breiseán anaithnid: %s"
+menu.plugin-enabled: "%s cumasaithe."
+menu.plugin-disabled: "%s díchumasaithe."
+
+# Meabhrúchán
+reminder.title: "Teastaíonn suiteáil"
+reminder.button: "[ Cliceáil chun breiseáin a shocrú ]"
+reminder.button-hover: "Oscail an roghchlár suiteála idirghníomhach"
+
+# Velocity
+command.velocity.status-title: "Stádas OmniBridge (Ionadaí Velocity)"
+command.velocity.platform: "Ardán: VELOCITY"
+command.velocity.online-players: "Imreoirí Ar Líne: %d"
+command.velocity.servers: "Freastalaithe Cláraithe: %d"
+command.velocity.help-title: "Orduithe OmniBridge (Velocity)"
+command.velocity.help-status: "Taispeáin stádas an ionadaí"
+command.velocity.help-help: "Taispeáin an chabhair seo"

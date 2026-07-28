@@ -1,0 +1,96 @@
+# OmniBridge - Malti (Malta) Locale
+no-permission: "Ebda permessjoni."
+
+# Tinstallar
+command.install.start: "Qed ninstallar il-plugins li ma jidhrux..."
+command.install.complete: "Installazzjoni lesta! Erda' l-server biex taghwb il-plugins il-godda."
+
+# Tigiġid
+command.update.start: "Qed nivverifika ghal tigiġid..."
+command.update.complete: "Tivverifikar tat-tigiġid lesta!"
+
+# Tivverifika
+command.check.title: "Qed nivverifika ghal tigiġid..."
+command.check.available: "TIGIGID DISPONIBBLI"
+command.check.uptodate: "aħħar verżjoni"
+
+# Twaqqif
+command.setup.only-ingame: "Il-menu tat-twaqqif hija disponibbli biss fil-loghba."
+command.toggle.only-ingame: "It-tghaffig huwa disponibbli biss fil-loghba."
+command.toggle.usage: "Uzu: /ob toggle <plugin>"
+
+# Statu
+command.status.title: "Statu ta' OmniBridge"
+command.status.platform: "Piattaforma: %s"
+command.status.header: "  Plugin                   Verżjoni          Statu"
+command.status.enabled: "IMHALLA"
+command.status.installed: "INSTALLAT"
+command.status.missing: "NUQQAS"
+
+# Rigenerar
+command.reload.done: "L-konfigurazzjonijiet kollha reġenerati!"
+
+# Verżjonijiet
+command.versions.title: "Verżjonijiet tal-Players Magħqudin"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Neħħi
+command.remove.usage: "Uzu: /ob remove <plugin>"
+command.remove.unknown: "Plugin mhux magħruf: %s"
+command.remove.done: "Neħħi %s"
+command.remove.not-found: "Plugin ma nstabx jew diġa neħħi."
+
+# Presets
+command.preset.title: "Presets Disponibbli"
+command.preset.unknown: "Preset mhux magħruf: %s"
+command.preset.activated: "Preset attivat: %s"
+command.preset.enabled-count: "Attivat %d plugin(s)"
+command.preset.hint: "Ħarġu /ob install biex tniżżilhom"
+
+# Għajnuna
+command.help.title: "Kmandi ta' OmniBridge"
+command.help.setup: "iftaħ il-konfigurazzjoni interattiva tal-plugins"
+command.help.preset: "Applika grupp ta' presets tal-plugins"
+command.help.install: "Niżżel u installa l-plugins attivati"
+command.help.update: "ivverifika u applika t-tigiġid"
+command.help.check: "uri liema plugins ghandhom bżonn tigiġid"
+command.help.status: "uri statu tal-plugins"
+command.help.versions: "uri verżjonijiet tal-players"
+command.help.reload: "rigenera l-konfigurazzjonijiet kollha"
+command.help.remove: "neħħi plugin mmexxi"
+command.help.help: "uri dan l-għajnuna"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Menu tal-Chat
+menu.title: "Konfigurazzjoni tal-Plugins"
+menu.click-hint: "Ikklikkja plugin biex tħallasha/tmahhuha"
+menu.presets-title: "Presets Ħfija"
+menu.click-to-apply: "Ikklikkja biex tapplika"
+menu.group.viaversion: "Familja ViaVersion"
+menu.group.geysermc: "Familja GeyserMC"
+menu.group.integration: "Integrazzjoni"
+menu.group.community: "Komunità"
+menu.enabled-count: "%d plugin(s) attivati"
+menu.click-to-install: "Ikklikkja biex tinstalla"
+menu.to-download: " biex tniżżel"
+menu.click-to-enable: "Ikklikkja biex tħallasha"
+menu.click-to-disable: "Ikklikkja biex tmahhuha"
+menu.dep-auto: "awtomatiku"
+menu.dep-required: "dipendenza"
+menu.unknown-plugin: "Plugin mhux magħruf: %s"
+menu.plugin-enabled: "%s attivat."
+menu.plugin-disabled: "%s mahhud."
+
+# Tifkir
+reminder.title: "Twaqqif mehtieg"
+reminder.button: "[ Ikklikkja biex tikkonfigura l-plugins ]"
+reminder.button-hover: "Iftaħ il-menu interattiva tat-twaqqif"
+
+# Velocity
+command.velocity.status-title: "Statu ta' OmniBridge (Velocity Proxy)"
+command.velocity.platform: "Piattaforma: VELOCITY"
+command.velocity.online-players: "Players Online: %d"
+command.velocity.servers: "Servers Reġistrati: %d"
+command.velocity.help-title: "Kmandi ta' OmniBridge (Velocity)"
+command.velocity.help-status: "uri statu tal-proxy"
+command.velocity.help-help: "uri dan l-għajnuna"

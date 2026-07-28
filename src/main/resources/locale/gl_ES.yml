@@ -1,0 +1,96 @@
+# OmniBridge - Galician (ES) Locale
+no-permission: "Sen permiso."
+
+# Install
+command.install.start: "Instalando engadidos que faltan..."
+command.install.complete: "Instalación completada! Reinicia o servidor para cargar os novos engadidos."
+
+# Update
+command.update.start: "Comprobando actualizacións..."
+command.update.complete: "Comprobación de actualizacións completada!"
+
+# Check
+command.check.title: "Comprobando actualizacións..."
+command.check.available: "ACTUALIZACIÓN DISPONIBLE"
+command.check.uptodate: "actualizado"
+
+# Setup
+command.setup.only-ingame: "O menú de configuración só está dispoñible no xogo."
+command.toggle.only-ingame: "O alternar só está dispoñible no xogo."
+command.toggle.usage: "Uso: /ob toggle <plugin>"
+
+# Status
+command.status.title: "Estado de OmniBridge"
+command.status.platform: "Plataforma: %s"
+command.status.header: "  Engadido                    Versión          Estado"
+command.status.enabled: "ACTIVADO"
+command.status.installed: "INSTALADO"
+command.status.missing: "FALTA"
+
+# Reload
+command.reload.done: "Todas as configuracións recargáronse!"
+
+# Versions
+command.versions.title: "Versións de Xogadores Conectados"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Uso: /ob remove <plugin>"
+command.remove.unknown: "Engadido descoñecido: %s"
+command.remove.done: "%s eliminado"
+command.remove.not-found: "Engadido non atopado ou xa eliminado."
+
+# Preset
+command.preset.title: "Predefinicións Dispoñibles"
+command.preset.unknown: "Predefinición descoñecida: %s"
+command.preset.activated: "Predefinición activada: %s"
+command.preset.enabled-count: "%d engadido(s) activado(s)"
+command.preset.hint: "Executa /ob install para descargalos"
+
+# Help
+command.help.title: "Comandos de OmniBridge"
+command.help.setup: "Abrir configuración interactiva de engadidos"
+command.help.preset: "Aplicar un grupo de predefinicións de engadidos"
+command.help.install: "Descargar e instalar engadidos activados"
+command.help.update: "Comprobar e aplicar actualizacións"
+command.help.check: "Mostrar que engadidos necesitan actualizacións"
+command.help.status: "Mostrar estado dos engadidos"
+command.help.versions: "Mostrar versións dos xogadores"
+command.help.reload: "Recargar todas as configuracións"
+command.help.remove: "Eliminar un engadido xestionado"
+command.help.help: "Mostrar esta axuda"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Configuración de Engadidos"
+menu.click-hint: "Fai clic nun engadido para activar/desactivalo"
+menu.presets-title: "Predefinicións Rápidas"
+menu.click-to-apply: "Fai clic para aplicar"
+menu.group.viaversion: "Familia ViaVersion"
+menu.group.geysermc: "Familia GeyserMC"
+menu.group.integration: "Integración"
+menu.group.community: "Comunidade"
+menu.enabled-count: "%d engadido(s) activado(s)"
+menu.click-to-install: "Fai clic para instalar"
+menu.to-download: " para descargar"
+menu.click-to-enable: "Fai clic para activar"
+menu.click-to-disable: "Fai clic para desactivar"
+menu.dep-auto: "automático"
+menu.dep-required: "dependencia"
+menu.unknown-plugin: "Engadido descoñecido: %s"
+menu.plugin-enabled: "%s activado."
+menu.plugin-disabled: "%s desactivado."
+
+# Reminder
+reminder.title: "Configuración necesaria"
+reminder.button: "[ Fai clic para configurar os engadidos ]"
+reminder.button-hover: "Abrir menú de configuración interactiva"
+
+# Velocity
+command.velocity.status-title: "Estado de OmniBridge (Proxy Velocity)"
+command.velocity.platform: "Plataforma: VELOCITY"
+command.velocity.online-players: "Xogadores en Liña: %d"
+command.velocity.servers: "Servidores Rexistrados: %d"
+command.velocity.help-title: "Comandos de OmniBridge (Velocity)"
+command.velocity.help-status: "Mostrar estado do proxy"
+command.velocity.help-help: "Mostrar esta axuda"

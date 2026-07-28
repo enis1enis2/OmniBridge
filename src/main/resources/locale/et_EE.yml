@@ -1,0 +1,96 @@
+# OmniBridge - Estonian (EE) Locale
+no-permission: "Õigus puudub."
+
+# Install
+command.install.start: "Puuduvaid pistikprogramme paigaldatakse..."
+command.install.complete: "Paigaldus lõpetatud! Uute pistikprogrammide laadimiseks taaskäivita server."
+
+# Update
+command.update.start: "Kontrollitakse värskendusi..."
+command.update.complete: "Värskenduse kontroll lõpetatud!"
+
+# Check
+command.check.title: "Kontrollitakse värskendusi..."
+command.check.available: "VÄRSKENDUS SAADAVAL"
+command.check.uptodate: "ajakohane"
+
+# Setup
+command.setup.only-ingame: "Seadistamise menüü on saadaval ainult mängus."
+command.toggle.only-ingame: "Lülitamine on saadaval ainult mängus."
+command.toggle.usage: "Kasutamine: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge Olek"
+command.status.platform: "Platvorm: %s"
+command.status.header: "  Pistikprogramm              Versioon          Olek"
+command.status.enabled: "LÜLITATUD SISSE"
+command.status.installed: "PAIGALDATUD"
+command.status.missing: "PUUDUB"
+
+# Reload
+command.reload.done: "Kõik seaded on taaslaaditud!"
+
+# Versions
+command.versions.title: "Ühendatud Mängijate Versioonid"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Kasutamine: /ob remove <plugin>"
+command.remove.unknown: "Tundmatu pistikprogramm: %s"
+command.remove.done: "%s eemaldatud"
+command.remove.not-found: "Pistikprogrammi ei leitud või see on juba eemaldatud."
+
+# Preset
+command.preset.title: "Saadaolevad Eelseaded"
+command.preset.unknown: "Tundmatu eelseade: %s"
+command.preset.activated: "Eelseade aktiveeritud: %s"
+command.preset.enabled-count: "%d pistikprogramm(i) aktiveeritud"
+command.preset.hint: "Nende allalaadimiseks käivita /ob install"
+
+# Help
+command.help.title: "OmniBridge Käsud"
+command.help.setup: "Ava interaktiivne pistikprogrammide seadistamine"
+command.help.preset: "Rakenda pistikprogrammide eelseadete rühma"
+command.help.install: "Laadi alla ja paigalda aktiveeritud pistikprogrammid"
+command.help.update: "Kontrolli ja rakenda värskendusi"
+command.help.check: "Näita, millised pistikprogrammid vajavad värskendusi"
+command.help.status: "Näita pistikprogrammide olekut"
+command.help.versions: "Näita mängijate versioone"
+command.help.reload: "Taaslaadi kõik seaded"
+command.help.remove: "Eemalda hallatav pistikprogramm"
+command.help.help: "Näita seda abi"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Pistikprogrammide Seadistamine"
+menu.click-hint: "Klõpsa pistikprogrammil, et see sisse/välja lülitada"
+menu.presets-title: "Kiirete Eelseaded"
+menu.click-to-apply: "Klõpsa rakendamiseks"
+menu.group.viaversion: "ViaVersion Perekond"
+menu.group.geysermc: "GeyserMC Perekond"
+menu.group.integration: "Integratsioon"
+menu.group.community: "Kogukond"
+menu.enabled-count: "%d pistikprogramm(i) aktiveeritud"
+menu.click-to-install: "Klõpsa paigaldamiseks"
+menu.to-download: " allalaadimiseks"
+menu.click-to-enable: "Klõpsa sisselülitamiseks"
+menu.click-to-disable: "Klõpsa väljalülitamiseks"
+menu.dep-auto: "automaatne"
+menu.dep-required: "sõltuvus"
+menu.unknown-plugin: "Tundmatu pistikprogramm: %s"
+menu.plugin-enabled: "%s aktiveeritud."
+menu.plugin-disabled: "%s deaktiveeritud."
+
+# Reminder
+reminder.title: "Seadistamine on vajalik"
+reminder.button: "[ Klõpsa pistikprogrammide seadistamiseks ]"
+reminder.button-hover: "Ava interaktiivne seadistamise menüü"
+
+# Velocity
+command.velocity.status-title: "OmniBridge Olek (Velocity Proxy)"
+command.velocity.platform: "Platvorm: VELOCITY"
+command.velocity.online-players: "Võrgus Mängijaid: %d"
+command.velocity.servers: "Registreeritud Serverid: %d"
+command.velocity.help-title: "OmniBridge Käsud (Velocity)"
+command.velocity.help-status: "Näita proxy olekut"
+command.velocity.help-help: "Näita seda abi"

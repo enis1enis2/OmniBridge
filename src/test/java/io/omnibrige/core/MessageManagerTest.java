@@ -77,7 +77,14 @@ class MessageManagerTest {
             "hi_IN", "bn_BD", "it_IT", "vi_VN", "pl_PL", "nl_NL",
             "th_TH", "id_ID", "tl_PH", "cs_CZ", "el_GR", "sv_SE",
             "hu_HU", "ro_RO", "uk_UA", "he_IL", "ms_MY", "fi_FI",
-            "da_DK", "no_NO"
+            "da_DK", "no_NO",
+            "ta_IN", "te_IN", "ml_IN", "pa_IN", "sw_KE", "am_ET",
+            "ha_NG", "yo_NG", "ur_PK", "si_LK", "my_MM", "km_KH",
+            "lo_LA", "mn_MN", "ka_GE", "hy_AM", "uz_UZ", "kk_KZ",
+            "az_AZ", "eu_ES", "ca_ES", "gl_ES", "af_ZA", "et_EE",
+            "lv_LV", "lt_LT", "sk_SK", "bg_BG", "hr_HR", "sr_RS",
+            "sq_AL", "mk_MK", "fo_FO", "is_IS", "mt_MT", "cy_GB",
+            "ga_IE"
         };
 
         String requiredKey = "no-permission";

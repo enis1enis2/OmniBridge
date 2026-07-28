@@ -1,0 +1,96 @@
+# OmniBridge - Cymraeg (Cymru) Locale
+no-permission: "Dim caniatad."
+
+# Gosod
+command.install.start: "Yn gosod ychwanegion coll..."
+command.install.complete: "Mae'r gosod wedi gorffen! Ailgychwynnwch y gweinydd i lwytho'r ychwanegion newydd."
+
+# Diweddariad
+command.update.start: "Yn gwirio am ddiweddariadau..."
+command.update.complete: "Mae'r gwirio diweddariadau wedi gorffen!"
+
+# Gwirio
+command.check.title: "Yn gwirio am ddiweddariadau..."
+command.check.available: "DIWEDDARIAD AR GÄL"
+command.check.uptodate: "i fyny i ddyddiad"
+
+# Gosod
+command.setup.only-ingame: "Dim ond yn y gellir defnyddio'r ddewislen osod."
+command.toggle.only-ingame: "Dim ond yn y gellir newid."
+command.toggle.usage: "Defnydd: /ob toggle <ychwanegyn>"
+
+# Statws
+command.status.title: "Statws OmniBridge"
+command.status.platform: "Platfform: %s"
+command.status.header: "  Ychwanegyn                  Fersiwn          Statws"
+command.status.enabled: "ALLUOGI"
+command.status.installed: "WEDI'I OSOD"
+command.status.missing: "AR GOLL"
+
+# Ail-lwytho
+command.reload.done: "Mae'r holl ffurfweddiadau wedi'u hail-lwytho!"
+
+# Fersiynau
+command.versions.title: "Fersiynau Chwaraewyr Cysylltiedig"
+command.version.bedrock-tag: " [Bedrock]"
+
+# Tynnu
+command.remove.usage: "Defnydd: /ob remove <ychwanegyn>"
+command.remove.unknown: "Ychwanegyn anhysbys: %s"
+command.remove.done: "Wedi tynnu %s"
+command.remove.not-found: "Ychwanegyn heb ei ganfod neu wedi'i dynnu'n barod."
+
+# Rhagosod
+command.preset.title: "Rhagosodiadau ar Gäl"
+command.preset.unknown: "Rhagosodiad anhysbys: %s"
+command.preset.activated: "Rhagosodiad wedi'i weithredu: %s"
+command.preset.enabled-count: "Wedi gweithredu %d ychwanegion"
+command.preset.hint: "Rhedwch /ob install i'w lawrlwytho"
+
+# Cymorth
+command.help.title: "Gorchmynion OmniBridge"
+command.help.setup: "Agor gosod ychwanegion rhyngweithiol"
+command.preset.hint: "bedrock, full-version, essentials, max-compat"
+command.help.preset: "Cymhwyso grŵp rhagosodiad ychwanegion"
+command.help.install: "Lawrlwytho a gosod ychwanegion alluog"
+command.help.update: "Gwirio a chymhwyso diweddariadau"
+command.help.check: "Dangos pa ychwanegion sydd angen diweddariadau"
+command.help.status: "Dangos statws ychwanegion"
+command.help.versions: "Dangos fersiynau chwaraewyr"
+command.help.reload: "Ail-lwytho'r holl ffurfweddiadau"
+command.help.remove: "Tynnu ychwanegyn a reolir"
+command.help.help: "Dangos y cymorth hwn"
+
+# Dewislen Sgwrs
+menu.title: "Gosod Ychwanegion"
+menu.click-hint: "Cliciwch ychwanegyn i'w alluogi/analluogi"
+menu.presets-title: "Rhagosodiadau Cyflym"
+menu.click-to-apply: "Cliciwch i weithredu"
+menu.group.viaversion: "Teulu ViaVersion"
+menu.group.geysermc: "Teulu GeyserMC"
+menu.group.integration: "Integreiddio"
+menu.group.community: "Cymuned"
+menu.enabled-count: "%d ychwanegyn wedi'u galluogi"
+menu.click-to-install: "Cliciwch i osod"
+menu.to-download: " i'w lawrlwytho"
+menu.click-to-enable: "Cliciwch i alluogi"
+menu.click-to-disable: "Cliciwch i analluogi"
+menu.dep-auto: "awtomatig"
+menu.dep-required: "dibyniaeth"
+menu.unknown-plugin: "Ychwanegyn anhysbys: %s"
+menu.plugin-enabled: "%s wedi'i alluogi."
+menu.plugin-disabled: "Wedi analluogi %s."
+
+# Hatgoffa
+reminder.title: "Mae angen gosod"
+reminder.button: "[ Cliciwch i osod ychwanegion ]"
+reminder.button-hover: "Agor y ddewislen osod rhyngweithiol"
+
+# Velocity
+command.velocity.status-title: "Statws OmniBridge (Dirprwy Velocity)"
+command.velocity.platform: "Platfform: VELOCITY"
+command.velocity.online-players: "Chwaraewyr Ar-lein: %d"
+command.velocity.servers: "Gweinyddion Cofrestredig: %d"
+command.velocity.help-title: "Gorchmynion OmniBridge (Velocity)"
+command.velocity.help-status: "Dangos statws y dirprwy"
+command.velocity.help-help: "Dangos y cymorth hwn"

@@ -1,0 +1,96 @@
+# OmniBridge - Azerbaijani (AZ) Locale
+no-permission: "İcazə yoxdur."
+
+# Install
+command.install.start: "Çatışmayan pluginlər quraşdırılır..."
+command.install.complete: "Quraşdırma tamamlandı! Yeni pluginləri yükləmək üçün serveri yenidən başladın."
+
+# Update
+command.update.start: "Yeniləmələr yoxlanılır..."
+command.update.complete: "Yeniləmə yoxlaması tamamlandı!"
+
+# Check
+command.check.title: "Yeniləmələr yoxlanılır..."
+command.check.available: "YENİLƏMƏ MÖVCDDUR"
+command.check.uptodate: "yeniliklərlə doludur"
+
+# Setup
+command.setup.only-ingame: "Quraşdırma menyusu yalnız oyunda mövcuddur."
+command.toggle.only-ingame: "Keçid yalnız oyunda mövcuddur."
+command.toggle.usage: "İstifadə: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge Statusu"
+command.status.platform: "Platforma: %s"
+command.status.header: "  Plugin                      Versiya          Status"
+command.status.enabled: "AKTİVLƏŞDİRİLİB"
+command.status.installed: "QURAŞDIRILIB"
+command.status.missing: "ÇATIŞMIR"
+
+# Reload
+command.reload.done: "Bütün konfiqurasiyalar yenidən yükləndi!"
+
+# Versions
+command.versions.title: "Qoşulmuş Oyunçu Versiyaları"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "İstifadə: /ob remove <plugin>"
+command.remove.unknown: "Naməlum plugin: %s"
+command.remove.done: "%s silindi"
+command.remove.not-found: "Plugin tapılmadı və ya artıq silinib."
+
+# Preset
+command.preset.title: "Mövcud Presetlər"
+command.preset.unknown: "Naməlum preset: %s"
+command.preset.activated: "Preset aktivləşdirildi: %s"
+command.preset.enabled-count: "%d plugin aktivləşdirildi"
+command.preset.hint: "Onları yükləmək üçün /ob install işlədin"
+
+# Help
+command.help.title: "OmniBridge Əmrləri"
+command.help.setup: "İnteraktiv plugin quraşdırmasını açın"
+command.help.preset: "Plugin preset qrupunu tətbiq edin"
+command.help.install: "Aktivləşdirilmiş pluginləri yükləyin və quraşdırın"
+command.help.update: "Yeniləmələri yoxlayın və tətbiq edin"
+command.help.check: "Hansı pluginlərin yeniləməyə ehtiyac olduğunu göstərin"
+command.help.status: "Plugin statusunu göstərin"
+command.help.versions: "Oyunçu versiyalarını göstərin"
+command.help.reload: "Bütün konfiqurasiyaları yenidən yükləyin"
+command.help.remove: "İdarə olunan plugini silin"
+command.help.help: "Bu yardımı göstərin"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Plugin Quraşdırması"
+menu.click-hint: "Plugini aktivləşdirmək/deaktivləşdirmək üçün basın"
+menu.presets-title: "Sürətli Presetlər"
+menu.click-to-apply: "Tətbiq etmək üçün basın"
+menu.group.viaversion: "ViaVersion Ailəsi"
+menu.group.geysermc: "GeyserMC Ailəsi"
+menu.group.integration: "İnteqrasiya"
+menu.group.community: "İcma"
+menu.enabled-count: "%d plugin aktivləşdirilib"
+menu.click-to-install: "Quraşdırmaq üçün basın"
+menu.to-download: " yükləmək"
+menu.click-to-enable: "Aktivləşdirmək üçün basın"
+menu.click-to-disable: "Deaktivləşdirmək üçün basın"
+menu.dep-auto: "avtomatik"
+menu.dep-required: "asılılıq"
+menu.unknown-plugin: "Naməlum plugin: %s"
+menu.plugin-enabled: "%s aktivləşdirildi."
+menu.plugin-disabled: "%s deaktivləşdirildi."
+
+# Reminder
+reminder.title: "Quraşdırma tələb olunur"
+reminder.button: "[ Pluginləri quraşdırmaq üçün basın ]"
+reminder.button-hover: "İnteraktiv quraşdırma menyusunu açın"
+
+# Velocity
+command.velocity.status-title: "OmniBridge Statusu (Velocity Proxy)"
+command.velocity.platform: "Platforma: VELOCITY"
+command.velocity.online-players: "Onlayn Oyunçular: %d"
+command.velocity.servers: "Qeydiyyatdan Keçmiş Serverlər: %d"
+command.velocity.help-title: "OmniBridge Əmrləri (Velocity)"
+command.velocity.help-status: "Proxy statusunu göstərin"
+command.velocity.help-help: "Bu yardımı göstərin"

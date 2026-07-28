@@ -1,0 +1,96 @@
+# OmniBridge - Kiswahili (Kenya) Language
+no-permission: "Hakuna ruksa."
+
+# Install
+command.install.start: "Kunafanya plugin zilizopotea..."
+command.install.complete: "Usakinishaji umekamilika! Anzisha tena seva ili kupakia plugin mpya."
+
+# Update
+command.update.start: "Inakagua masasisho..."
+command.update.complete: "Kaguzo ya masasisho imekamilika!"
+
+# Check
+command.check.title: "Inakagua masasisho..."
+command.check.available: "SASISHO LINAPATIKANA"
+command.check.uptodate: "imesasishwa"
+
+# Setup
+command.setup.only-ingame: "Menyu ya usanidi inapatikana tu katika mchezo."
+command.toggle.only-ingame: "Kubadilisha kunapatikana tu katika mchezo."
+command.toggle.usage: "Matumizi: /ob toggle <plugin>"
+
+# Status
+command.status.title: "Hali ya OmniBridge"
+command.status.platform: "Jukwaa: %s"
+command.status.header: "  Plugin                       Toleo          Hali"
+command.status.enabled: "IMEWASHWA"
+command.status.installed: "IMESAKINISHWA"
+command.status.missing: "IMEPOTEA"
+
+# Reload
+command.reload.done: "Miundo yote imeshapakiwa tena!"
+
+# Versions
+command.versions.title: "Visheo vya Wachezaji Vilivyounganishwa"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Matumizi: /ob remove <plugin>"
+command.remove.unknown: "Plugin isiyojulikana: %s"
+command.remove.done: "Imeondolewa %s"
+command.remove.not-found: "Plugin haijapatikana au tayari imeondolewa."
+
+# Preset
+command.preset.title: "Mpangilio Unapatikana"
+command.preset.unknown: "Mpangilio usiojulikana: %s"
+command.preset.activated: "Mpangilio umewashwa: %s"
+command.preset.enabled-count: "Plugin %d zimewashwa"
+command.preset.hint: "Endesha /ob install ili kuzipakia"
+
+# Help
+command.help.title: "Amri za OmniBridge"
+command.help.setup: "Fungua usanidi wa plugin"
+command.help.preset: "Tekeleza kikundi cha mpangilio wa plugin"
+command.help.install: "Pakia na usakinishe plugin zilizowashwa"
+command.help.update: "Kagua nautekeleze masasisho"
+command.help.check: "Onyesha plugin zinazohitaji masasisho"
+command.help.status: "Onyesha hali ya plugin"
+command.help.versions: "Onyesha visheo vya wachezaji"
+command.help.reload: "Pakia tena miundo yote"
+command.help.remove: "Ondoa plugin iliyosimamiwa"
+command.help.help: "Onyesha msaada huu"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Usanidi wa Plugin"
+menu.click-hint: "Bofya plugin ili kuwasha/kuzima"
+menu.presets-title: "Mpangilio wa Haraka"
+menu.click-to-apply: "Bofya ili kutumia"
+menu.group.viaversion: "Familia ya ViaVersion"
+menu.group.geysermc: "Familia ya GeyserMC"
+menu.group.integration: "Muocano"
+menu.group.community: "Jumuiya"
+menu.enabled-count: "Plugin %d zimewashwa"
+menu.click-to-install: "Bofya ili kusakinisha"
+menu.to-download: " kupakia"
+menu.click-to-enable: "Bofya ili kuwasha"
+menu.click-to-disable: "Bofya ili kuzima"
+menu.dep-auto: "otomatiki"
+menu.dep-required: "tegemezi"
+menu.unknown-plugin: "Plugin isiyojulikana: %s"
+menu.plugin-enabled: "%s imewashwa."
+menu.plugin-disabled: "%s imezimwa."
+
+# Reminder
+reminder.title: "Sanidi inahitajika"
+reminder.button: "[ Bofya ili kusanidi plugin ]"
+reminder.button-hover: "Fungua menyu ya usanidi"
+
+# Velocity
+command.velocity.status-title: "Hali ya OmniBridge (Velocity Proxy)"
+command.velocity.platform: "Jukwaa: VELOCITY"
+command.velocity.online-players: "Wachezaji Mtandaoni: %d"
+command.velocity.servers: "Seva Zilizosajiliwa: %d"
+command.velocity.help-title: "Amri za OmniBridge (Velocity)"
+command.velocity.help-status: "Onyesha hali ya proxy"
+command.velocity.help-help: "Onyesha msaada huu"

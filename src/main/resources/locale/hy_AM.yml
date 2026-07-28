@@ -1,0 +1,96 @@
+﻿# OmniBridge Locale - Armenian (Armenia)
+no-permission: "Թույլտրում չկա։"
+
+# Install
+command.install.start: "Տեղադրվում են բացակայող հավելվածները..."
+command.install.complete: "Տեղադրումը ավարտված է! Վերագործարկեք սերվերը նոր հավելվածները բեռնելու համար։"
+
+# Update
+command.update.start: "Ստուգվում են թարմացումները..."
+command.update.complete: "Թարմացման ստուգումը ավարտված է!"
+
+# Check
+command.check.title: "Ստուգվում են թարմացումները..."
+command.check.available: "ԹԱՐՄԱՑՈՒՄ ՀԱՍԱՆԵԼԻ Է"
+command.check.uptodate: "թարմ է"
+
+# Setup
+command.setup.only-ingame: "Կազմաձևման ցանկը հասանելի է միայն խաղում։"
+command.toggle.only-ingame: "Միացնել/անջատել հասանելի է միայն խաղում։"
+command.toggle.usage: "Օգտագործում՝ /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge վիճակ"
+command.status.platform: "Հարթակ՝ %s"
+command.status.header: "  Հավելված                     Տարբերակ          Վիճակ"
+command.status.enabled: "ՄԻԱՑՎԱծ"
+command.status.installed: "ՏԵՂԱԴՐՎԱծ"
+command.status.missing: "ԲԱՑԱԿԱՅՈղ"
+
+# Reload
+command.reload.done: "Բոլոր կազմաձևերը վերաբեռնված են!"
+
+# Versions
+command.versions.title: "Կապված խաղացողների տարբերակներ"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Օգտագործում՝ /ob remove <plugin>"
+command.remove.unknown: "Անհայտ հավելված՝ %s"
+command.remove.done: "Հեռացված է %s"
+command.remove.not-found: "Հավելվածը չի գտնվել կամ արդեն հեռացված է։"
+
+# Preset
+command.preset.title: "Հասանելի նախատեսումներ"
+command.preset.unknown: "Անհայտ նախատեսում՝ %s"
+command.preset.activated: "Գործարկված նախատեսում՝ %s"
+command.preset.enabled-count: "Միացված է %d հավելված(ներ)"
+command.preset.hint: "Գործարկեք /ob install ներբեռնելու համար"
+
+# Help
+command.help.title: "OmniBridge հրամաններ"
+command.help.setup: "Բացել ինտերակտիվ հավելվածների կազմաձևումը"
+command.help.preset: "Կիրառել հավելվածների նախատեսում"
+command.help.install: "Ներբեռնել և տեղադրել միացված հավելվածները"
+command.help.update: "Ստուգել և կիրառել թարմացումները"
+command.help.check: "Ցույց տալ թե որ հավելվածներին են պետք թարմացումներ"
+command.help.status: "Ցույց տալ հավելվածների վիճակը"
+command.help.versions: "Ցույց տալ խաղացողների տարբերակները"
+command.help.reload: "Վերաբեռնել բոլոր կազմաձևերը"
+command.help.remove: "Հեռացնել կառավարվող հավելված"
+command.help.help: "Ցույց տալ այս օգնությունը"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Հավելվածների կազմաձևում"
+menu.click-hint: "Սեղմեք հավելվածի վրա միացնելու/անջատելու համար"
+menu.presets-title: "Արագ նախատեսումներ"
+menu.click-to-apply: "Սեղմեք կիրառելու համար"
+menu.group.viaversion: "ViaVersion ընտանիք"
+menu.group.geysermc: "GeyserMC ընտանիք"
+menu.group.integration: "Ինտեգրում"
+menu.group.community: "Համայնք"
+menu.enabled-count: "%d հավելված(ներ) միացված"
+menu.click-to-install: "Սեղմեք տեղադրելու համար"
+menu.to-download: " ներբեռնելու համար"
+menu.click-to-enable: "Սեղմեք միացնելու համար"
+menu.click-to-disable: "Սեղմեք անջատելու համար"
+menu.dep-auto: "ավտոմատ"
+menu.dep-required: "կախվածություն"
+menu.unknown-plugin: "Անհայտ հավելված՝ %s"
+menu.plugin-enabled: "%s միացված է։"
+menu.plugin-disabled: "%s անջատված է։"
+
+# Reminder
+reminder.title: "Պահանջվում է կազմաձևում"
+reminder.button: "[ Սեղմեք հավելվածները կազմաձևելու համար ]"
+reminder.button-hover: "Բացել ինտերակտիվ կազմաձևման ցանկը"
+
+# Velocity
+command.velocity.status-title: "OmniBridge վիճակ (Velocity պրокսի)"
+command.velocity.platform: "Հարթակ՝ VELOCITY"
+command.velocity.online-players: "Առցույք խաղացողներ՝ %d"
+command.velocity.servers: "Գրանցված սերվերներ՝ %d"
+command.velocity.help-title: "OmniBridge հրամաններ (Velocity)"
+command.velocity.help-status: "Ցույց տալ պրոկսիի վիճակը"
+command.velocity.help-help: "Ցույց տալ այս օգնությունը"

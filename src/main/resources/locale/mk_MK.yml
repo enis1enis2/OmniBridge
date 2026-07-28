@@ -1,0 +1,96 @@
+# OmniBridge - Македонски (Северна Македонија) Locale
+no-permission: "Немате дозвола."
+
+# Инсталирање
+command.install.start: "Инсталирање на недостасувачки додатоци..."
+command.install.complete: "Инсталацијата е завршена! Рестартирајте го серверот за да ги вчитате новите додатоци."
+
+# Ажурирање
+command.update.start: "Проверка за ажурирања..."
+command.update.complete: "Проверката за ажурирања е завршена!"
+
+# Проверка
+command.check.title: "Проверка за ажурирања..."
+command.check.available: "АЖУРИРАЊЕ ДОСТАПНО"
+command.check.uptodate: "ажурирано"
+
+# Поставување
+command.setup.only-ingame: "Менито за поставување е достапно само во играта."
+command.toggle.only-ingame: "Прекинувачот е достапен само во играта."
+command.toggle.usage: "Употреба: /ob toggle <додаток>"
+
+# Статус
+command.status.title: "Статус на OmniBridge"
+command.status.platform: "Платформа: %s"
+command.status.header: "  Додаток                    Верзија          Статус"
+command.status.enabled: "ОВОЗМОЖЕНО"
+command.status.installed: "ИНСТАЛИРАНО"
+command.status.missing: "НЕДОСТАСУВА"
+
+# Рeload
+command.reload.done: "Сите конфигурации се повторно вчитани!"
+
+# Верзии
+command.versions.title: "Верзии на поврзаните играчи"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Отстранување
+command.remove.usage: "Употреба: /ob remove <додаток>"
+command.remove.unknown: "Непознат додаток: %s"
+command.remove.done: "Отстрането %s"
+command.remove.not-found: "Додатокот не е пронајден или е веќе отстранет."
+
+# Претходни поставки
+command.preset.title: "Достапни претходни поставки"
+command.preset.unknown: "Непозната претходна поставка: %s"
+command.preset.activated: "Активирана претходна поставка: %s"
+command.preset.enabled-count: "Овозможени %d додатоци"
+command.preset.hint: "Стартувајте /ob install за да ги преземете"
+
+# Помош
+command.help.title: "Команди на OmniBridge"
+command.help.setup: "Отвори интерактивно поставување на додатоци"
+command.help.preset: "Примени група претходни поставки за додатоци"
+command.help.install: "Преземи и инсталирај овозможени додатоци"
+command.help.update: "Провери и примени ажурирања"
+command.help.check: "Прикажи кои додатоци имаат потреба од ажурирања"
+command.help.status: "Прикажи статус на додатоците"
+command.help.versions: "Прикажи верзии на играчите"
+command.help.reload: "Повторно вчитај ги сите конфигурации"
+command.help.remove: "Отстрани управуван додаток"
+command.help.help: "Прикажи оваа помош"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Чет-мени
+menu.title: "Поставување на додатоци"
+menu.click-hint: "Кликнете на додаток за да го овозможите/оневозможите"
+menu.presets-title: "Брзи претходни поставки"
+menu.click-to-apply: "Кликнете за да примените"
+menu.group.viaversion: "Фамилија ViaVersion"
+menu.group.geysermc: "Фамилија GeyserMC"
+menu.group.integration: "Интеграција"
+menu.group.community: "Заедница"
+menu.enabled-count: "%d додатоци овозможени"
+menu.click-to-install: "Кликнете за инсталирање"
+menu.to-download: " за преземање"
+menu.click-to-enable: "Кликнете за овозможување"
+menu.click-to-disable: "Кликнете за оневозможување"
+menu.dep-auto: "автоматски"
+menu.dep-required: "зависимост"
+menu.unknown-plugin: "Непознат додаток: %s"
+menu.plugin-enabled: "%s овозможен."
+menu.plugin-disabled: "%s оневозможен."
+
+# Потсетник
+reminder.title: "Потребно е поставување"
+reminder.button: "[ Кликнете за поставување на додатоци ]"
+reminder.button-hover: "Отвори интерактивно мени за поставување"
+
+# Velocity
+command.velocity.status-title: "Статус на OmniBridge (Velocity Proxy)"
+command.velocity.platform: "Платформа: VELOCITY"
+command.velocity.online-players: "Онлајн играчи: %d"
+command.velocity.servers: "Регистрирани сервери: %d"
+command.velocity.help-title: "Команди на OmniBridge (Velocity)"
+command.velocity.help-status: "Прикажи статус на проксито"
+command.velocity.help-help: "Прикажи оваа помош"

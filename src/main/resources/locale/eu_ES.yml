@@ -1,0 +1,96 @@
+# OmniBridge - Basque (ES) Locale
+no-permission: "Baimenik ez."
+
+# Install
+command.install.start: "Falta diren pluginak instalatzen..."
+command.install.complete: "Instalazioa amaituta! Berrabiarri zerbitzaria plugin berriak kargatzeko."
+
+# Update
+command.update.start: "Eguneraketak egiaztatzen..."
+command.update.complete: "Eguneraketa egiaztapena amaituta!"
+
+# Check
+command.check.title: "Eguneraketak egiaztatzen..."
+command.check.available: "EGUNERAKETA ERABILGARRI"
+command.check.uptodate: "eguneratuta dago"
+
+# Setup
+command.setup.only-ingame: "Konfigurazio menua jokoan soilik dago erabilgarri."
+command.toggle.only-ingame: "Aktibatze/desaktibatzea jokoan soilik dago erabilgarri."
+command.toggle.usage: "Erabilera: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge Egoera"
+command.status.platform: "Plataforma: %s"
+command.status.header: "  Plugina                     Bertsioa          Egoera"
+command.status.enabled: "GAITUTA"
+command.status.installed: "INSTALATUTA"
+command.status.missing: "FALTA DA"
+
+# Reload
+command.reload.done: "Konfigurazio guztiak berrituta!"
+
+# Versions
+command.versions.title: "Konektatutako Jokalari Bertsioak"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Erabilera: /ob remove <plugin>"
+command.remove.unknown: "Plugin ezezaguna: %s"
+command.remove.done: "%s ezabatuta"
+command.remove.not-found: "Plugina ez da aurkitu edo dagoeneko ezabatuta dago."
+
+# Preset
+command.preset.title: "Erabilgarri dauden Preset-ak"
+command.preset.unknown: "Preset ezezaguna: %s"
+command.preset.activated: "Preset aktibatuta: %s"
+command.preset.enabled-count: "%d plugin gaituta"
+command.preset.hint: "Deskargatzeko exekutatu /ob install"
+
+# Help
+command.help.title: "OmniBridge Aginduak"
+command.help.setup: "Plugin konfigurazio interaktiboa ireki"
+command.help.preset: "Plugin preset taldea aplikatu"
+command.help.install: "Deskargatu & instalatu gaitutako pluginak"
+command.help.update: "Eguneraketak egiaztatu & aplikatu"
+command.help.check: "Pluginak eguneratzea behar dutenak erakutsi"
+command.help.status: "Plugin egoera erakutsi"
+command.help.versions: "Jokalari bertsioak erakutsi"
+command.help.reload: "Konfigurazio guztiak berritu"
+command.help.remove: "Kudeatutako plugin bat kendu"
+command.help.help: "Laguntza hau erakutsi"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Plugin Konfigurazioa"
+menu.click-hint: "Klik egin plugin bat gaitzeko/desaktibatzeko"
+menu.presets-title: "Preseta Azkarrak"
+menu.click-to-apply: "Klik aplikatzeko"
+menu.group.viaversion: "ViaVersion Familia"
+menu.group.geysermc: "GeyserMC Familia"
+menu.group.integration: "Integrazioa"
+menu.group.community: "Komunitatea"
+menu.enabled-count: "%d plugin gaituta"
+menu.click-to-install: "Klik instalatzeko"
+menu.to-download: " deskargatzeko"
+menu.click-to-enable: "Klik gaitzeko"
+menu.click-to-disable: "Klik desaktibatzeko"
+menu.dep-auto: "automatikoa"
+menu.dep-required: "menpekotasuna"
+menu.unknown-plugin: "Plugin ezezaguna: %s"
+menu.plugin-enabled: "%s gaituta."
+menu.plugin-disabled: "%s desaktibatuta."
+
+# Reminder
+reminder.title: "Konfigurazioa behar da"
+reminder.button: "[ Klik pluginak konfiguratzeko ]"
+reminder.button-hover: "Plugin konfigurazio interaktiboa ireki"
+
+# Velocity
+command.velocity.status-title: "OmniBridge Egoera (Velocity Proxy)"
+command.velocity.platform: "Plataforma: VELOCITY"
+command.velocity.online-players: "Jokalari Online: %d"
+command.velocity.servers: "Erregistratutako Zerbitzariak: %d"
+command.velocity.help-title: "OmniBridge Aginduak (Velocity)"
+command.velocity.help-status: "Proxy egoera erakutsi"
+command.velocity.help-help: "Laguntza hau erakutsi"

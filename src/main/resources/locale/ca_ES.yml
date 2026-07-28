@@ -1,0 +1,96 @@
+# OmniBridge - Catalan (ES) Locale
+no-permission: "Sense permís."
+
+# Install
+command.install.start: "Instal·lant connectors que falten..."
+command.install.complete: "Instal·lació completada! Reinicia el servidor per carregar els nous connectors."
+
+# Update
+command.update.start: "Comprovant actualitzacions..."
+command.update.complete: "Comprovació d'actualitzacions completada!"
+
+# Check
+command.check.title: "Comprovant actualitzacions..."
+command.check.available: "ACTUALITZACIÓ DISPONIBLE"
+command.check.uptodate: "actualitzat"
+
+# Setup
+command.setup.only-ingame: "El menú de configuració només està disponible al joc."
+command.toggle.only-ingame: "L'alternar només està disponible al joc."
+command.toggle.usage: "Ús: /ob toggle <plugin>"
+
+# Status
+command.status.title: "Estat d'OmniBridge"
+command.status.platform: "Plataforma: %s"
+command.status.header: "  Connector                   Versió           Estat"
+command.status.enabled: "ACTIVAT"
+command.status.installed: "INSTAL·LAT"
+command.status.missing: "FALTA"
+
+# Reload
+command.reload.done: "Totes les configuracions s'han recarregat!"
+
+# Versions
+command.versions.title: "Versions de Jugadors Connectats"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Ús: /ob remove <plugin>"
+command.remove.unknown: "Connector desconegut: %s"
+command.remove.done: "%s eliminat"
+command.remove.not-found: "Connector no trobat o ja eliminat."
+
+# Preset
+command.preset.title: "Predefinicions Disponibles"
+command.preset.unknown: "Predefinició desconeguda: %s"
+command.preset.activated: "Predefinició activada: %s"
+command.preset.enabled-count: "%d connector(s) activat(s)"
+command.preset.hint: "Executa /ob install per descarregar-los"
+
+# Help
+command.help.title: "Comandes d'OmniBridge"
+command.help.setup: "Obre la configuració interactiva de connectors"
+command.help.preset: "Aplica un grup de predefinicions de connectors"
+command.help.install: "Descarrega i instal·la els connectors activats"
+command.help.update: "Comprova i aplica actualitzacions"
+command.help.check: "Mostra quins connectors necessiten actualitzacions"
+command.help.status: "Mostra l'estat dels connectors"
+command.help.versions: "Mostra les versions dels jugadors"
+command.help.reload: "Recarrega totes les configuracions"
+command.help.remove: "Elimina un connector gestionat"
+command.help.help: "Mostra aquesta ajuda"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Configuració de Connectors"
+menu.click-hint: "Fes clic a un connector per activar/desactivar-lo"
+menu.presets-title: "Predefinicions Ràpides"
+menu.click-to-apply: "Fes clic per aplicar"
+menu.group.viaversion: "Família ViaVersion"
+menu.group.geysermc: "Família GeyserMC"
+menu.group.integration: "Integració"
+menu.group.community: "Comunitat"
+menu.enabled-count: "%d connector(s) activat(s)"
+menu.click-to-install: "Fes clic per instal·lar"
+menu.to-download: " per descarregar"
+menu.click-to-enable: "Fes clic per activar"
+menu.click-to-disable: "Fes clic per desactivar"
+menu.dep-auto: "automàtic"
+menu.dep-required: "dependència"
+menu.unknown-plugin: "Connector desconegut: %s"
+menu.plugin-enabled: "%s activat."
+menu.plugin-disabled: "%s desactivat."
+
+# Reminder
+reminder.title: "Configuració necessària"
+reminder.button: "[ Fes clic per configurar els connectors ]"
+reminder.button-hover: "Obre el menú de configuració interactiva"
+
+# Velocity
+command.velocity.status-title: "Estat d'OmniBridge (Proxy Velocity)"
+command.velocity.platform: "Plataforma: VELOCITY"
+command.velocity.online-players: "Jugadors en Línia: %d"
+command.velocity.servers: "Servidors Registrats: %d"
+command.velocity.help-title: "Comandes d'OmniBridge (Velocity)"
+command.velocity.help-status: "Mostra l'estat del proxy"
+command.velocity.help-help: "Mostra aquesta ajuda"

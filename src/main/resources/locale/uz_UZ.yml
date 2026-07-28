@@ -1,0 +1,96 @@
+﻿# OmniBridge Locale - Uzbek (Uzbekistan)
+no-permission: "Ruxsat yo'q."
+
+# Install
+command.install.start: "O'rnatilmagan plaginlar o'rnatilmoqda..."
+command.install.complete: "O'rnatish tugallandi! Yangi plaginlarni yuklash uchun serverni qayta ishga tushiring."
+
+# Update
+command.update.start: "Yangilanishlar tekshirilmoqda..."
+command.update.complete: "Yangilanish tekshiruvi tugallandi!"
+
+# Check
+command.check.title: "Yangilanishlar tekshirilmoqda..."
+command.check.available: "YANGILANISH MAVJUD"
+command.check.uptodate: "yangilangan"
+
+# Setup
+command.setup.only-ingame: "O'rnatish menyusi faqat o'yin ichida mavjud."
+command.toggle.only-ingame: "O'tkazish faqat o'yin ichida mavjud."
+command.toggle.usage: "Ishlatish: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge holati"
+command.status.platform: "Platforma: %s"
+command.status.header: "  Plagin                      Versiya          Holat"
+command.status.enabled: "YOQILGAN"
+command.status.installed: "O'RnatilGAN"
+command.status.missing: "YO'Q"
+
+# Reload
+command.reload.done: "Barcha konfiguratsiyalar qayta yuklandi!"
+
+# Versions
+command.versions.title: "Ulangan o'yinchilar versiyalari"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Ishlatish: /ob remove <plugin>"
+command.remove.unknown: "Noma'lum plagin: %s"
+command.remove.done: "O'chirildi %s"
+command.remove.not-found: "Plagin topilmadi yoki allaqachon o'chirilgan."
+
+# Preset
+command.preset.title: "Mavjud oldindan o'rnatilganlar"
+command.preset.unknown: "Noma'lum oldindan o'rnatilgan: %s"
+command.preset.activated: "Faollashtirilgan oldindan o'rnatilgan: %s"
+command.preset.enabled-count: "%d plagin(lar) yoqilgan"
+command.preset.hint: "Yuklab olish uchun /ob install ishga tushiring"
+
+# Help
+command.help.title: "OmniBridge buyruqlari"
+command.help.setup: "Interaktiv plagin o'rnatishini ochish"
+command.help.preset: "Plagin oldindan o'rnatilgan guruhini qo'llash"
+command.help.install: "Yoqilgan plaginlarni yuklab olish va o'rnatish"
+command.help.update: "Yangilanishlarni tekshirish va qo'llash"
+command.help.check: "Qaysi plaginlarga yangilanish kerakligini ko'rsatish"
+command.help.status: "Plagin holatini ko'rsatish"
+command.help.versions: "O'yinchilar versiyalarini ko'rsatish"
+command.help.reload: "Barcha konfiguratsiyalarni qayta yuklash"
+command.help.remove: "Boshqariladigan plaginni o'chirish"
+command.help.help: "Shu yordamni ko'rsatish"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Plagin o'rnatish"
+menu.click-hint: "Plaginni yoqish/o'chirish uchun bosing"
+menu.presets-title: "Tezkor oldindan o'rnatilganlar"
+menu.click-to-apply: "Qo'llash uchun bosing"
+menu.group.viaversion: "ViaVersion oilasi"
+menu.group.geysermc: "GeyserMC oilasi"
+menu.group.integration: "Integratsiya"
+menu.group.community: "Jamiyat"
+menu.enabled-count: "%d plagin(lar) yoqilgan"
+menu.click-to-install: "O'rnatish uchun bosing"
+menu.to-download: " yuklab olish uchun"
+menu.click-to-enable: "Yoqish uchun bosing"
+menu.click-to-disable: "O'chirish uchun bosing"
+menu.dep-auto: "avtomatik"
+menu.dep-required: "bog'liqlik"
+menu.unknown-plugin: "Noma'lum plagin: %s"
+menu.plugin-enabled: "%s yoqildi."
+menu.plugin-disabled: "%s o'chirildi."
+
+# Reminder
+reminder.title: "O'rnatish talab qilinadi"
+reminder.button: "[ Plaginlarni o'rnatish uchun bosing ]"
+reminder.button-hover: "Interaktiv o'rnatish menyusini ochish"
+
+# Velocity
+command.velocity.status-title: "OmniBridge holati (Velocity proksi)"
+command.velocity.platform: "Platforma: VELOCITY"
+command.velocity.online-players: "Onlayn o'yinchilar: %d"
+command.velocity.servers: "Ro'yxatdan o'tgan serverlar: %d"
+command.velocity.help-title: "OmniBridge buyruqlari (Velocity)"
+command.velocity.help-status: "Proksi holatini ko'rsatish"
+command.velocity.help-help: "Shu yordamni ko'rsatish"

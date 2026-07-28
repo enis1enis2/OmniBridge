@@ -1,0 +1,96 @@
+# OmniBridge - தமிழ் (இந்தியா) மொழி
+no-permission: "அனுமதி இல்லை."
+
+# Install
+command.install.start: "விடுபட்ட பிளக்கின்களை நிறுவுகிறது..."
+command.install.complete: "நிறுவல் முடிந்தது! புதிய பிளக்கின்களை ஏற்ற சேவையகத்தை மறுதொடக்கம் செய்யுங்கள்."
+
+# Update
+command.update.start: "புதுப்பிப்புகளைச் சரிபார்க்கிறது..."
+command.update.complete: "புதுப்பிப்பு சரிபார்ப்பு முடிந்தது!"
+
+# Check
+command.check.title: "புதுப்பிப்புகளைச் சரிபார்க்கிறது..."
+command.check.available: "புதுப்பிப்பு கிடைக்கிறது"
+command.check.uptodate: "புதுப்பிக்கப்பட்டது"
+
+# Setup
+command.setup.only-ingame: "அமைப்பு மெனு விளையாட்டில் மட்டுமே கிடைக்கும்."
+command.toggle.only-ingame: "மாற்று விளையாட்டில் மட்டுமே கிடைக்கும்."
+command.toggle.usage: "பயன்பாடு: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge நிலை"
+command.status.platform: "தளம்: %s"
+command.status.header: "  பிளக்கின்                        பதிப்பு          நிலை"
+command.status.enabled: "இயக்கப்பட்டது"
+command.status.installed: "நிறுவப்பட்டது"
+command.status.missing: "விடுபட்டது"
+
+# Reload
+command.reload.done: "அனைத்து கட்டமைப்புகளும் மீண்டும் ஏற்றப்பட்டன!"
+
+# Versions
+command.versions.title: "இணைந்த வீரர் பதிப்புகள்"
+command.versions.bedrock-tag: " [பெட்ராக்]"
+
+# Remove
+command.remove.usage: "பயன்பாடு: /ob remove <plugin>"
+command.remove.unknown: "அறியப்படாத பிளக்கின்: %s"
+command.remove.done: "நீக்கப்பட்டது %s"
+command.remove.not-found: "பிளக்கின் கிடைக்கவில்லை அல்லது ஏற்கனவே நீக்கப்பட்டது."
+
+# Preset
+command.preset.title: "கிடைக்கும் முன்னமைவுகள்"
+command.preset.unknown: "அறியப்படாத முன்னமைவு: %s"
+command.preset.activated: "முன்னமைவு செயல்படுத்தப்பட்டது: %s"
+command.preset.enabled-count: "%d பிளக்கின்(கள்) இயக்கப்பட்டன"
+command.preset.hint: "அவற்றைப் பதிவிறக்க /ob install இயக்கவும்"
+
+# Help
+command.help.title: "OmniBridge கட்டளைகள்"
+command.help.setup: "ஊடாடும் பிளக்கின் அமைப்பைத் திறக்கவும்"
+command.help.preset: "ஒரு பிளக்கின் முன்னமைவு குழுவைப் பயன்படுத்தவும்"
+command.help.install: "இயக்கப்பட்ட பிளக்கின்களைப் பதிவிறக்கி நிறுவவும்"
+command.help.update: "புதுப்பிப்புகளைச் சரிபார்த்து பயன்படுத்தவும்"
+command.help.check: "எந்த பிளக்கின்களுக்கு புதுப்பிப்புகள் தேவை என்பதைக் காட்டு"
+command.help.status: "பிளக்கின் நிலையைக் காட்டு"
+command.help.versions: "வீரர் பதிப்புகளைக் காட்டு"
+command.help.reload: "அனைத்து கட்டமைப்புகளையும் மீண்டும் ஏற்றவும்"
+command.help.remove: "ஒரு நிர்வகிக்கப்படும் பிளக்கினை நீக்கவும்"
+command.help.help: "இந்த உதவியைக் காட்டு"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "பிளக்கின் அமைப்பு"
+menu.click-hint: "இயக்க/முடக்க ஒரு பிளக்கினைக் கிளிக் செய்யவும்"
+menu.presets-title: "விரைவு முன்னமைவுகள்"
+menu.click-to-apply: "பயன்படுத்த கிளிக் செய்யவும்"
+menu.group.viaversion: "ViaVersion குடும்பம்"
+menu.group.geysermc: "GeyserMC குடும்பம்"
+menu.group.integration: "ஒருங்கிணைப்பு"
+menu.group.community: "சமூகம்"
+menu.enabled-count: "%d பிளக்கின்(கள்) இயக்கப்பட்டன"
+menu.click-to-install: "நிறுவ கிளிக் செய்யவும்"
+menu.to-download: " பதிவிறக்க"
+menu.click-to-enable: "இயக்க கிளிக் செய்யவும்"
+menu.click-to-disable: "முடக்க கிளிக் செய்யவும்"
+menu.dep-auto: "தானியங்கு"
+menu.dep-required: "சார்பு"
+menu.unknown-plugin: "அறியப்படாத பிளக்கின்: %s"
+menu.plugin-enabled: "%s இயக்கப்பட்டது."
+menu.plugin-disabled: "%s முடக்கப்பட்டது."
+
+# Reminder
+reminder.title: "அமைப்பு தேவை"
+reminder.button: "[ பிளக்கின்களை அமைக்க கிளிக் செய்யவும் ]"
+reminder.button-hover: "ஊடாடும் அமைப்பு மெனுவைத் திறக்கவும்"
+
+# Velocity
+command.velocity.status-title: "OmniBridge நிலை (Velocity ப்ராக்ஸி)"
+command.velocity.platform: "தளம்: VELOCITY"
+command.velocity.online-players: "நிகழ்நேர வீரர்கள்: %d"
+command.velocity.servers: "பதிவுசெய்யப்பட்ட சேவையகங்கள்: %d"
+command.velocity.help-title: "OmniBridge கட்டளைகள் (Velocity)"
+command.velocity.help-status: "ப்ராக்ஸி நிலையைக் காட்டு"
+command.velocity.help-help: "இந்த உதவியைக் காட்டு"

@@ -1,0 +1,96 @@
+# OmniBridge - ਪੰਜਾਬੀ (ਭਾਰਤ) ਭਾਸ਼ਾ
+no-permission: "ਅਨੁਮਤੀ ਨਹੀਂ ਹੈ।"
+
+# Install
+command.install.start: "ਗੁੰਮ ਪਲੱਗਿਨਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰ ਰਿਹਾ ਹੈ..."
+command.install.complete: "ਇੰਸਟਾਲੇਸ਼ਨ ਪੂਰੀ ਹੋ ਗਈ! ਨਵੇਂ ਪਲੱਗਿਨਾਂ ਨੂੰ ਲੋਡ ਕਰਨ ਲਈ ਸਰਵਰ ਨੂੰ ਰੀਸਟਾਰਟ ਕਰੋ।"
+
+# Update
+command.update.start: "ਅੱਪਡੇਟਾਂ ਦੀ ਜਾਂਚ ਕਰ ਰਿਹਾ ਹੈ..."
+command.update.complete: "ਅੱਪਡੇਟ ਜਾਂਚ ਪੂਰੀ ਹੋ ਗਈ!"
+
+# Check
+command.check.title: "ਅੱਪਡੇਟਾਂ ਦੀ ਜਾਂਚ ਕਰ ਰਿਹਾ ਹੈ..."
+command.check.available: "ਅੱਪਡੇਟ ਉਪਲਬਧ ਹੈ"
+command.check.uptodate: "ਨਵੀਨਤਮ ਹੈ"
+
+# Setup
+command.setup.only-ingame: "ਸੈੱਟਅੱਪ ਮੇਨੂ ਸਿਰਫ਼ ਖੇਡ ਵਿੱਚ ਹੀ ਉਪਲਬਧ ਹੈ।"
+command.toggle.only-ingame: "ਟਾਗਲ ਸਿਰਫ਼ ਖੇਡ ਵਿੱਚ ਹੀ ਉਪਲਬਧ ਹੈ।"
+command.toggle.usage: "ਵਰਤੋਂ: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge ਸਥਿਤੀ"
+command.status.platform: "ਪਲੇਟਫਾਰਮ: %s"
+command.status.header: "  ਪਲੱਗਿਨ                       ਸੰਸਕਰਣ          ਸਥਿਤੀ"
+command.status.enabled: "ਸਰਗਰਮ ਕੀਤਾ"
+command.status.installed: "ਇੰਸਟਾਲ ਕੀਤਾ"
+command.status.missing: "ਗੁੰਮ ਹੈ"
+
+# Reload
+command.reload.done: "ਸਾਰੀਆਂ ਸੰਰਚਨਾਵਾਂ ਮੁੜ ਲੋਡ ਹੋ ਗਈਆਂ!"
+
+# Versions
+command.versions.title: "ਜੁੜੇ ਖਿਡਾਰੀ ਸੰਸਕਰਣ"
+command.versions.bedrock-tag: " [ਬੈਡਰਾਕ]"
+
+# Remove
+command.remove.usage: "ਵਰਤੋਂ: /ob remove <plugin>"
+command.remove.unknown: "ਅਣਪਛਾਣਿਆ ਪਲੱਗਿਨ: %s"
+command.remove.done: "ਹਟਾਇਆ %s"
+command.remove.not-found: "ਪਲੱਗਿਨ ਨਹੀਂ ਮਿਲਿਆ ਜਾਂ ਪਹਿਲਾਂ ਹੀ ਹਟਾਇਆ ਗਿਆ ਹੈ।"
+
+# Preset
+command.preset.title: "ਉਪਲਬਧ ਪ੍ਰੀਸੈੱਟ"
+command.preset.unknown: "ਅਣਪਛਾਣਿਆ ਪ੍ਰੀਸੈੱਟ: %s"
+command.preset.activated: "ਪ੍ਰੀਸੈੱਟ ਸਰਗਰਮ ਕੀਤਾ: %s"
+command.preset.enabled-count: "%d ਪਲੱਗਿਨ ਸਰਗਰਮ ਕੀਤੇ"
+command.preset.hint: "ਉਨ੍ਹਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ /ob install ਚਲਾਓ"
+
+# Help
+command.help.title: "OmniBridge ਹੁਕਮ"
+command.help.setup: "ਅੰਤਰਕਿਰਿਆਤਮਕ ਪਲੱਗਿਨ ਸੈੱਟਅੱਪ ਖੋਲ੍ਹੋ"
+command.help.preset: "ਇੱਕ ਪਲੱਗਿਨ ਪ੍ਰੀਸੈੱਟ ਸਮੂਹ ਲਾਗੂ ਕਰੋ"
+command.help.install: "ਸਰਗਰਮ ਪਲੱਗਿਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ & ਇੰਸਟਾਲ ਕਰੋ"
+command.help.update: "ਅੱਪਡੇਟਾਂ ਦੀ ਜਾਂਚ & ਲਾਗੂ ਕਰੋ"
+command.help.check: "ਦਿਖਾਓ ਕਿ ਕਿਹੜੇ ਪਲੱਗਿਨਾਂ ਨੂੰ ਅੱਪਡੇਟਾਂ ਦੀ ਲੋੜ ਹੈ"
+command.help.status: "ਪਲੱਗਿਨ ਸਥਿਤੀ ਦਿਖਾਓ"
+command.help.versions: "ਖਿਡਾਰੀ ਸੰਸਕਰਣ ਦਿਖਾਓ"
+command.help.reload: "ਸਾਰੀਆਂ ਸੰਰਚਨਾਵਾਂ ਮੁੜ ਲੋਡ ਕਰੋ"
+command.help.remove: "ਇੱਕ ਪ੍ਰਬੰਧਿਤ ਪਲੱਗਿਨ ਹਟਾਓ"
+command.help.help: "ਇਹ ਮਦਦ ਦਿਖਾਓ"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "ਪਲੱਗਿਨ ਸੈੱਟਅੱਪ"
+menu.click-hint: "ਸਰਗਰਮ/ਅਸਰਗਰਮ ਕਰਨ ਲਈ ਪਲੱਗਿਨ 'ਤੇ ਕਲਿੱਕ ਕਰੋ"
+menu.presets-title: "ਤੇਜ਼ ਪ੍ਰੀਸੈੱਟ"
+menu.click-to-apply: "ਲਾਗੂ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ"
+menu.group.viaversion: "ViaVersion ਪਰਿਵਾਰ"
+menu.group.geysermc: "GeyserMC ਪਰਿਵਾਰ"
+menu.group.integration: "ਇੰਟੀਗ੍ਰੇਸ਼ਨ"
+menu.group.community: "ਕਮਿਊਨਿਟੀ"
+menu.enabled-count: "%d ਪਲੱਗਿਨ ਸਰਗਰਮ ਕੀਤੇ"
+menu.click-to-install: "ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ"
+menu.to-download: " ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ"
+menu.click-to-enable: "ਸਰਗਰਮ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ"
+menu.click-to-disable: "ਅਸਰਗਰਮ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ"
+menu.dep-auto: "ਆਟੋ"
+menu.dep-required: "ਨਿਰਭਰਤਾ"
+menu.unknown-plugin: "ਅਣਪਛਾਣਿਆ ਪਲੱਗਿਨ: %s"
+menu.plugin-enabled: "%s ਸਰਗਰਮ ਕੀਤਾ।"
+menu.plugin-disabled: "%s ਅਸਰਗਰਮ ਕੀਤਾ।"
+
+# Reminder
+reminder.title: "ਸੈੱਟਅੱਪ ਲੋੜੀਂਦਾ ਹੈ"
+reminder.button: "[ ਪਲੱਗਿਨਾਂ ਨੂੰ ਸੈੱਟਅੱਪ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ ]"
+reminder.button-hover: "ਅੰਤਰਕਿਰਿਆਤਮਕ ਸੈੱਟਅੱਪ ਮੇਨੂ ਖੋਲ੍ਹੋ"
+
+# Velocity
+command.velocity.status-title: "OmniBridge ਸਥਿਤੀ (Velocity ਪ੍ਰਾਕਸੀ)"
+command.velocity.platform: "ਪਲੇਟਫਾਰਮ: VELOCITY"
+command.velocity.online-players: "ਔਨਲਾਈਨ ਖਿਡਾਰੀ: %d"
+command.velocity.servers: "ਰਜਿਸਟਰਡ ਸਰਵਰ: %d"
+command.velocity.help-title: "OmniBridge ਹੁਕਮ (Velocity)"
+command.velocity.help-status: "ਪ੍ਰਾਕਸੀ ਸਥਿਤੀ ਦਿਖਾਓ"
+command.velocity.help-help: "ਇਹ ਮਦਦ ਦਿਖਾਓ"

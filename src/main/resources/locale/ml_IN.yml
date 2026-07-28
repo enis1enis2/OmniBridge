@@ -1,0 +1,96 @@
+# OmniBridge - മലയാളം (ഇന്ത്യ) ഭാഷ
+no-permission: "അനുമതി ഇല്ല."
+
+# Install
+command.install.start: "നഷ്ടപ്പെട്ട പ്ലഗിനുകൾ ഇൻസ്റ്റാൾ ചെയ്യുന്നു..."
+command.install.complete: "ഇൻസ്റ്റാളേഷൻ പൂർത്തിയായി! പുതിയ പ്ലഗിനുകൾ ലോഡ് ചെയ്യാൻ സെർവർ റീസ്റ്റാർട്ട് ചെയ്യുക."
+
+# Update
+command.update.start: "അപ്‌ഡേറ്റുകൾ പരിശോധിക്കുന്നു..."
+command.update.complete: "അപ്‌ഡേറ്റ് പരിശോധന പൂർത്തിയായി!"
+
+# Check
+command.check.title: "അപ്‌ഡേറ്റുകൾ പരിശോധിക്കുന്നു..."
+command.check.available: "അപ്‌ഡേറ്റ് ലഭ്യമാണ്"
+command.check.uptodate: "ഏറ്റവും പുതിയത്"
+
+# Setup
+command.setup.only-ingame: "സെറ്റപ്പ് മെനു ഗെയിമിൽ മാത്രമേ ലഭ്യമാകൂ."
+command.toggle.only-ingame: "ടോഗിൾ ഗെയിമിൽ മാത്രമേ ലഭ്യമാകൂ."
+command.toggle.usage: "ഉപയോഗം: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge അവസ്ഥ"
+command.status.platform: "പ്ലാറ്റ്‌ഫോം: %s"
+command.status.header: "  പ്ലഗിൻ                         പതിപ്പ്          അവസ്ഥ"
+command.status.enabled: "പ്രവർത്തനക്ഷമം"
+command.status.installed: "ഇൻസ്റ്റാൾ ചെയ്തു"
+command.status.missing: "നഷ്ടപ്പെട്ടു"
+
+# Reload
+command.reload.done: "എല്ലാ കോൺഫിഗറേഷനുകളും വീണ്ടും ലോഡ് ചെയ്തു!"
+
+# Versions
+command.versions.title: "കണക്റ്റ് ചെയ്ത കളിക്കാരുടെ പതിപ്പുകൾ"
+command.versions.bedrock-tag: " [ബെഡ്‌റോക്ക്]"
+
+# Remove
+command.remove.usage: "ഉപയോഗം: /ob remove <plugin>"
+command.remove.unknown: "അജ്ഞാത പ്ലഗിൻ: %s"
+command.remove.done: "നീക്കം ചെയ്തു %s"
+command.remove.not-found: "പ്ലഗിൻ കണ്ടെത്താനായില്ല അല്ലെങ്കിൽ ഇതിനകം നീക്കം ചെയ്തു."
+
+# Preset
+command.preset.title: "ലഭ്യമായ പ്രീസെറ്റുകൾ"
+command.preset.unknown: "അജ്ഞാത പ്രീസെറ്റ്: %s"
+command.preset.activated: "പ്രീസെറ്റ് സജീവമാക്കി: %s"
+command.preset.enabled-count: "%d പ്ലഗിൻ(നുകൾ) പ്രവർത്തനക്ഷമമാക്കി"
+command.preset.hint: "അവ ഡൗൺലോഡ് ചെയ്യാൻ /ob install പ്രവർത്തിപ്പിക്കുക"
+
+# Help
+command.help.title: "OmniBridge കമാൻഡുകൾ"
+command.help.setup: "ഇന്ററാക്റ്റീവ് പ്ലഗിൻ സെറ്റപ്പ് തുറക്കുക"
+command.help.preset: "ഒരു പ്ലഗിൻ പ്രീസെറ്റ് ഗ്രൂപ്പ് പ്രയോഗിക്കുക"
+command.help.install: "പ്രവർത്തനക്ഷമമാക്കിയ പ്ലഗിനുകൾ ഡൗൺലോഡ് & ഇൻസ്റ്റാൾ ചെയ്യുക"
+command.help.update: "അപ്‌ഡേറ്റുകൾ പരിശോധിച്ച് പ്രയോഗിക്കുക"
+command.help.check: "ഏത് പ്ലഗിനുകൾക്ക് അപ്‌ഡേറ്റുകൾ ആവശ്യമാണെന്ന് കാണിക്കുക"
+command.help.status: "പ്ലഗിൻ അവസ്ഥ കാണിക്കുക"
+command.help.versions: "കളിക്കാരുടെ പതിപ്പുകൾ കാണിക്കുക"
+command.help.reload: "എല്ലാ കോൺഫിഗറേഷനുകളും വീണ്ടും ലോഡ് ചെയ്യുക"
+command.help.remove: "ഒരു മാനേജ് ചെയ്യുന്ന പ്ലഗിൻ നീക്കം ചെയ്യുക"
+command.help.help: "ഈ സഹായം കാണിക്കുക"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "പ്ലഗിൻ സെറ്റപ്പ്"
+menu.click-hint: "പ്രവർത്തനക്ഷമം/നിഷ്ക്രിയം ചെയ്യാൻ ഒരു പ്ലഗിനിൽ ക്ലിക്ക് ചെയ്യുക"
+menu.presets-title: "ദ്രുത പ്രീസെറ്റുകൾ"
+menu.click-to-apply: "പ്രയോഗിക്കാൻ ക്ലിക്ക് ചെയ്യുക"
+menu.group.viaversion: "ViaVersion കുടുംബം"
+menu.group.geysermc: "GeyserMC കുടുംബം"
+menu.group.integration: "ഇന്റഗ്രേഷൻ"
+menu.group.community: "കമ്മ്യൂണിറ്റി"
+menu.enabled-count: "%d പ്ലഗിൻ(നുകൾ) പ്രവർത്തനക്ഷമമാക്കി"
+menu.click-to-install: "ഇൻസ്റ്റാൾ ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക"
+menu.to-download: " ഡൗൺലോഡ് ചെയ്യാൻ"
+menu.click-to-enable: "പ്രവർത്തനക്ഷമമാക്കാൻ ക്ലിക്ക് ചെയ്യുക"
+menu.click-to-disable: "നിഷ്ക്രിയമാക്കാൻ ക്ലിക്ക് ചെയ്യുക"
+menu.dep-auto: "ഓട്ടോ"
+menu.dep-required: "ആശ്രിതം"
+menu.unknown-plugin: "അജ്ഞാത പ്ലഗിൻ: %s"
+menu.plugin-enabled: "%s പ്രവർത്തനക്ഷമമാക്കി."
+menu.plugin-disabled: "%s നിഷ്ക്രിയമാക്കി."
+
+# Reminder
+reminder.title: "സെറ്റപ്പ് ആവശ്യമാണ്"
+reminder.button: "[ പ്ലഗിനുകൾ സെറ്റപ്പ് ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക ]"
+reminder.button-hover: "ഇന്ററാക്റ്റീവ് സെറ്റപ്പ് മെനു തുറക്കുക"
+
+# Velocity
+command.velocity.status-title: "OmniBridge അവസ്ഥ (Velocity പ്രോക്സി)"
+command.velocity.platform: "പ്ലാറ്റ്‌ഫോം: VELOCITY"
+command.velocity.online-players: "ഓൺലൈൻ കളിക്കാർ: %d"
+command.velocity.servers: "രജിസ്റ്റർ ചെയ്ത സെർവറുകൾ: %d"
+command.velocity.help-title: "OmniBridge കമാൻഡുകൾ (Velocity)"
+command.velocity.help-status: "പ്രോക്സി അവസ്ഥ കാണിക്കുക"
+command.velocity.help-help: "ഈ സഹായം കാണിക്കുക"

@@ -1,0 +1,96 @@
+# OmniBridge - Afrikaans (ZA) Locale
+no-permission: "Geen toestemming."
+
+# Install
+command.install.start: "Ontbrekende inpropgies word geïnstalleer..."
+command.install.complete: "Installasie voltooi! Herlaai die bediener om nuwe inpropgies te laai."
+
+# Update
+command.update.start: "Kontroleer vir opdaterings..."
+command.update.complete: "Opdateringstoets voltooi!"
+
+# Check
+command.check.title: "Kontroleer vir opdaterings..."
+command.check.available: "OPDATERING BESKIKBAAR"
+command.check.uptodate: "op datum"
+
+# Setup
+command.setup.only-ingame: "Opstellingkieslys is slegs in die spel beskikbaar."
+command.toggle.only-ingame: "Wissel is slegs in die spel beskikbaar."
+command.toggle.usage: "Gebruik: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge Status"
+command.status.platform: "Platform: %s"
+command.status.header: "  Inpropgie                   Weergawe         Status"
+command.status.enabled: "GEAKTIVEER"
+command.status.installed: "GEÏNSTALLEER"
+command.status.missing: "ONTBREKEND"
+
+# Reload
+command.reload.done: "Alle konfigurasies herlaai!"
+
+# Versions
+command.versions.title: "Verbonden Spelerweergawes"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Gebruik: /ob remove <plugin>"
+command.remove.unknown: "Onbekende inpropgie: %s"
+command.remove.done: "%s verwyder"
+command.remove.not-found: "Inpropgie nie gevind of reeds verwyder nie."
+
+# Preset
+command.preset.title: "Beskikbare Voorinstellings"
+command.preset.unknown: "Onbekende voorinstelling: %s"
+command.preset.activated: "Voorinstelling geaktiveer: %s"
+command.preset.enabled-count: "%d inpropgie(s) geaktiveer"
+command.preset.hint: "Voer /ob install uit om hulle af te laai"
+
+# Help
+command.help.title: "OmniBridge Opdragte"
+command.help.setup: "Maak interaktiewe inpropgie-opstelling oop"
+command.help.preset: "Wend 'n inpropgie-voorinstellingsgroep toe"
+command.help.install: "Laai af en installeer geaktiveerde inpropgies"
+command.help.update: "Kontroleer en wend opdaterings toe"
+command.help.check: "Wys watter inpropgies opdaterings nodig het"
+command.help.status: "Wys inpropgiestatus"
+command.help.versions: "Wys spelerweergawes"
+command.help.reload: "Herlaai alle konfigurasies"
+command.help.remove: "Verwyder 'n bestuurde inpropgie"
+command.help.help: "Wys hierdie hulp"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Inpropgie-opstelling"
+menu.click-hint: "Klik op 'n inpropgie om dit te aktiveer/deaktiveer"
+menu.presets-title: "Vinnige Voorinstellings"
+menu.click-to-apply: "Klik om toe te pas"
+menu.group.viaversion: "ViaVersion Familie"
+menu.group.geysermc: "GeyserMC Familie"
+menu.group.integration: "Integrasie"
+menu.group.community: "Gemeenskap"
+menu.enabled-count: "%d inpropgie(s) geaktiveer"
+menu.click-to-install: "Klik om te installeer"
+menu.to-download: " om af te laai"
+menu.click-to-enable: "Klik om te aktiveer"
+menu.click-to-disable: "Klik om te deaktiveer"
+menu.dep-auto: "outomaties"
+menu.dep-required: "afhanklikheid"
+menu.unknown-plugin: "Onbekende inpropgie: %s"
+menu.plugin-enabled: "%s geaktiveer."
+menu.plugin-disabled: "%s gedeaktiveer."
+
+# Reminder
+reminder.title: "Opstelling vereis"
+reminder.button: "[ Klik om inpropgies op te stel ]"
+reminder.button-hover: "Maak interaktiewe opstellingkieslys oop"
+
+# Velocity
+command.velocity.status-title: "OmniBridge Status (Velocity Proxy)"
+command.velocity.platform: "Platform: VELOCITY"
+command.velocity.online-players: "Aanlyn Spelers: %d"
+command.velocity.servers: "Geregistreerde Bedieners: %d"
+command.velocity.help-title: "OmniBridge Opdragte (Velocity)"
+command.velocity.help-status: "Wys proxy-status"
+command.velocity.help-help: "Wys hierdie hulp"

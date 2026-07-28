@@ -1,0 +1,97 @@
+﻿# OmniBridge Locale - Kazakh (Kazakhstan)
+no-permission: "Рұқсат жоқ."
+
+# Install
+command.install.start: "Орнатылмаған плагиндер орнатылуда..."
+command.install.complete: "Орнату аяқталды! Жаңа плагиндерді жүктеу үшін серверді қайта іске қосыңыз."
+
+# Update
+command.update.start: "Жаңартулар тексерілуде..."
+command.update.complete: "Жаңарту тексеруі аяқталды!"
+
+# Check
+command.check.title: "Жаңартулар тексерілуде..."
+command.check.available: "ЖАҢАРТУ БАР"
+command.check.uptodate: "жаңартылған"
+
+# Setup
+command.setup.only-ingame: "Орнату мәзірі тек ойын ішінде қол жетімді."
+command.toggle.only-ingame: "Ауыстыру тек ойын ішінде қол жетімді."
+command.toggle.usage: "Қолдану: /ob toggle <plugin>"
+
+# Status
+command.status.title: "OmniBridge күйі"
+command.status.platform: "Платформа: %s"
+command.status.header: "  Плагин                      Нұсқа          Күй"
+command.status.enabled: "ҚОСУЛҒАН"
+command.status.installed: "ОРНАТЫЛҒАН"
+command.status.missing: "ЖОҚ"
+
+# Reload
+command.reload.done: "Барлық конфигурациялар қайта жүктелді!"
+
+# Versions
+command.versions.title: "Қосылған ойыншылар нұсқалары"
+command.versions.bedrock-tag: " [Bedrock]"
+
+# Remove
+command.remove.usage: "Қолдану: /ob remove <plugin>"
+command.remove.unknown: "Белгісіз плагин: %s"
+command.remove.done: "Өшірілді %s"
+command.remove.not-found: "Плагин табылмады немесе бұрын өшірілген."
+
+# Preset
+command.preset.title: "Қол жетімді алдын ала орнатулар"
+command.preset.unknown: "Белгісіз алдын ала орнату: %s"
+command.preset.activated: "Іске қосылған алдын ала орнату: %s"
+command.preset.enabled-count: "%d плагин(дер) қосылды"
+command.preset.hint: "Жүктеу үшін /ob install іске қосыңыз"
+
+# Help
+command.help.title: "OmniBridge бұйрықтары"
+command.help.setup: "Интерактивті плагин орнатуын ашу"
+command.help.preset: "Плагин алдын ала орнату тобын қолдану"
+command.help.install: "Қосылған плагиндерді жүктеу және орнату"
+command.help.update: "Жаңартуларды тексеру және қолдану"
+command.help.check: "Қай плагиндерге жаңарту қажет екенін көрсету"
+command.help.status: "Плагин күйін көрсету"
+command.help.versions: "Ойыншылар нұсқаларын көрсету"
+command.help.reload: "Барлық конфигурацияларды қайта жүктеу"
+command.help.remove: "Басқарылатын плагинді өшіру"
+command.help.help: "Осы көмекті көрсету"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
+
+# Chat Menu
+menu.title: "Плагин орнату"
+menu.click-hint: "Плагинді қосу/өшіру үшін басыңыз"
+menu.presets-title: "Жылдам алдын ала орнатулар"
+menu.click-to-apply: "Қолдану үшін басыңыз"
+menu.group.viaversion: "ViaVersion отбасы"
+menu.group.geysermc: "GeyserMC отбасы"
+menu.group.integration: "Интеграция"
+menu.group.community: "Қауымдастық"
+menu.enabled-count: "%d плагин(дер) қосылды"
+menu.click-to-install: "Орнату үшін басыңыз"
+menu.to-download: " жүктеу үшін"
+menu.click-to-enable: "Қосу үшін басыңыз"
+menu.click-to-disable: "Өшіру үшін басыңыз"
+menu.dep-auto: "автоматты"
+menu.dep-required: "тәуелділік"
+menu.unknown-plugin: "Белгісіз плагин: %s"
+menu.plugin-enabled: "%s қосылды."
+menu.plugin-disabled: "%s өшірілді."
+
+# Reminder
+reminder.title: "Орнату қажет"
+reminder.button: "[ Плагиндерді орнату үшін басыңыз ]"
+reminder.button-hover: "Интерактивті орнату мәзірін ашу"
+
+# Velocity
+command.velocity.status-title: "OmniBridge күйі (Velocity прокси)"
+command.velocity.platform: "Платформа: VELOCITY"
+command.velocity.online-players: "Онлайн ойыншылар: %d"
+command.velocity.servers: "Тіркелген серверлер: %d"
+command.velocity.help-title: "OmniBridge бұйрықтары (Velocity)"
+command.velocity.help-status: "Прокси күйін көрсету"
+command.velocity.help-help: "Осы көмекті көрсету"
+
