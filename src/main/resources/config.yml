@@ -44,6 +44,8 @@ managed-plugins:
   chunky: false
   bluemap: false
   griefprevention: false
+  vault: false
+  commandapi: false
 
 # Geyser Bedrock settings
 bedrock:
@@ -57,9 +59,6 @@ java:
 
 # Locale for messages (71 locales available, e.g. en_US, tr_TR, de_DE, zh_TW)
 locale: en_US
-
-# Enable debug logging
-debug: false
 
 # Reminder settings (broadcasts to ops when no plugins are configured)
 reminder:

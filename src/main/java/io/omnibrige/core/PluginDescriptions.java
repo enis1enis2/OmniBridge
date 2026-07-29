@@ -78,6 +78,11 @@ public final class PluginDescriptions {
                 "3D web map renderer for Minecraft worlds");
         DESCRIPTIONS.put("griefprevention",
                 "Land claims and anti-grief protection system");
+
+        DESCRIPTIONS.put("vault",
+                "Economy/permissions API — a dependency for many server plugins");
+        DESCRIPTIONS.put("commandapi",
+                "Cross-version command framework — write commands once, run everywhere");
     }
 
     private PluginDescriptions() {}

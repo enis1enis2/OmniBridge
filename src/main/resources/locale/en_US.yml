@@ -63,6 +63,7 @@ command.help.preset-hint: "bedrock, full-version, essentials, max-compat, server
 
 # Info
 command.info.usage: "Usage: /ob info <plugin>"
+command.info.unknown: "Unknown plugin: %s"
 command.info.type: "Type"
 command.info.description: "Description"
 command.info.jar: "JAR file"

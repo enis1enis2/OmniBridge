@@ -29,6 +29,8 @@ class PluginDescriptionsTest {
         assertFalse(all.isEmpty());
         assertTrue(all.containsKey("viaversion"));
         assertTrue(all.containsKey("geyser"));
+        assertTrue(all.containsKey("vault"));
+        assertTrue(all.containsKey("commandapi"));
     }
 
     @Test

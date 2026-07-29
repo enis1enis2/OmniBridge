@@ -72,4 +72,26 @@ class DownloadServiceTest {
         boolean result = service.downloadSync("https://invalid.example.com/nonexistent", dest);
         assertFalse(result);
     }
+
+    @Test
+    void downloadAsyncReturnsFalseForInvalidUrl() {
+        File dest = tempDir.resolve("async-fail.jar").toFile();
+        boolean result = service.downloadAsync("https://invalid.example.com/nonexistent", dest).join();
+        assertFalse(result);
+    }
+
+    @Test
+    void checkUpdateReturnsFalseForNullUrl() {
+        assertFalse(service.checkUpdate(null, "1.0"));
+    }
+
+    @Test
+    void checkUpdateReturnsFalseForNullVersion() {
+        assertFalse(service.checkUpdate("https://example.com/test.jar", null));
+    }
+
+    @Test
+    void checkUpdateReturnsFalseForInvalidUrl() {
+        assertFalse(service.checkUpdate("https://invalid.example.com/nonexistent", "1.0"));
+    }
 }

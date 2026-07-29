@@ -45,6 +45,30 @@ class RepositoryTest {
     }
 
     @Test
+    void isKnownForNewPlugins() {
+        assertTrue(Repository.isKnown("vault"));
+        assertTrue(Repository.isKnown("commandapi"));
+    }
+
+    @Test
+    void newPluginMetadataIsCorrect() {
+        assertEquals("Vault", Repository.getDisplayName("vault"));
+        assertEquals("CommandAPI", Repository.getDisplayName("commandapi"));
+        assertEquals(Repository.PluginType.INTEGRATION, Repository.getType("vault"));
+        assertEquals(Repository.PluginType.COMMUNITY, Repository.getType("commandapi"));
+        assertEquals("Vault", Repository.getBukkitName("vault"));
+        assertEquals("CommandAPI", Repository.getBukkitName("commandapi"));
+        assertEquals("Vault.jar", Repository.getJarName("vault"));
+        assertEquals("CommandAPI.jar", Repository.getJarName("commandapi"));
+    }
+
+    @Test
+    void newPluginsHaveNoDependencies() {
+        assertTrue(Repository.getDependencies("vault").isEmpty());
+        assertTrue(Repository.getDependencies("commandapi").isEmpty());
+    }
+
+    @Test
     void isKnownForUnknownPlugins() {
         assertFalse(Repository.isKnown("nonexistent"));
         assertFalse(Repository.isKnown(""));

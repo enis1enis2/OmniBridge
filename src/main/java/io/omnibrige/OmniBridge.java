@@ -60,6 +60,7 @@ public final class OmniBridge extends JavaPlugin {
         geyserIntegration = new GeyserIntegration(this);
 
         configManager = new ConfigManager(this, platform);
+        configManager.generateAllConfigs();
         pluginManager = new PluginManager(this, platform, configManager);
 
         getCommand("omnibrige").setExecutor(new OmniBridgeCommand(this));

@@ -50,4 +50,9 @@ class PlatformDetectorTest {
         assertNotNull(PlatformDetector.Platform.FABRIC);
         assertNotNull(PlatformDetector.Platform.UNKNOWN);
     }
+
+    @Test
+    void detectReturnsVelocityInTestEnvironment() {
+        assertEquals(PlatformDetector.Platform.VELOCITY, PlatformDetector.detect());
+    }
 }

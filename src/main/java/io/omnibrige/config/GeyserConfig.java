@@ -54,8 +54,7 @@ public class GeyserConfig {
                   motd3: 'A Geyser Powered Server'
                   server-name: 'Geyser Server'
                   server-name-type: motd
-                floodgate:
-                  key-file: key.pem
+                floodgate-key-file: key.pem
                 remote:
                   address: %s
                   port: %d

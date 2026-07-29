@@ -288,7 +288,7 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
         }
         String key = args[1].toLowerCase(Locale.ROOT);
         if (!Repository.isKnown(key)) {
-            sender.sendMessage(Component.text(msg().msg("command.remove.unknown", key), NamedTextColor.RED));
+            sender.sendMessage(Component.text(msg().msg("command.info.unknown", key), NamedTextColor.RED));
             return;
         }
         Repository.PluginInfo info = Repository.getAllPlugins().get(key);

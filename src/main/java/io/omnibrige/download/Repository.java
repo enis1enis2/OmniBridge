@@ -44,25 +44,25 @@ public final class Repository {
 
     static {
         PLUGINS.put("viaversion", new PluginInfo("ViaVersion", PluginType.VIAMCRAFT,
-                "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaVersion/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.11.1-SNAPSHOT%2B1046/PAPER/ViaVersion-5.11.1-SNAPSHOT.jar",
                 "ViaVersion", "ViaVersion.jar"));
         PLUGINS.put("viabackwards", new PluginInfo("ViaBackwards", PluginType.VIAMCRAFT,
-                "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaBackwards/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B618/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar",
                 "ViaBackwards", "ViaBackwards.jar"));
         PLUGINS.put("viarewind", new PluginInfo("ViaRewind", PluginType.VIAMCRAFT,
-                "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaRewind/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaRewind/versions/4.1.4-SNAPSHOT%2B382/PAPER/ViaRewind-4.1.4-SNAPSHOT.jar",
                 "ViaRewind", "ViaRewind.jar"));
         PLUGINS.put("viarewind-legacysupport", new PluginInfo("ViaRewindLegacySupport", PluginType.VIAMCRAFT,
-                "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaRewindLegacySupport/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaRewindLegacySupport/versions/1.5.5-SNAPSHOT%2B60/PAPER/ViaRewind-Legacy-Support-1.5.5-SNAPSHOT.jar",
                 "ViaRewindLegacySupport", "ViaRewind-Legacy-Support.jar"));
         PLUGINS.put("viaprilfools", new PluginInfo("ViaAprilFools", PluginType.VIAMCRAFT,
-                "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaAprilFools/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaAprilFools/versions/4.2.3-SNAPSHOT%2B163/PAPER/ViaAprilFools-4.2.3-SNAPSHOT.jar",
                 "ViaAprilFools", "ViaAprilFools.jar"));
         PLUGINS.put("viabungee", new PluginInfo("ViaBungee", PluginType.VIAMCRAFT,
-                "https://hangar.papermc.io/api/v1/plugins/ViaVersion/ViaBungee/versions/latest/download?platform=WATERFALL",
+                "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBungee/versions/0.4.0/WATERFALL/ViaBungee-0.4.0.jar",
                 "ViaBungee", "ViaBungee.jar"));
         PLUGINS.put("protocolib", new PluginInfo("ProtocolLib", PluginType.COMMUNITY,
-                "https://hangar.papermc.io/api/v1/plugins/dmulloy2/ProtocolLib/versions/latest/download?platform=PAPER",
+                "https://github.com/dmulloy2/ProtocolLib/releases/download/5.4.0/ProtocolLib.jar",
                 "ProtocolLib", "ProtocolLib.jar"));
 
         PLUGINS.put("geyser", new PluginInfo("Geyser", PluginType.GEYSERMC,
@@ -88,47 +88,54 @@ public final class Repository {
                 "Rainbow", "Rainbow.jar"));
 
         PLUGINS.put("authme", new PluginInfo("AuthMe", PluginType.INTEGRATION,
-                "https://hangar.papermc.io/api/v1/plugins/AuthMe/AuthMeReloaded/versions/latest/download?platform=PAPER",
+                "https://github.com/AuthMe/AuthMeReloaded/releases/download/6.0.0/AuthMe-6.0.0-Paper.jar",
                 "AuthMe", "AuthMe.jar"));
         PLUGINS.put("tab", new PluginInfo("TAB", PluginType.INTEGRATION,
-                "https://hangar.papermc.io/api/v1/plugins/NEZNAMY/TAB/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/NEZNAMY/TAB/versions/5.0.7/PAPER/TAB%20v5.0.7.jar",
                 "TAB", "TAB.jar"));
 
         PLUGINS.put("luckperms", new PluginInfo("LuckPerms", PluginType.INTEGRATION,
                 "https://download.luckperms.net/latest/bukkit/loader/LuckPerms-Bukkit.jar",
                 "LuckPerms", "LuckPerms.jar"));
         PLUGINS.put("essentialsx", new PluginInfo("EssentialsX", PluginType.INTEGRATION,
-                "https://hangar.papermc.io/api/v1/plugins/Essentials/EssentialsX/versions/latest/download?platform=PAPER",
+                "https://cdn.modrinth.com/data/hXiIvTyT/versions/nY6VN1XH/EssentialsX-2.22.0.jar",
                 "EssentialsX", "EssentialsX.jar"));
         PLUGINS.put("placeholderapi", new PluginInfo("PlaceholderAPI", PluginType.INTEGRATION,
-                "https://api.spigotmc.org/legacy/resource.php?id=6245",
+                "https://hangarcdn.papermc.io/plugins/HelpChat/PlaceholderAPI/versions/2.12.3/PAPER/PlaceholderAPI-2.12.3.jar",
                 "PlaceholderAPI", "PlaceholderAPI.jar"));
         PLUGINS.put("worldguard", new PluginInfo("WorldGuard", PluginType.INTEGRATION,
-                "https://hangar.papermc.io/api/v1/plugins/sk89q/WorldGuard/versions/latest/download?platform=PAPER",
+                "https://cdn.modrinth.com/data/DKY9btbd/versions/pI4UHLJL/worldguard-bukkit-7.0.17.jar",
                 "WorldGuard", "WorldGuard.jar"));
         PLUGINS.put("coreprotect", new PluginInfo("CoreProtect", PluginType.INTEGRATION,
-                "https://hangar.papermc.io/api/v1/plugins/CORE/CoreProtect/versions/latest/download?platform=PAPER",
+                "https://cdn.modrinth.com/data/Lu3KuzdV/versions/Kma0kBsY/CoreProtect-CE-24.0.jar",
                 "CoreProtect", "CoreProtect.jar"));
 
         PLUGINS.put("tuffxplus", new PluginInfo("TuffXPlus", PluginType.COMMUNITY,
-                "https://api.spigotmc.org/legacy/resource.php?id=136847",
+                "https://github.com/TuffNetwork/TuffXPlus/releases/download/1.1.1/TuffXPlus-1.1.1.jar",
                 "TuffXPlus", "TuffXPlus.jar"));
 
         PLUGINS.put("spark", new PluginInfo("spark", PluginType.COMMUNITY,
-                "https://spark.lucko.me/download/bukkit",
+                "https://ci.lucko.me/job/spark/lastSuccessfulBuild/artifact/spark-bukkit/build/libs/spark-1.10.175-bukkit.jar",
                 "spark", "spark.jar"));
         PLUGINS.put("discordsrv", new PluginInfo("DiscordSRV", PluginType.INTEGRATION,
-                "https://api.spigotmc.org/legacy/resource.php?id=18494",
+                "https://github.com/DiscordSRV/DiscordSRV/releases/download/v1.30.5/DiscordSRV-Build-1.30.5.jar",
                 "DiscordSRV", "DiscordSRV.jar"));
         PLUGINS.put("chunky", new PluginInfo("Chunky", PluginType.COMMUNITY,
-                "https://hangar.papermc.io/api/v1/plugins/pop4959/Chunky/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/pop4959/Chunky/versions/1.5.3/PAPER/Chunky-Bukkit-1.5.3.jar",
                 "Chunky", "Chunky.jar"));
         PLUGINS.put("bluemap", new PluginInfo("BlueMap", PluginType.COMMUNITY,
-                "https://hangar.papermc.io/api/v1/plugins/Blue/BlueMap/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/Blue/BlueMap/versions/5.22/PAPER/bluemap-5.22-paper.jar",
                 "BlueMap", "BlueMap.jar"));
         PLUGINS.put("griefprevention", new PluginInfo("GriefPrevention", PluginType.COMMUNITY,
-                "https://hangar.papermc.io/api/v1/plugins/GriefPrevention/GriefPrevention/versions/latest/download?platform=PAPER",
+                "https://hangarcdn.papermc.io/plugins/GriefPrevention/GriefPrevention/versions/16.18.4/PAPER/GriefPrevention%2016.18.4.jar",
                 "GriefPrevention", "GriefPrevention.jar"));
+
+        PLUGINS.put("vault", new PluginInfo("Vault", PluginType.INTEGRATION,
+                "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+                "Vault", "Vault.jar"));
+        PLUGINS.put("commandapi", new PluginInfo("CommandAPI", PluginType.COMMUNITY,
+                "https://github.com/JorelAli/CommandAPI/releases/download/9.7.0/CommandAPI-Bukkit-9.7.0.jar",
+                "CommandAPI", "CommandAPI.jar"));
 
         DEPENDENCIES.put("geyser", List.of("floodgate"));
         DEPENDENCIES.put("authme", List.of("floodgate"));
