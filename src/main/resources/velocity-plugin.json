@@ -1,7 +1,7 @@
 {
   "id": "omnibrige",
   "name": "OmniBridge",
-  "version": "1.0.0",
+  "version": "${project.version}",
   "description": "Universal cross-version and cross-platform connectivity solution",
   "authors": ["OmniBridge"],
   "main": "io.omnibrige.OmniBridgeVelocity",

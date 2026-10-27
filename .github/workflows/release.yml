@@ -59,7 +59,8 @@ jobs:
             echo "### Requirements"
             echo ""
             echo "- Java 21+"
-            echo "- Minecraft 1.8+ (Paper/Spigot) or Velocity 3.4+"
+            echo "- Paper 1.20 or newer"
+            echo "- Velocity only supports the command stub (no plugin management)"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 

@@ -52,7 +52,51 @@ class PlatformDetectorTest {
     }
 
     @Test
-    void detectReturnsVelocityInTestEnvironment() {
-        assertEquals(PlatformDetector.Platform.VELOCITY, PlatformDetector.detect());
+    void detectReturnsUnknownWhenNoMarkerIsPresent() {
+        assertEquals(PlatformDetector.Platform.UNKNOWN, PlatformDetector.detect(name -> false));
+    }
+
+    @Test
+    void detectPrefersVelocityOverBukkitMarkers() {
+        PlatformDetector.Platform result = PlatformDetector.detect(name ->
+                name.equals("com.velocitypowered.api.proxy.ProxyServer")
+                        || name.equals("org.bukkit.Bukkit"));
+        assertEquals(PlatformDetector.Platform.VELOCITY, result);
+    }
+
+    @Test
+    void detectRecognizesModernPaperMarker() {
+        PlatformDetector.Platform result = PlatformDetector.detect(name ->
+                name.equals("io.papermc.paper.plugin.lifecycle.LifecycleEventManager")
+                        || name.equals("org.bukkit.Bukkit"));
+        assertEquals(PlatformDetector.Platform.PAPER, result);
+    }
+
+    @Test
+    void detectRecognizesLegacyPaperMarker() {
+        PlatformDetector.Platform result = PlatformDetector.detect(name ->
+                name.equals("com.destroystokyo.paper.PaperConfig")
+                        || name.equals("org.bukkit.Bukkit"));
+        assertEquals(PlatformDetector.Platform.PAPER, result);
+    }
+
+    @Test
+    void detectRecognizesFabricBeforeBukkitFallback() {
+        PlatformDetector.Platform result = PlatformDetector.detect(name ->
+                name.equals("net.fabricmc.loader.api.FabricLoader")
+                        || name.equals("org.bukkit.Bukkit"));
+        assertEquals(PlatformDetector.Platform.FABRIC, result);
+    }
+
+    @Test
+    void detectFallsBackToSpigotForBukkitOnlyServers() {
+        PlatformDetector.Platform result = PlatformDetector.detect(name ->
+                name.equals("org.bukkit.craftbukkit.CraftServer"));
+        assertEquals(PlatformDetector.Platform.SPIGOT, result);
+    }
+
+    @Test
+    void detectDoesNotThrowOnTheCurrentClassPath() {
+        assertNotNull(PlatformDetector.detect());
     }
 }

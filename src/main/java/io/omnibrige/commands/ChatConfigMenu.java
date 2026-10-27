@@ -79,15 +79,16 @@ public class ChatConfigMenu {
 
         renderGroup(player, msg().msg("menu.group.geysermc"), List.of(
                 "geyser", "floodgate", "hurricane", "geyserconnect",
-                "thirdpartycosmetics", "thunderbeta", "rainbow"));
+                "thirdpartycosmetics"));
 
         renderGroup(player, msg().msg("menu.group.integration"), List.of("authme", "tab", "discordsrv"));
 
         renderGroup(player, msg().msg("menu.group.essentials"), List.of(
-                "luckperms", "essentialsx", "placeholderapi", "worldguard", "coreprotect"));
+                "luckperms", "essentialsx", "placeholderapi", "worldguard", "coreprotect", "vault"));
 
         renderGroup(player, msg().msg("menu.group.community"), List.of(
-                "protocolib", "tuffxplus", "spark", "chunky", "bluemap", "griefprevention"));
+                "protocolib", "tuffxplus", "spark", "chunky", "bluemap", "griefprevention",
+                "commandapi"));
 
         player.sendMessage(Component.empty());
         player.sendMessage(Component.text("  ─────────────────────────────────────────────", NamedTextColor.DARK_GRAY));
@@ -132,6 +133,10 @@ public class ChatConfigMenu {
                     ? Component.text("[✓]", NamedTextColor.GREEN, TextDecoration.BOLD)
                     : Component.text("[ ]", NamedTextColor.DARK_GRAY);
             Component name = Component.text(" " + padRight(Repository.getDisplayName(key), 20), NamedTextColor.WHITE);
+            if (Repository.getInstallTarget(key) == Repository.InstallTarget.GEYSER_EXTENSIONS) {
+                name = name.append(Component.text(" [" + msg().msg("menu.extension-tag") + "]",
+                        NamedTextColor.DARK_AQUA));
+            }
             Component description = Component.text(desc, NamedTextColor.GRAY);
 
             Component line = checkbox.append(name).append(description);

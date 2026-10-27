@@ -1,25 +1,24 @@
 # OmniBridge
 
-**A comprehensive Minecraft server plugin that automatically manages cross-version, cross-platform, and integration plugins for Paper/Bukkit servers and Velocity proxies.**
+**A Paper plugin that downloads, configures, and manages the plugins needed for cross-version and cross-platform Minecraft support.**
 
 [![License: GPL-3.0](https://img.shields.io/github/license/enis1enis2/OmniBridge)](https://www.gnu.org/licenses/gpl-3.0)
 [![Java 21](https://img.shields.io/badge/Java-21-ED8B00)](https://openjdk.org/projects/jdk/21/)
-[![Minecraft](https://img.shields.io/badge/Minecraft-1.8+-00AA00)](https://www.minecraft.net)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.20%2B-00AA00)](https://www.minecraft.net)
 
 ---
 
 ## Features
 
-- Automatic downloading, configuration, and management of 29+ cross-version and cross-platform plugins
+- Automatic downloading, configuration, and management of **27** cross-version, cross-platform, and integration plugins
 - Interactive chat-based configuration menu for guided setup
-- Plugin presets for quick deployment (bedrock, full-version, essentials, max-compat)
-- Full internationalization with 71 supported languages
+- 7 plugin presets for quick deployment (`bedrock`, `full-version`, `essentials`, `server-essentials`, `max-compat`, `performance`, `chat`)
+- Localized chat messages with **72 locale files** and per-key fallback to `en_US`
 - Automatic dependency resolution across managed plugins
 - External API for integration with third-party plugins
-- Real-time player version tracking with Bedrock player identification
-- Toggle individual plugins on or off without manual file editing
-- Centralized update checking and plugin lifecycle management
-- Lightweight footprint with minimal performance overhead
+- Real-time player version tracking via ViaVersion, and Bedrock player identification via Geyser
+- Safe installs and updates: downloads are written to a temp file, validated, and atomically moved into place
+- Centralized update checking with three states: update available, up to date, or unknown
 
 ---
 
@@ -27,20 +26,27 @@
 
 ### Requirements
 
-- Java 21 or later
-- Minecraft server running Paper, Folia, or any Bukkit-compatible fork (1.8+)
-- Velocity proxy (optional, for Velocity-specific managed plugins)
+- **Java 21 or later**
+- **Paper 1.20 or newer** (the plugin targets `api-version: 1.20` and uses the Adventure API)
+- An internet connection if you want OmniBridge to download plugins for you
+
+OmniBridge is a **Paper plugin**. It is not a Spigot, Folia, or Fabric mod. The JAR also
+contains a minimal Velocity entry point (see [Velocity](#velocity)) but plugin management
+is Paper-only.
 
 ### Installation
 
-1. Download the latest `OmniBridge.jar` from the [Releases](https://github.com/enis1enis2/OmniBridge/releases) page.
+1. Download the latest `OmniBridge-1.0.0.jar` from the [Releases](https://github.com/enis1enis2/OmniBridge/releases) page.
 2. Place the JAR file into your server's `plugins/` directory.
-3. Restart or reload your server.
-4. Run `/ob setup` in-game or via console to launch the interactive configuration wizard.
+3. Restart your server.
+4. Run `/ob setup` in-game or from the console to launch the interactive configuration menu.
+5. Restart the server once more so the newly downloaded plugins are loaded.
 
 ---
 
 ## Commands
+
+All commands are available as `/omnibrige` with the aliases `/ob` and `/omnib`.
 
 | Command | Description |
 |---|---|
@@ -48,32 +54,48 @@
 | `/ob toggle <plugin>` | Enable or disable a specific managed plugin |
 | `/ob preset [name]` | Apply a configuration preset group |
 | `/ob install` | Download all currently enabled plugins |
-| `/ob update` | Download updates for all managed plugins |
-| `/ob check` | Display which managed plugins have available updates |
+| `/ob update` | Check for and download updates, including plugins whose version cannot be compared |
+| `/ob check` | Show update state for each installed plugin (`UPDATE AVAILABLE`, `up to date`, or `status unknown`) |
 | `/ob status` | Show the current status of all managed plugins |
+| `/ob info <plugin>` | Show version, install target, and description for one plugin |
 | `/ob versions` | List connected player versions (includes Bedrock tags) |
-| `/ob reload` | Reload all OmniBridge configuration files |
+| `/ob reload` | Reload the config and locale, then reload all managed plugins |
 | `/ob remove <plugin>` | Uninstall a managed plugin from the server |
+| `/ob enable-all` | Enable every managed plugin |
+| `/ob disable-all` | Disable every managed plugin |
 | `/ob help` | Display available commands and usage information |
+
+Tab completion is available for subcommands and plugin names.
 
 ---
 
 ## Configuration
 
-OmniBridge is configured through a YAML configuration file. Key options include:
+OmniBridge is configured through `plugins/OmniBridge/config.yml`:
 
 | Option | Description |
 |---|---|
-| `auto-install` | Automatically download plugins when they are enabled |
-| `auto-update` | Automatically apply updates when available |
-| `locale` | Set the language for chat messages and menus |
+| `auto-install` | Automatically download enabled plugins on startup |
+| `auto-update` | Automatically apply updates on startup |
+| `managed-plugins` | Per-plugin enable/disable toggles (all disabled by default) |
+| `bedrock.address` / `bedrock.port` | Address and port Geyser should listen on for Bedrock clients |
+| `java.address` / `java.port` | Address and port of the Java server Geyser connects to |
+| `locale` | Locale code for chat messages, e.g. `en_US` or `tr_TR` |
 | `debug` | Enable verbose logging for troubleshooting |
-| `reminder-interval` | How often players are reminded of available updates (in minutes) |
-| `managed-plugins` | Per-plugin enable/disable toggles and settings |
-| `bedrock` | Network settings for Bedrock Edition player connections |
-| `java` | Network settings for Java Edition player connections |
+| `reminder.interval-minutes` | How often to remind ops that no managed plugins are enabled (minimum 1) |
 
-Use `/ob setup` to configure these options interactively, or edit the configuration file directly.
+Use `/ob setup` to configure these options interactively, or edit the file directly and run
+`/ob reload`.
+
+### Plugin management model
+
+- A plugin is downloaded only when its `managed-plugins` entry is `true`.
+- Dependencies are resolved automatically. Enabling Geyser also enables Floodgate; enabling
+  AuthMe also enables Floodgate; DiscordSRV pulls in PlaceholderAPI; TuffXPlus pulls in
+  ViaVersion and ViaBackwards.
+- Platform-restricted entries (`viabungee`, `protocolib`, `tuffxplus`) are skipped when the
+  current platform does not support them.
+- Unknown keys in `managed-plugins` are ignored with a warning instead of failing.
 
 ---
 
@@ -83,24 +105,25 @@ Use `/ob setup` to configure these options interactively, or edit the configurat
 
 | Plugin | Description |
 |---|---|
-| ViaVersion | Allows newer Minecraft client versions to connect to older servers |
-| ViaBackwards | Allows older Minecraft client versions to connect to newer servers |
-| ViaRewind | Provides backward compatibility for legacy client versions |
-| ViaRewindLegacySupport | Extends ViaRewind with support for very old client versions |
-| ViaAprilFools | Adds custom protocol version mappings for April Fools Edition |
-| ViaBungee | Provides ViaVersion support on BungeeCord proxies |
+| ViaVersion | Allows newer Minecraft clients to connect to older servers |
+| ViaBackwards | Allows older Minecraft clients to connect to newer servers |
+| ViaRewind | Provides backward compatibility for 1.7.x/1.8.x clients |
+| ViaRewindLegacySupport | Extra block and entity fixes for ViaRewind (Paper only) |
+| ViaAprilFools | Protocol mappings for April Fools snapshots |
+| ViaBungee | ViaVersion support for Waterfall/BungeeCord proxies (Velocity-only entry) |
 
 ### GeyserMC Family (Cross-Platform / Bedrock Support)
 
-| Plugin | Description |
-|---|---|
-| Geyser | Enables Minecraft Bedrock Edition clients to join Java Edition servers |
-| Floodgate | Allows Bedrock players to join without requiring a Java Edition license |
-| Hurricane | Network compression optimization for Geyser connections |
-| GeyserConnect | Proxy-layer connection handling and lobby for Geyser |
-| ThirdPartyCosmetics | Enables third-party cosmetic support for Bedrock clients |
-| ThunderBeta | Thunder client compatibility layer for Bedrock |
-| Rainbow | Visual enhancement and skin support for Bedrock players |
+| Plugin | Description | Installed to |
+|---|---|---|
+| Geyser | Lets Bedrock Edition clients join a Java server | `plugins/` |
+| Floodgate | Bedrock authentication without a Java account | `plugins/` |
+| Hurricane | Server-side workarounds for Geyser players | `plugins/` |
+| GeyserConnect | Lets Bedrock players join without a proxy | `plugins/Geyser-Spigot/extensions/` |
+| ThirdPartyCosmetics | Third-party cosmetic support for Bedrock clients | `plugins/Geyser-Spigot/extensions/` |
+
+> **Out of scope:** Rainbow (a Fabric client mod) and ThunderBeta (a resource pack
+> converter) are not server plugins and are not managed by OmniBridge.
 
 ### Integration
 
@@ -108,18 +131,46 @@ Use `/ob setup` to configure these options interactively, or edit the configurat
 |---|---|
 | AuthMe | Registration, login, and authentication management |
 | TAB | Player list formatting, prefixes, suffixes, and header/footer customization |
-| DiscordSRV | Bridge Minecraft chat with Discord servers and sync |
+| LuckPerms | Permissions management |
+| EssentialsX | General server commands and utilities |
+| PlaceholderAPI | Placeholder expansion API used by many plugins |
+| WorldGuard | Region protection and flags |
+| CoreProtect | Block and container logging/rollback |
+| DiscordSRV | Bridges Minecraft chat with Discord |
+| Vault | Economy/permission abstraction layer |
 
 ### Community
 
 | Plugin | Description |
 |---|---|
 | ProtocolLib | Packet-level API used by many plugins for protocol manipulation |
-| TuffXPlus | Extended utilities and compatibility fixes for various plugins |
-| spark | CPU/memory profiling and server health reporting tool |
-| Chunky | Pre-generate chunks quickly and efficiently |
+| TuffXPlus | Modern blocks and entities for TuffClient |
+| spark | CPU/memory profiling and server health reporting |
+| Chunky | Chunk pre-generation |
 | BlueMap | 3D web map renderer for Minecraft worlds |
-| GriefPrevention | Land claims and anti-grief protection system |
+| GriefPrevention | Land claims and anti-grief protection |
+| CommandAPI | Command registration API for newer Minecraft versions |
+
+---
+
+## Update Checking
+
+`/ob check` reports one of three states per installed plugin:
+
+| State | Meaning |
+|---|---|
+| `UPDATE AVAILABLE` | The pinned repository version is newer than the installed JAR |
+| `up to date` | The installed version is the same or newer than the pinned version |
+| `status unknown` | The version could not be determined (rolling "latest" URL with no `Last-Modified` header, network failure, or missing version metadata) |
+
+Pinned entries are compared numerically (so `1.20.4 < 1.20.10` and `5.11.1-SNAPSHOT+1046`
+equals `5.11.1`). Rolling "latest" entries compare the remote `Last-Modified` timestamp
+with the local JAR's modification time.
+
+`/ob update` forces a download even for entries whose update state is `status unknown`.
+Automatic updates (`auto-update: true` and `/ob update` without a forced state) only replace
+JARs whose state is `UPDATE AVAILABLE`, so an unknown state never triggers a pointless
+re-download.
 
 ---
 
@@ -128,9 +179,9 @@ Use `/ob setup` to configure these options interactively, or edit the configurat
 OmniBridge exposes an external API that allows other plugins to interact with the managed plugin ecosystem. Through the API, third-party developers can:
 
 - Query the status of any managed plugin
-- Check installed and available versions
-- Programmatically enable or disable plugins
-- Listen for plugin lifecycle events (install, update, remove)
+- Check installed versions
+- Programmatically install, update, or remove plugins
+- Listen for plugin lifecycle events (`PluginInstalledEvent`, `PluginUpdatedEvent`, `PluginRemovedEvent`)
 - Integrate with the preset system
 
 Include OmniBridge as a dependency and reference the API documentation in the project wiki for implementation details.
@@ -139,7 +190,19 @@ Include OmniBridge as a dependency and reference the API documentation in the pr
 
 ## Supported Languages
 
-OmniBridge supports **71 languages** through a comprehensive locale file system. Contributions for additional translations are welcome via pull request.
+OmniBridge ships **72 locale files**. Messages missing from a locale fall back to `en_US`
+per key; `msg()` returns the translation rather than leaking a raw message key.
+Contributions for additional translations are welcome via pull request.
+
+---
+
+## Velocity
+
+The JAR contains a Velocity entry point (`velocity-plugin.json`), but Velocity support is
+**limited**: it registers the `/omnibrige` command and initializes the message manager.
+It does **not** download, install, or manage plugins on a proxy. Use a Paper backend for
+plugin management, and install ViaVersion/Geyser directly on the proxy if you need them
+there.
 
 ---
 
@@ -155,7 +218,18 @@ cd OmniBridge
 mvn clean package
 ```
 
-The compiled JAR will be located in the `target/` directory.
+The compiled JAR will be located at `target/OmniBridge-1.0.0.jar`.
+
+### Tests
+
+```bash
+mvn test                          # unit tests (network tests excluded)
+mvn test -Dtest=RepositoryTest    # single test class
+mvn test -DexcludedGroups= -Dtest=RepositoryUrlsTest   # verify every download URL
+```
+
+Test counts and metadata assertions live in `src/test/java/io/omnibrige/`. Adding or
+removing a registry entry requires updating `RepositoryTest`.
 
 ---
 

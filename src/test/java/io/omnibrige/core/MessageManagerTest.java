@@ -70,7 +70,18 @@ class MessageManagerTest {
     }
 
     @Test
-    void allLocalesLoadSuccessfully() {
+    void missingKeysFallBackToEnglish() {
+        String english = MessageManager.getInstance().msg("command.check.unknown");
+        assertFalse(english.contains("command.check.unknown"));
+
+        MessageManager.getInstance().reload("tr_TR");
+        // Key exists only in en_US; MessageManager must return the English fallback, not the key.
+        assertEquals(english, MessageManager.getInstance().msg("command.check.unknown"));
+        MessageManager.getInstance().reload("en_US");
+    }
+
+    @Test
+    void allLocalesResolveMessagesWithoutKeyLeaks() {
         String[] locales = {
             "en_US", "tr_TR", "de_DE", "fr_FR", "es_ES", "pt_BR",
             "ru_RU", "zh_CN", "ja_JP", "ko_KR", "ar_SA",
@@ -87,13 +98,16 @@ class MessageManagerTest {
             "ga_IE", "zh_TW", "fa_IR", "mr_IN", "gu_IN"
         };
 
+        // Missing translations intentionally fall back to en_US; the contract is that a
+        // message key is never leaked to the user.
         String requiredKey = "no-permission";
         for (String locale : locales) {
             MessageManager.getInstance().reload(locale);
             String result = MessageManager.getInstance().msg(requiredKey);
             assertNotNull(result, "msg() returned null for locale " + locale);
+            assertFalse(result.isBlank(), "blank message for locale " + locale);
             assertNotEquals(requiredKey, result,
-                    "Locale " + locale + " returned key instead of translation for '" + requiredKey + "'");
+                    "Locale " + locale + " returned the raw key instead of a message for '" + requiredKey + "'");
         }
         MessageManager.getInstance().reload("en_US");
     }

@@ -22,7 +22,7 @@ import java.util.Locale;
 
 /**
  * Handles the /omnibrige command on Velocity proxy servers.
- * Provides a limited set of subcommands compared to the Paper/Spigot version.
+ * Provides a limited set of subcommands compared to the Paper version.
  */
 public class OmniBridgeCommandVelocity implements SimpleCommand {
 

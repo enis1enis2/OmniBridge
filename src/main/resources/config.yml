@@ -19,13 +19,13 @@ managed-plugins:
   viaprilfools: false
   viabungee: false
   # GeyserMC family (cross-platform / Bedrock support)
+  # geyserconnect and thirdpartycosmetics are Geyser extensions and are
+  # installed into plugins/Geyser-Spigot/extensions/
   geyser: false
   floodgate: false
   hurricane: false
   geyserconnect: false
   thirdpartycosmetics: false
-  thunderbeta: false
-  rainbow: false
   # Integration plugins (Bedrock/cross-version aware)
   authme: false
   tab: false
@@ -57,10 +57,13 @@ java:
   address: 127.0.0.1
   port: 25565
 
-# Locale for messages (71 locales available, e.g. en_US, tr_TR, de_DE, zh_TW)
+# Locale for messages (see src/main/resources/locale for the available codes, e.g. en_US, tr_TR, de_DE, zh_TW)
 locale: en_US
+
+# Enable verbose debug logging
+debug: false
 
 # Reminder settings (broadcasts to ops when no plugins are configured)
 reminder:
-  # How often to remind (in minutes)
+  # How often to remind (in minutes, minimum 1)
   interval-minutes: 5

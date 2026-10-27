@@ -89,13 +89,13 @@ public final class OmniBridgeAPI {
      */
     public Map<String, ManagedPlugin> getManagedPlugins() {
         Map<String, ManagedPlugin> result = new LinkedHashMap<>();
+        File pluginsDir = getPluginsDirectory();
         for (var entry : Repository.getAllPlugins().entrySet()) {
             String key = entry.getKey();
             Repository.PluginInfo info = entry.getValue();
             Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(Repository.getBukkitName(key));
-            File[] files = getPluginsDirectory().listFiles();
-            boolean installed = bukkitPlugin != null || (files != null
-                    && Arrays.stream(files).anyMatch(f -> f.getName().equals(Repository.getJarName(key))));
+            boolean installed = bukkitPlugin != null
+                    || Repository.resolveInstallPath(pluginsDir, key).exists();
             boolean enabled = bukkitPlugin != null && bukkitPlugin.isEnabled();
             String version = bukkitPlugin != null ? bukkitPlugin.getDescription().getVersion() : "N/A";
             List<String> deps = Repository.getDependencies(key);
@@ -109,19 +109,20 @@ public final class OmniBridgeAPI {
     /**
      * Returns the status of a specific managed plugin.
      *
-     * @param name the plugin key (case-insensitive)
+     * @param name the plugin key or display name (case-insensitive)
      * @return the plugin's status, or null if not found
      */
     public ManagedPlugin getPlugin(String name) {
-        if (name == null) return null;
-        Repository.PluginInfo info = Repository.getAllPlugins().get(name.toLowerCase(Locale.ROOT));
+        Repository.PluginInfo info = Repository.getPluginInfo(name);
         if (info == null) return null;
+        String key = name.toLowerCase(Locale.ROOT);
         Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin(Repository.getBukkitName(name));
-        boolean installed = bukkitPlugin != null || new File(getPluginsDirectory(), Repository.getJarName(name)).exists();
+        boolean installed = bukkitPlugin != null
+                || Repository.resolveInstallPath(getPluginsDirectory(), name).exists();
         boolean enabled = bukkitPlugin != null && bukkitPlugin.isEnabled();
         String version = bukkitPlugin != null ? bukkitPlugin.getDescription().getVersion() : "N/A";
         List<String> deps = Repository.getDependencies(name);
-        return new ManagedPlugin(name, info.displayName(), info.type(),
+        return new ManagedPlugin(key, info.displayName(), info.type(),
                 installed, enabled, version, List.copyOf(deps));
     }
 
@@ -168,7 +169,7 @@ public final class OmniBridgeAPI {
         return CompletableFuture.supplyAsync(() -> {
             if (!Repository.isKnown(name)) return false;
             String url = Repository.getUrl(name);
-            File dest = new File(getPluginsDirectory(), Repository.getJarName(name));
+            File dest = Repository.resolveInstallPath(getPluginsDirectory(), name);
             io.omnibrige.download.DownloadService ds = new io.omnibrige.download.DownloadService(logger);
             boolean ok = ds.downloadSync(url, dest);
             if (ok) {

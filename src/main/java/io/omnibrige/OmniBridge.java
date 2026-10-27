@@ -29,7 +29,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 /**
- * Main plugin entry point for Paper/Spigot servers.
+ * Main plugin entry point for Paper servers.
  * Handles initialization, lifecycle management, and the ops reminder system.
  */
 public final class OmniBridge extends JavaPlugin {
@@ -63,11 +63,19 @@ public final class OmniBridge extends JavaPlugin {
         configManager.generateAllConfigs();
         pluginManager = new PluginManager(this, platform, configManager);
 
-        getCommand("omnibrige").setExecutor(new OmniBridgeCommand(this));
+        var command = getCommand("omnibrige");
+        if (command != null) {
+            OmniBridgeCommand executor = new OmniBridgeCommand(this);
+            command.setExecutor(executor);
+            command.setTabCompleter(executor);
+        } else {
+            getLogger().warning("Command 'omnibrige' is not defined in plugin.yml; "
+                    + "command handling is disabled.");
+        }
 
         OmniBridgeAPI.init(this);
 
-        boolean autoInstall = getConfig().getBoolean("auto-install", false);
+        boolean autoInstall = getConfig().getBoolean("auto-install", true);
         boolean autoUpdate = getConfig().getBoolean("auto-update", false);
 
         if (autoInstall) {
@@ -99,8 +107,8 @@ public final class OmniBridge extends JavaPlugin {
     private void startReminderIfNeeded() {
         if (isConfigured()) return;
 
-        long intervalMinutes = getConfig().getLong("reminder.interval-minutes", 5);
-        long intervalTicks = intervalMinutes * 20 * 60;
+        long intervalMinutes = Math.max(1L, getConfig().getLong("reminder.interval-minutes", 5));
+        long intervalTicks = intervalMinutes * 20L * 60L;
 
         reminderTask = Bukkit.getScheduler().runTaskTimer(this, () -> {
             if (isConfigured()) {
@@ -148,6 +156,17 @@ public final class OmniBridge extends JavaPlugin {
             if (section.getBoolean(key)) return true;
         }
         return false;
+    }
+
+    /**
+     * Logs a message when the {@code debug} config option is enabled.
+     *
+     * @param message the message to log
+     */
+    public void debug(String message) {
+        if (getConfig().getBoolean("debug", false)) {
+            getLogger().info("[debug] " + message);
+        }
     }
 
     /**

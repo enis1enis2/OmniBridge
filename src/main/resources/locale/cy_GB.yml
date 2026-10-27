@@ -50,7 +50,7 @@ command.preset.hint: "Rhedwch /ob install i'w lawrlwytho"
 # Cymorth
 command.help.title: "Gorchmynion OmniBridge"
 command.help.setup: "Agor gosod ychwanegion rhyngweithiol"
-command.preset.hint: "bedrock, full-version, essentials, max-compat"
+command.help.preset-hint: "bedrock, full-version, essentials, max-compat"
 command.help.preset: "Cymhwyso grŵp rhagosodiad ychwanegion"
 command.help.install: "Lawrlwytho a gosod ychwanegion alluog"
 command.help.update: "Gwirio a chymhwyso diweddariadau"

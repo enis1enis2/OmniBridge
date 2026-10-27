@@ -15,9 +15,20 @@ import java.util.*;
 
 /**
  * Integration layer for detecting and querying Geyser Bedrock Edition players.
- * Uses reflection to interact with the Geyser API without a compile-time dependency.
+ *
+ * <p>Uses reflection against Geyser's public interfaces ({@code GeyserApi},
+ * {@code GeyserConnection}) so that the integration does not depend on Geyser's
+ * implementation classes, which are relocated between builds.</p>
  */
 public class GeyserIntegration {
+
+    private static final String GEYSER_API_CLASS = "org.geysermc.geyser.api.GeyserApi";
+    private static final String GEYSER_CONNECTION_INTERFACE =
+            "org.geysermc.geyser.api.connection.GeyserConnection";
+
+    /** Plugin names used by the different Geyser platform builds. */
+    private static final List<String> GEYSER_PLUGIN_NAMES = List.of(
+            "Geyser-Spigot", "Geyser-Paper", "Geyser", "Geyser-Velocity", "Geyser-BungeeCord");
 
     private final Plugin geyserPlugin;
 
@@ -27,7 +38,15 @@ public class GeyserIntegration {
      * @param hostPlugin the host plugin providing the Bukkit runtime context
      */
     public GeyserIntegration(Plugin hostPlugin) {
-        this.geyserPlugin = Bukkit.getPluginManager().getPlugin("Geyser-Spigot");
+        this.geyserPlugin = findGeyserPlugin();
+    }
+
+    private static Plugin findGeyserPlugin() {
+        for (String name : GEYSER_PLUGIN_NAMES) {
+            Plugin candidate = Bukkit.getPluginManager().getPlugin(name);
+            if (candidate != null) return candidate;
+        }
+        return null;
     }
 
     /**
@@ -46,14 +65,7 @@ public class GeyserIntegration {
      * @return true if the player is a Bedrock client
      */
     public boolean isBedrockPlayer(UUID uuid) {
-        if (!isGeyserAvailable()) return false;
-        try {
-            Class<?> geyserApiClass = Class.forName("org.geysermc.geyser.api.GeyserApi");
-            Object geyserApi = geyserApiClass.getMethod("api").invoke(null);
-            Object connection = geyserApi.getClass().getMethod("connectionByUuid", UUID.class).invoke(geyserApi, uuid);
-            return connection != null;
-        } catch (Exception ignored) {}
-        return false;
+        return getConnection(uuid) != null;
     }
 
     /**
@@ -80,16 +92,27 @@ public class GeyserIntegration {
      * @return the platform string, or null if not a Bedrock player or Geyser unavailable
      */
     public String getPlayerPlatform(UUID uuid) {
-        if (!isGeyserAvailable()) return null;
+        Object connection = getConnection(uuid);
+        if (connection == null) return null;
         try {
-            Class<?> geyserApiClass = Class.forName("org.geysermc.geyser.api.GeyserApi");
+            Class<?> connectionInterface = Class.forName(GEYSER_CONNECTION_INTERFACE);
+            Object platform = connectionInterface.getMethod("platform").invoke(connection);
+            return platform != null ? platform.toString() : null;
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    private Object getConnection(UUID uuid) {
+        if (!isGeyserAvailable() || uuid == null) return null;
+        try {
+            Class<?> geyserApiClass = Class.forName(GEYSER_API_CLASS);
             Object geyserApi = geyserApiClass.getMethod("api").invoke(null);
-            Object connection = geyserApi.getClass().getMethod("connectionByUuid", UUID.class).invoke(geyserApi, uuid);
-            if (connection != null) {
-                Object platform = connection.getClass().getMethod("platform").invoke(connection);
-                return platform.toString();
-            }
-        } catch (Exception ignored) {}
-        return null;
+            return geyserApiClass
+                    .getMethod("connectionByUuid", UUID.class)
+                    .invoke(geyserApi, uuid);
+        } catch (Exception ignored) {
+            return null;
+        }
     }
 }

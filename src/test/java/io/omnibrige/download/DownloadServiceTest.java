@@ -24,6 +24,11 @@ class DownloadServiceTest {
     }
 
     @Test
+    void validateJarReturnsFalseForNull() {
+        assertFalse(service.validateJar(null));
+    }
+
+    @Test
     void validateJarReturnsFalseForEmptyFile() throws IOException {
         File empty = tempDir.resolve("empty.jar").toFile();
         empty.createNewFile();
@@ -67,10 +72,57 @@ class DownloadServiceTest {
     }
 
     @Test
+    void isHttpsAcceptsOnlyHttpsUrls() {
+        assertTrue(DownloadService.isHttps("https://example.com/plugin.jar"));
+        assertTrue(DownloadService.isHttps("  https://example.com/plugin.jar  "));
+        assertFalse(DownloadService.isHttps("http://example.com/plugin.jar"));
+        assertFalse(DownloadService.isHttps("ftp://example.com/plugin.jar"));
+        assertFalse(DownloadService.isHttps("file:///tmp/plugin.jar"));
+        assertFalse(DownloadService.isHttps("https://"));
+        assertFalse(DownloadService.isHttps(null));
+        assertFalse(DownloadService.isHttps(""));
+    }
+
+    @Test
+    void downloadSyncRejectsNonHttpsUrlWithoutNetwork() {
+        File dest = tempDir.resolve("insecure.jar").toFile();
+        assertFalse(service.downloadSync("http://example.com/plugin.jar", dest));
+        assertFalse(dest.exists());
+    }
+
+    @Test
+    void downloadSyncRejectsNullUrl() {
+        File dest = tempDir.resolve("null-url.jar").toFile();
+        assertFalse(service.downloadSync(null, dest));
+        assertFalse(dest.exists());
+    }
+
+    @Test
+    void downloadSyncRejectsNullDestination() {
+        assertFalse(service.downloadSync("https://example.com/plugin.jar", null));
+    }
+
+    @Test
+    void downloadSyncLeavesExistingFileIntactOnFailure() throws IOException {
+        File dest = tempDir.resolve("existing.jar").toFile();
+        try (FileOutputStream fos = new FileOutputStream(dest)) {
+            fos.write(new byte[]{0x50, 0x4B, 0x03, 0x04, 0x01, 0x02});
+        }
+        long before = dest.length();
+
+        boolean result = service.downloadSync("https://invalid.example.com/nonexistent", dest);
+
+        assertFalse(result);
+        assertTrue(dest.exists(), "existing JAR must not be deleted on a failed download");
+        assertEquals(before, dest.length(), "existing JAR must not be truncated on a failed download");
+    }
+
+    @Test
     void downloadSyncReturnsFalseForInvalidUrl() {
         File dest = tempDir.resolve("fail.jar").toFile();
         boolean result = service.downloadSync("https://invalid.example.com/nonexistent", dest);
         assertFalse(result);
+        assertFalse(dest.exists());
     }
 
     @Test
@@ -81,17 +133,17 @@ class DownloadServiceTest {
     }
 
     @Test
-    void checkUpdateReturnsFalseForNullUrl() {
-        assertFalse(service.checkUpdate(null, "1.0"));
+    void fetchLastModifiedReturnsEmptyForNonHttpsUrl() {
+        assertTrue(service.fetchLastModified("http://example.com/test.jar").isEmpty());
     }
 
     @Test
-    void checkUpdateReturnsFalseForNullVersion() {
-        assertFalse(service.checkUpdate("https://example.com/test.jar", null));
+    void fetchLastModifiedReturnsEmptyForNullUrl() {
+        assertTrue(service.fetchLastModified(null).isEmpty());
     }
 
     @Test
-    void checkUpdateReturnsFalseForInvalidUrl() {
-        assertFalse(service.checkUpdate("https://invalid.example.com/nonexistent", "1.0"));
+    void fetchLastModifiedReturnsEmptyForInvalidUrl() {
+        assertTrue(service.fetchLastModified("https://invalid.example.com/nonexistent").isEmpty());
     }
 }

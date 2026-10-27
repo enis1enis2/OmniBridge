@@ -41,10 +41,6 @@ public final class PluginDescriptions {
                 "Bedrock players join without a proxy setup");
         DESCRIPTIONS.put("thirdpartycosmetics",
                 "Third-party cosmetic support for Bedrock players");
-        DESCRIPTIONS.put("thunderbeta",
-                "Java-to-Bedrock resource pack converter");
-        DESCRIPTIONS.put("rainbow",
-                "Custom item name color mapping for Bedrock clients");
 
         DESCRIPTIONS.put("authme",
                 "Login/authentication system with native Bedrock support");

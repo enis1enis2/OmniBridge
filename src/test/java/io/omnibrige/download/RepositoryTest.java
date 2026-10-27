@@ -2,8 +2,9 @@ package io.omnibrige.download;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,9 +20,17 @@ class RepositoryTest {
             assertNotNull(info.url(), "url null for " + key);
             assertNotNull(info.bukkitName(), "bukkitName null for " + key);
             assertNotNull(info.jarName(), "jarName null for " + key);
-            assertTrue(info.url().startsWith("http"), "url doesn't start with http for " + key);
+            assertNotNull(info.target(), "target null for " + key);
+            assertTrue(DownloadService.isHttps(info.url()),
+                    "url is not a valid HTTPS URL for " + key + ": " + info.url());
             assertTrue(info.jarName().endsWith(".jar"), "jarName doesn't end with .jar for " + key);
+            assertEquals(key, key.toLowerCase(), "registry key must be lowercase: " + key);
         }
+    }
+
+    @Test
+    void registryContainsExpectedNumberOfPlugins() {
+        assertEquals(27, Repository.getAllPlugins().size());
     }
 
     @Test
@@ -42,6 +51,17 @@ class RepositoryTest {
         assertTrue(Repository.isKnown("bluemap"));
         assertTrue(Repository.isKnown("griefprevention"));
         assertTrue(Repository.isKnown("VIaversion")); // case insensitive
+        assertTrue(Repository.isKnown("ViaVersion")); // display name fallback
+    }
+
+    @Test
+    void getKeyResolvesKeysAndDisplayNames() {
+        assertEquals("viaversion", Repository.getKey("viaversion"));
+        assertEquals("viaversion", Repository.getKey("ViaVersion"));
+        assertEquals("viarewind-legacysupport", Repository.getKey("ViaRewindLegacySupport"));
+        assertEquals("geyser", Repository.getKey("Geyser"));
+        assertNull(Repository.getKey("nonexistent"));
+        assertNull(Repository.getKey(null));
     }
 
     @Test
@@ -69,9 +89,18 @@ class RepositoryTest {
     }
 
     @Test
+    void removedPluginsAreNoLongerRegistered() {
+        // Rainbow is a Fabric client mod and Thunder is a resource pack converter,
+        // neither can be installed as a server plugin.
+        assertFalse(Repository.isKnown("rainbow"));
+        assertFalse(Repository.isKnown("thunderbeta"));
+    }
+
+    @Test
     void isKnownForUnknownPlugins() {
         assertFalse(Repository.isKnown("nonexistent"));
         assertFalse(Repository.isKnown(""));
+        assertFalse(Repository.isKnown(null));
     }
 
     @Test
@@ -95,6 +124,13 @@ class RepositoryTest {
         assertEquals(List.of("floodgate"), Repository.getDependencies("authme"));
         assertEquals(List.of("viaversion", "viabackwards"), Repository.getDependencies("tuffxplus"));
         assertEquals(List.of("placeholderapi"), Repository.getDependencies("discordsrv"));
+        assertEquals(List.of("viaversion"), Repository.getDependencies("viabackwards"));
+        assertEquals(List.of("viaversion", "viabackwards"), Repository.getDependencies("viarewind"));
+        assertEquals(List.of("viarewind"), Repository.getDependencies("viarewind-legacysupport"));
+        assertEquals(List.of("viaversion"), Repository.getDependencies("viaprilfools"));
+        assertEquals(List.of("geyser", "floodgate"), Repository.getDependencies("hurricane"));
+        assertEquals(List.of("geyser"), Repository.getDependencies("geyserconnect"));
+        assertEquals(List.of("geyser"), Repository.getDependencies("thirdpartycosmetics"));
         assertTrue(Repository.getDependencies("viaversion").isEmpty());
         assertTrue(Repository.getDependencies("nonexistent").isEmpty());
     }
@@ -116,13 +152,52 @@ class RepositoryTest {
         assertEquals("floodgate-spigot.jar", Repository.getJarName("floodgate"));
         assertEquals("ViaRewind-Legacy-Support.jar", Repository.getJarName("viarewind-legacysupport"));
         assertEquals("ViaBungee.jar", Repository.getJarName("viabungee"));
-        assertEquals("Thunder.jar", Repository.getJarName("thunderbeta"));
         assertEquals("TuffXPlus.jar", Repository.getJarName("tuffxplus"));
         assertEquals("ViaVersion.jar", Repository.getJarName("viaversion"));
     }
 
     @Test
-    void allPluginsHaveDescriptions() {
+    void geyserExtensionsAreTaggedAsExtensions() {
+        assertEquals(Repository.InstallTarget.GEYSER_EXTENSIONS,
+                Repository.getInstallTarget("geyserconnect"));
+        assertEquals(Repository.InstallTarget.GEYSER_EXTENSIONS,
+                Repository.getInstallTarget("thirdpartycosmetics"));
+        assertTrue(Repository.getPluginInfo("geyserconnect").isExtension());
+        assertTrue(Repository.getPluginInfo("thirdpartycosmetics").isExtension());
+        assertEquals(Repository.InstallTarget.PLUGINS, Repository.getInstallTarget("geyser"));
+        assertFalse(Repository.getPluginInfo("geyser").isExtension());
+    }
+
+    @Test
+    void installPathHonorsInstallTarget() {
+        File pluginsDir = new File("plugins");
+        assertEquals(new File("plugins/Geyser-Spigot.jar"),
+                Repository.resolveInstallPath(pluginsDir, "geyser"));
+        assertEquals(new File(pluginsDir, "Geyser-Spigot/extensions/GeyserConnect.jar"),
+                Repository.resolveInstallPath(pluginsDir, "geyserconnect"));
+        assertEquals(Path.of("plugins", "ViaVersion.jar").toFile(),
+                Repository.resolveInstallPath(pluginsDir, "ViaVersion"));
+    }
+
+    @Test
+    void pinnedVersionsAreValidOrExplicitlyLatest() {
+        for (var entry : Repository.getAllPlugins().entrySet()) {
+            String key = entry.getKey();
+            String version = entry.getValue().version();
+            if (version == null) continue;
+            assertTrue(version.matches("\\d+(\\.\\d+)*"),
+                    "pinned version for " + key + " is not numeric: " + version);
+            assertTrue(entry.getValue().url().contains(version),
+                    "pinned URL for " + key + " does not contain version " + version);
+        }
+        // Rolling endpoints must not claim a version.
+        assertNull(Repository.getVersion("geyser"));
+        assertNull(Repository.getVersion("floodgate"));
+        assertNull(Repository.getVersion("luckperms"));
+    }
+
+    @Test
+    void allPluginsHaveBukkitNames() {
         for (String key : Repository.getAllPlugins().keySet()) {
             String bukkitName = Repository.getBukkitName(key);
             assertNotNull(bukkitName, "bukkitName null for " + key);

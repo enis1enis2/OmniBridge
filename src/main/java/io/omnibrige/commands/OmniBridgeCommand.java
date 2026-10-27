@@ -12,8 +12,8 @@ import io.omnibrige.core.MessageManager;
 import io.omnibrige.core.PluginDescriptions;
 import io.omnibrige.core.PluginManager;
 import io.omnibrige.core.PluginManager.PluginStatus;
+import io.omnibrige.core.PluginManager.UpdateStatus;
 import io.omnibrige.core.PluginPresets;
-import io.omnibrige.download.DownloadService;
 import io.omnibrige.download.Repository;
 
 import net.kyori.adventure.text.Component;
@@ -32,7 +32,7 @@ import java.util.*;
 import java.util.Locale;
 
 /**
- * Handles the /omnibrige (alias /ob) command on Paper/Spigot servers.
+ * Handles the /omnibrige (alias /ob) command on Paper servers.
  * Provides subcommands for plugin management, status, presets, and configuration.
  */
 public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
@@ -104,7 +104,7 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
 
     private void handleUpdate(CommandSender sender) {
         sender.sendMessage(Component.text(msg().msg("command.update.start"), NamedTextColor.YELLOW));
-        plugin.getPluginManager().updateAllAsync(() ->
+        plugin.getPluginManager().updateAllAsync(true, () ->
                 sender.sendMessage(Component.text(msg().msg("command.update.complete"), NamedTextColor.GREEN))
         );
     }
@@ -114,23 +114,24 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(Component.text("  " + msg().msg("command.check.title"), NamedTextColor.YELLOW));
         sender.sendMessage(Component.empty());
 
-        DownloadService ds = new DownloadService(plugin.getLogger());
+        var statuses = plugin.getPluginManager().getStatus();
         for (var entry : Repository.getAllPlugins().entrySet()) {
             String key = entry.getKey();
             Repository.PluginInfo info = entry.getValue();
-            String currentVersion = plugin.getPluginManager().getInstalledVersion(key);
-            if (currentVersion == null) continue;
+            PluginStatus status = statuses.get(key);
+            if (status == null || !status.installed()) continue;
 
-            boolean updateAvailable = ds.checkUpdate(info.url(), currentVersion);
+            UpdateStatus update = plugin.getPluginManager().checkUpdate(key);
             Component name = Component.text("  " + info.displayName(), NamedTextColor.WHITE);
-            Component version = Component.text(" (" + currentVersion + ") ", NamedTextColor.GRAY);
+            Component version = Component.text(" (" + status.version() + ") ", NamedTextColor.GRAY);
 
-            if (updateAvailable) {
-                sender.sendMessage(name.append(version)
+            switch (update) {
+                case UPDATE_AVAILABLE -> sender.sendMessage(name.append(version)
                         .append(Component.text(msg().msg("command.check.available"), NamedTextColor.YELLOW)));
-            } else {
-                sender.sendMessage(name.append(version)
+                case UP_TO_DATE -> sender.sendMessage(name.append(version)
                         .append(Component.text(msg().msg("command.check.uptodate"), NamedTextColor.DARK_GREEN)));
+                default -> sender.sendMessage(name.append(version)
+                        .append(Component.text(msg().msg("command.check.unknown"), NamedTextColor.GRAY)));
             }
         }
         sender.sendMessage(Component.empty());
@@ -185,10 +186,11 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
     }
 
     private void handleReload(CommandSender sender) {
-        plugin.getPluginManager().reloadAll();
+        // Reload the config and locale first, so reloadAll() sees the new plugin list.
         plugin.reloadConfig();
         String locale = plugin.getConfig().getString("locale", "en_US");
         MessageManager.getInstance().reload(locale);
+        plugin.getPluginManager().reloadAll();
         sender.sendMessage(Component.text(msg().msg("command.reload.done"), NamedTextColor.GREEN));
     }
 
@@ -237,12 +239,13 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
         if (removed) {
             sender.sendMessage(Component.text(msg().msg("command.remove.done", Repository.getDisplayName(pluginName)), NamedTextColor.GREEN));
         } else {
-            sender.sendMessage(Component.text(msg().msg("command.remove.not-found"), NamedTextColor.YELLOW));
+            sender.sendMessage(Component.text(msg().msg("command.remove.failed"), NamedTextColor.YELLOW));
         }
     }
 
     private void handleEnableAll(CommandSender sender) {
         var config = plugin.getConfig();
+        boolean wasEmpty = countEnabled() == 0;
         int count = 0;
         for (String key : Repository.getAllPlugins().keySet()) {
             if (!config.getBoolean("managed-plugins." + key, false)) {
@@ -251,8 +254,7 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
             }
         }
         plugin.saveConfig();
-        boolean wasEmpty = countEnabled() == count;
-        if (wasEmpty) plugin.stopReminder();
+        if (wasEmpty && count > 0) plugin.stopReminder();
         sender.sendMessage(Component.text("  " + msg().msg("command.enable-all.done", count), NamedTextColor.GREEN));
         if (sender instanceof Player player) handleSetup(player);
     }
@@ -286,16 +288,19 @@ public class OmniBridgeCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(Component.text(msg().msg("command.info.usage"), NamedTextColor.RED));
             return;
         }
-        String key = args[1].toLowerCase(Locale.ROOT);
-        if (!Repository.isKnown(key)) {
-            sender.sendMessage(Component.text(msg().msg("command.info.unknown", key), NamedTextColor.RED));
+        String key = Repository.getKey(args[1]);
+        if (key == null) {
+            sender.sendMessage(Component.text(msg().msg("command.info.unknown", args[1]), NamedTextColor.RED));
             return;
         }
-        Repository.PluginInfo info = Repository.getAllPlugins().get(key);
+        Repository.PluginInfo info = Repository.getPluginInfo(key);
         sender.sendMessage(Component.empty());
         sender.sendMessage(Component.text("  " + info.displayName(), NamedTextColor.GOLD, TextDecoration.BOLD));
         sender.sendMessage(Component.text("    " + msg().msg("command.info.type") + ": " + info.type(), NamedTextColor.GRAY));
         sender.sendMessage(Component.text("    " + msg().msg("command.info.description") + ": " + PluginDescriptions.get(key), NamedTextColor.GRAY));
+        sender.sendMessage(Component.text("    " + msg().msg("command.info.version") + ": "
+                + (info.version() != null ? info.version() : msg().msg("command.info.latest")), NamedTextColor.GRAY));
+        sender.sendMessage(Component.text("    " + msg().msg("command.info.target") + ": " + info.target(), NamedTextColor.GRAY));
         sender.sendMessage(Component.text("    " + msg().msg("command.info.jar") + ": " + info.jarName(), NamedTextColor.GRAY));
         List<String> deps = Repository.getDependencies(key);
         if (!deps.isEmpty()) {
